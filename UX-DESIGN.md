@@ -75,4 +75,4 @@ Replace the contents of this file with the completed assignments, as described i
 
 ## Clickable Prototype
 
-(click here)[https://www.figma.com/proto/2Y7J5FMnxS5PYc7yzeosI7/Pet-Tinder?page-id=0%3A1&type=design&node-id=2-37&viewport=587%2C-334%2C0.57&t=BTeEVRLgcnJk5adS-1&scaling=scale-down&starting-point-node-id=2%3A37&mode=design]
+[click here](https://www.figma.com/proto/2Y7J5FMnxS5PYc7yzeosI7/Pet-Tinder?page-id=0%3A1&type=design&node-id=2-37&viewport=587%2C-334%2C0.57&t=BTeEVRLgcnJk5adS-1&scaling=scale-down&starting-point-node-id=2%3A37&mode=design)

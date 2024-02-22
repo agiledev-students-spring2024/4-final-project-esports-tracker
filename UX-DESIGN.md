@@ -14,50 +14,61 @@ Replace the contents of this file with the completed assignments, as described i
 ## Wireframes
 
 ### Login
+-Login page that allows users to register if they are new 
 
 ![log in](ux-design/login.png)
 
 ### Sign Up
+-Account creation page 
 
 ![sign up](ux-design/sign_up.png)
 
 ### Swipe
+-Short profile of others that user matches with, allowing the user to choose whether to "swipe right" 
 
 ![swipe](ux-design/swipe.png)
 
 ### Feed
+-Social media feed of posts and photos from users you are friends with
 
 ![feed](ux-design/feed.png)
 
 ### Discovery
+-Social media feed of public users near you/suggested
 
 ![discovery](ux-design/discovery.png)
 
 ### Create Post
+-Create post pagge with options to add photos, caption, and location
 
 ![create post](ux-design/create.png)
 
 ### Messages
+-Messages tab showing all messages with other users
 
 ![messages](ux-design/messages.png)
 
 ### Chat
+-A chat box between two users
 
 ![chat](ux-design/chat.png)
 
 ### Alternative Chat
+-Sending locations feature in chat
 
 ![alternative chat](ux-design/chat_alt.png)
 
 ### Profile
-
+-User profile 
 ![profile](ux-design/profile.png)
 
 ### Edit Profile
+-Options to edit the profile 
 
 ![edit profile](ux-design/edit_profile.png)
 
 ### Example User
+-The profile of another user
 
 ![example user](ux-design/user.png)
 

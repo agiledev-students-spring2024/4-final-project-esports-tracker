@@ -1,19 +1,26 @@
-# Project Repository
+# Play Dates for Pets
 
-This repository will be used for team projects.
+##  Project Description
 
-Several sets of instructions are included in this repository. They should each be treated as separate assignments with their own due dates and sets of requirements.
+**Play Dates for Pets** is a user-friendly web application where pet owners can create profiles for their pets, specifying breed, personality, and preferences. Our matchmaking algorithm finds and matches like-minded pet owners. 
 
-1. See the [App Map & Wireframes](instructions-0a-app-map-wireframes.md) and [Prototyping](./instructions-0b-prototyping.md) instructions for the requirements of the initial user experience design of the app.
+##  Product Vision Statement
 
-1. Delete the contents of this file and replace with the contents of a proper README.md, as described in the [project setup instructions](./instructions-0c-project-setup.md)
+**Play Dates for Pets** is a social platform for pet owners to connect, facilitating the socialization and well-being of pets through customizable profiles and matchmaking algorithms, fostering meaningful connections and enhancing the bond between pets and their owners.
 
-1. See the [Sprint Planning instructions](instructions-0d-sprint-planning.md) for the requirements of Sprint Planning for each Sprint.
+## Team Members
 
-1. See the [Front-End Development instructions](./instructions-1-front-end.md) for the requirements of the initial Front-End Development.
+* Eleazar Neri: [Github](https://github.com/afknero) 
+* Natalie Wu: [Github](https://github.com/nawubyte)
+* Henry Zhang: [Github](https://github.com/Nrezhang)
+* Kim Young: [Github](https://github.com/Kyoung655)
 
-1. See the [Back-End Development instructions](./instructions-2-back-end.md) for the requirements of the initial Back-End Development.
+## History and Contribution Guidelines
 
-1. See the [Database Integration instructions](./instructions-3-database.md) for the requirements of integrating a database into the back-end.
+**Play Dates for Pets** originated from a shared desire to address the socialization needs of pet owners and their furry friends. Inspired by the therapeutic benefits of pet interactions and the importance of early socialization, this project seeks to create a welcoming environment for pet owners to connect. 
 
-1. See the [Deployment instructions](./instructions-4-deployment.md) for the requirements of deploying an app.
+If you’d like to contribute to this project, please see the [CONTRIBUTING.md](/CONTRIBUTING.md) document.
+
+## Building and Testing
+
+Instructions for building and testing the project will be provided here. Stay tuned for updates!

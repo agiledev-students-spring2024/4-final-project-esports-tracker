@@ -40,8 +40,9 @@ h1 {
 
 #account {
     background-color: white;
-    width: 500px;
+    width: 150px;
     height: 30px;
+    text-align: center;
 }   
 
 #loginBtn {

@@ -1,5 +1,5 @@
 import "./App.css"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import Navbar from "./pages/NavBar/NavBar"
 import Message from "./pages/Message/Message"
 import Swipe from "./pages/Swipe/Swipe"
@@ -13,13 +13,14 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
+          {/* Default route set to feed for now */}
+          <Route path="/" element={<Navigate to="/feed" />} />
           <Route path="/swipe" element={<Swipe />} />
-          <Route path="/discover" element={<Discover />} />
           <Route path="/feed" element={<Feed />} />
+          <Route path="/discover" element={<Discover />} />
           <Route path="/add" element={<Add />} />
           <Route path="message" element={<Message />} />
           <Route path="/profile" element={<Profile />} />
-          {/* add pages above */}
         </Routes>
         <Navbar />
       </Router>

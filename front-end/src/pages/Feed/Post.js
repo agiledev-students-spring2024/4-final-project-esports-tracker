@@ -1,13 +1,8 @@
-import { Link } from "react-router-dom";
-import React from "react";
-import "./Post.css";
-import {
-  IoPeopleCircleOutline,
-  IoHeartOutline,
-  IoChatboxOutline,
-} from "react-icons/io5";
+import "./Post.css"
+import { IoPeopleCircleOutline, IoHeartOutline, IoChatboxOutline } from "react-icons/io5"
 
 const Post = (props) => {
+  // TODO: clicking on a username redirects to that user's profile
   return (
     <>
       <div className="post">
@@ -25,7 +20,7 @@ const Post = (props) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Post;
+export default Post

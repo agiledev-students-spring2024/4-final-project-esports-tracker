@@ -1,6 +1,6 @@
 import "./Discover.css"
 import TabSwitcher from "../Feed/TabSwitcher"
-import { MapContainer, TileLayer, Marker } from "react-leaflet"
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 import { Icon } from "leaflet"
 import "leaflet/dist/leaflet.css"
 
@@ -9,7 +9,7 @@ const Discover = () => {
   const markers = [
     {
       geocode: [40.7309, -73.9965],
-      popUp: "dog park",
+      popUp: "childrens park",
     },
     {
       geocode: [40.73075, -73.9985],
@@ -33,15 +33,15 @@ const Discover = () => {
           firstTab={{ name: "Feed", path: "/feed" }}
           secondTab={{ name: "Discover", path: "/discover" }}
         />
-
         <MapContainer center={[40.7308, -73.9975]} zoom={16.5}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-
           {markers.map((marker, i) => (
-            <Marker position={marker.geocode} icon={customIcon}></Marker>
+            <Marker position={marker.geocode} icon={customIcon}>
+              <Popup>{marker.popUp}</Popup>
+            </Marker>
           ))}
         </MapContainer>
       </div>

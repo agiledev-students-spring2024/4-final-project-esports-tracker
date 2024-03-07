@@ -6,12 +6,9 @@ import Swipe from './pages/Swipe/Swipe';
 import Add from './pages/Add/Add';
 import Profile from './pages/Profile/Profile';
 import Discover from './pages/Discover/Discover';
-<<<<<<< HEAD
-import Login from './pages/Login/Login';
-=======
 import Feed from "./pages/Feed/Feed"
 import EditProfile from './pages/Profile/EditProfile';
->>>>>>> ee3c32eefe86ada2b8741d39272a8d2860dd1d45
+import Login from './pages/Login/Login';
 
 function App() {
   return (
@@ -25,11 +22,8 @@ function App() {
           <Route path="/add" element={<Add/>} />
           <Route path="message" element={<Message/>} />
           <Route path="/profile" element={<Profile/>} />
-<<<<<<< HEAD
-          <Route path="/Login" element={<Login/>} />
-=======
           <Route path="/editProfile" element={<EditProfile/>} />
->>>>>>> ee3c32eefe86ada2b8741d39272a8d2860dd1d45
+          <Route path="/login" element={<Login/>} />
           {/* add pages above */}
         </Routes>
         <Navbar />

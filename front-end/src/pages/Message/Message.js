@@ -33,7 +33,6 @@ const Message = () => {
         onKeyDown={handleKeyPress}
         />
     </div>
-
     <h4>Recent Matches</h4>
       <hr/>
     <div className = 'recentMatches'>
@@ -49,7 +48,7 @@ const Message = () => {
 
     <h4>Chats</h4>
     <hr/>
-    <div className='Chats'>
+    <div className='chats'>
 
     {items.map((name, index) => (
       <Link to={profileID} className='chatBox'>

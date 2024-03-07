@@ -70,6 +70,11 @@ span{
 
 }
 
+.chats{
+    overflow-y: scroll;
+    height: 550px;
+}
+
 .chatBox{
     display: flex;
     flex-direction: row;

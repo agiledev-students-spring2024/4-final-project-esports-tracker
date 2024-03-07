@@ -26,7 +26,7 @@ const Message = () => {
     </div>
 
     {/* change this */}
-    <div className='Search'>
+    <div className='search'>
       <input type='text' placeholder="search" name="search" 
         value={search}
         onChange={handleSubmit}

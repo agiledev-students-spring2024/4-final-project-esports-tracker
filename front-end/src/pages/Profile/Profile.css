@@ -1,0 +1,51 @@
+.header{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: 50px;
+}
+
+.profileHeader{
+    align-items: center;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid red;
+}
+
+.profileHeader img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 1px solid red;
+}
+.profileHeader h1{
+    font-size: 2rem;
+    text-align: center;
+    border: 1px solid red;
+}
+
+.userName h1{
+    font-size: 2rem;
+    text-align: center;
+
+}
+.profilePosts img{
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 0px;
+
+
+}
+
+.profilePosts{
+    border: 1px solid red;
+    align-items: center;
+    justify-content: left;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}

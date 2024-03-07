@@ -13,7 +13,19 @@ const EditProfile = () => {
     const [email, setEmail] = useState('');
 
     
-
+    const handleUser = (event) => {
+        const inputValue = event.target.value;
+        setUsername(inputValue);
+      }
+      const handleBio = (event) => {
+        const inputValue = event.target.value;
+        if (inputValue.length <= 140) {
+          setBio(inputValue);
+        }
+        else {
+          alert('Bio is too long');
+        }
+      };
 
     const handleSubmit = () => {
         //send the caption and image data to a server
@@ -33,21 +45,31 @@ const EditProfile = () => {
   <hr/>
 
 <div className = "editInputs">
-    <div className = 'editProfileImage'>
+    <div className = 'inputImage'>
         <img src='https://picsum.photos/id/237/200/300' alt='profile' />
     </div>
-    <div className = 'editProfileName'>
-        <h2>Username</h2>
-        <input type='text' placeholder="Username" name="username" />
+    <div className = 'inputItem'>
+        <h2>Username: </h2>
+        <input type='text' placeholder="Username" name="username" onChange={handleUser}/>
     </div>
-    <div className = 'editProfileBio'>
-        <h2>Bio</h2>
-        <input type='text' placeholder="Bio" name="bio" />
+    <div className = 'inputItem'>
+        <h2>Bio: </h2>
+        <textarea type='text' placeholder="Bio" name="bio" onChange={handleBio}/>
     </div>
-    <div className = 'editProfileEmail'>
-        <h2>Email</h2>
+    <div className = 'inputItem'>
+        <h2>Email: </h2>
         <input type='text' placeholder="Email" name="email" />
     </div>
+    <div className = 'inputItem'>
+        <h2>Preferences: </h2>
+        <select name="preferences" id="preferences">
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+            <option value="4">Option 4</option>
+        </select>
+    </div>
+
 </div>
 
   <div className='addCaption'>

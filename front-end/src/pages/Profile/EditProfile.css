@@ -13,4 +13,18 @@
     text-align: center;
     margin-left: 25%;
 }
-    
+
+.inputItem{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+    border: 1px solid red;
+
+}
+.editInputs{
+    margin-bottom: 20px;
+    border: 1px solid red;
+}

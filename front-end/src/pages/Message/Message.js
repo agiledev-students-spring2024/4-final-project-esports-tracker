@@ -85,7 +85,7 @@ const Message = () => {
     <div className = 'recentMatches'>
       {matches.map(match => (
         <Link to={profileID} className='matchItem'>
-            <img src={match.download_url} alt='avatar' />
+            <img className='avatar-image' src={match.download_url} alt='avatar' />
             <div className='matchItemName'>
               <span>{match.author}</span>
             </div>
@@ -99,7 +99,7 @@ const Message = () => {
 
     {chats.map(chat => (
       <Link to={chatID} className='chatBox'>
-        <img src={chat.download_url} alt='avatar' />
+        <img className='avatar-image' src={chat.download_url} alt='avatar' />
         <div className='messageItemContent'>
           <div className='MessageItem_content_name'>
             <span style={{ fontWeight: 'bold' }}>{chat.author}</span>

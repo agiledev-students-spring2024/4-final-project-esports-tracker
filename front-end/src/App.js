@@ -6,7 +6,7 @@ import Swipe from './pages/Swipe/Swipe';
 import Add from './pages/Add/Add';
 import Profile from './pages/Profile/Profile';
 import Discover from './pages/Discover/Discover';
-import Feed from "./pages/Feed/Feed"
+import Feed from "./pages/Feed/Feed";
 import EditProfile from './pages/Profile/EditProfile';
 import Login from './pages/Login/Login';
 

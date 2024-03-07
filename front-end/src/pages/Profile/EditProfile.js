@@ -63,10 +63,11 @@ const EditProfile = () => {
     <div className = 'inputItem'>
         <h2>Preferences: </h2>
         <select name="preferences" id="preferences">
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-            <option value="4">Option 4</option>
+            <option value="1">Dog</option>
+            <option value="2">Cat</option>
+            <option value="3">Bird</option>
+            <option value="4">Other</option>
+            <option value="5">Any</option>
         </select>
     </div>
 

@@ -6,6 +6,7 @@ import Swipe from './pages/Swipe/Swipe';
 import Add from './pages/Add/Add';
 import Profile from './pages/Profile/Profile';
 import Discover from './pages/Discover/Discover';
+import EditProfile from './pages/Profile/EditProfile';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
           <Route path="/add" element={<Add/>} />
           <Route path="message" element={<Message/>} />
           <Route path="/profile" element={<Profile/>} />
+          
+          <Route path="/editProfile" element={<EditProfile/>} />
           {/* add pages above */}
         </Routes>
         <Navbar/>

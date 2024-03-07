@@ -1,0 +1,28 @@
+.card{
+    height: 750px;
+    border: 1px solid red;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.cardButtons {
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+    gap: 20px;
+    justify-content: space-between;
+
+    font-size: 40px;
+    border: 1px solid red;
+}
+.cardOverlay{
+    color: white;
+    margin-bottom: 100px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid red;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}

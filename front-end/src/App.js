@@ -6,6 +6,7 @@ import Swipe from './pages/Swipe/Swipe';
 import Add from './pages/Add/Add';
 import Profile from './pages/Profile/Profile';
 import Discover from './pages/Discover/Discover';
+import Feed from './pages/Feed/Feed';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/swipe" element={<Swipe/>} />
           <Route path="/discover" element={<Discover/>} />
+          <Route path="/feed" element={<Feed/>} />
           <Route path="/add" element={<Add/>} />
           <Route path="message" element={<Message/>} />
           <Route path="/profile" element={<Profile/>} />

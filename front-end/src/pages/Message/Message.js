@@ -1,4 +1,5 @@
-import React,  {useState} from 'react'
+import React,  {useState, useEffect} from 'react'
+import axios from 'axios'
 import './Message.css'
 import { Link } from 'react-router-dom';
 
@@ -16,9 +17,55 @@ const Message = () => {
   };
 
   // placeholders
-  const images= ['https://picsum.photos/id/237/200/300']
+  const [matches, setMatches] = useState([])
+  const [chats, setChats] = useState([])
+  const [error, setError] = useState('')
+
+  const fetchMatches = () => {
+      axios.get(`https://picsum.photos/v2/list`)
+      .then(res => {
+        setMatches(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+        const errMsg = JSON.stringify(err, null, 2) 
+        setError(errMsg)
+      })
+      
+  }
+  const fetchChats = () => {
+      axios.get(`https://picsum.photos/v2/list`)
+      .then(res => {
+        setChats(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+        const errMsg = JSON.stringify(err, null, 2) 
+        setError(errMsg)
+      })
+  }
+
+  useEffect(() => {
+    fetchMatches()
+    fetchChats()
+    const intervalHandle = setInterval(() => {
+      fetchMatches()
+      fetchChats()
+    }, 5000)
+    return e => {
+      clearInterval(intervalHandle)
+    }
+    }, [])
+
+
+  //placeholder for route
   const profileID = '/profile'
-  const items = ['John', 'bob', ,'ricky', 'ricky ticky boby wobin',];
+  const chatID = '/chat'
+
+
+
+
+
   return (
     <>
     <div className='header'>
@@ -36,11 +83,11 @@ const Message = () => {
     <h4>Recent Matches</h4>
       <hr/>
     <div className = 'recentMatches'>
-      {items.map((name, index) => (
+      {matches.map(match => (
         <Link to={profileID} className='matchItem'>
-            <img src={images} alt='avatar' />
+            <img src={match.download_url} alt='avatar' />
             <div className='matchItemName'>
-              <span>{name}</span>
+              <span>{match.author}</span>
             </div>
         </Link>
       ))}
@@ -50,15 +97,15 @@ const Message = () => {
     <hr/>
     <div className='chats'>
 
-    {items.map((name, index) => (
-      <Link to={profileID} className='chatBox'>
-        <img src={images} alt='avatar' />
+    {chats.map(chat => (
+      <Link to={chatID} className='chatBox'>
+        <img src={chat.download_url} alt='avatar' />
         <div className='messageItemContent'>
-          <div className='MessageItem__content__name'>
-            <span style={{ fontWeight: 'bold' }}>{name}</span>
+          <div className='MessageItem_content_name'>
+            <span style={{ fontWeight: 'bold' }}>{chat.author}</span>
           </div>
-          <div className='MessageItem__message'>
-            <span>Hey, how are you?</span>
+          <div className='messageItemMessage'>
+            <span>this is a chat. Hello {chat.url}</span>
           </div>
         </div>
       </Link>

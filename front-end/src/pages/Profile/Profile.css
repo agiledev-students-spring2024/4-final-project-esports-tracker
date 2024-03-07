@@ -11,7 +11,6 @@
     width: 90%;
     display: flex;
     flex-direction: row;
-    border: 1px solid red;
 }
 
 .profileHeader img{
@@ -19,12 +18,10 @@
     height: 100px;
     border-radius: 50%;
     margin-right: 20px;
-    border: 1px solid red;
 }
 .profileHeader h1{
     font-size: 2rem;
     text-align: center;
-    border: 1px solid red;
 }
 
 .userName h1{
@@ -41,11 +38,23 @@
 
 }
 
+.editProfileButton{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #64c4ff;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+}
+
 .profilePosts{
-    border: 1px solid red;
     align-items: center;
     justify-content: left;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 100%;
+    height: 530px;
+    overflow-y: scroll;
 }

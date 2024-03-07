@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import './Profile.css'
 
 const Profile = () => {
@@ -49,8 +50,9 @@ const Profile = () => {
         <div className = 'bio'>
           <p>{bio}</p>
         </div>
-
-      <button> Edit Profile </button>
+      <Link to='/editProfile'>
+      <button className='editProfileButton'> Edit Profile </button>
+      </Link>
       <div className='profilePosts'>
       {
         images.map(image => (

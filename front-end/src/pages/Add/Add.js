@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import './Add.css'
 import { IoChevronBack, IoChevronDown, IoLocationOutline } from "react-icons/io5";
 import { FiTag } from "react-icons/fi";
+import { Link } from 'react-router-dom';
+
 
 const Add = () => {
   const image= ['https://picsum.photos/id/237/200/300']
@@ -21,6 +23,7 @@ const Add = () => {
     console.log(caption);
     setCaption('');
     //do later
+    //window.location.href = '/discover';
   };
 
 
@@ -29,7 +32,9 @@ const Add = () => {
   return (
     <>
       <div className='addHeader'>
+          <Link to='/discover'>
           <IoChevronBack size={30} />
+          </Link>
           <h1>New Post</h1>
         </div>
     <hr/>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from './Card';
 
+
 const Swipe = () => {
   const [cards, setCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -49,5 +50,6 @@ const Swipe = () => {
     </div>
   );
 };
+
 
 export default Swipe;

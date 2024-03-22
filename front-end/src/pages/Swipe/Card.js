@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './Card.css'
+import axios from 'axios'
 import { IoHeartOutline, IoChatbubbleEllipsesOutline, IoEllipsisHorizontalOutline} from "react-icons/io5";
 
 const Card = () => {
 
+    
     const image = 'https://picsum.photos/200/300'
 
   return (

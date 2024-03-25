@@ -14,7 +14,7 @@ const NavBar = () => {
                 Swipe
             </div>
             </Link>
-            <Link to="/discover">
+            <Link to="/feed">
             <div className="navItem">
                 <IoSearchSharp className = 'icon' />
                 Discover

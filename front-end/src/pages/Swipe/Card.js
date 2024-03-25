@@ -3,27 +3,25 @@ import './Card.css'
 import axios from 'axios'
 import { IoHeartOutline, IoChatbubbleEllipsesOutline, IoEllipsisHorizontalOutline} from "react-icons/io5";
 
-const Card = () => {
+const Card = (props) => {
 
     
-    const image = 'https://picsum.photos/200/300'
-
   return (
     <>
-    <div className="card" style = {{backgroundImage: `url(${image})`}}>
+    <div className="card" style = {{backgroundImage: `url(${props.url})`}}>
             <div className = 'cardOverlay'>
                 <div className="cardInfo">
-                    <h2>Pet Name</h2>    
-                    <h4>Breed</h4>        
-                    <h4>Age/Weight</h4>
-                    <h4>Location</h4>
-                    <h4>Description</h4>
+                    <h2>{props.name}</h2>
+                    <p>Breed: {props.breed}</p>
+                    <p>Age: {props.age}</p>
+                    <p>Location: {props.location}</p>
+                    <p>Description: {props.description}</p>
                 </div>
-            `   <div className="cardButtons">
+            {/* `   <div className="cardButtons">
                         <IoHeartOutline/>
                         <IoChatbubbleEllipsesOutline/>
                         <IoEllipsisHorizontalOutline/>
-                </div>
+                </div> */}
             </div>
         </div>
     </>

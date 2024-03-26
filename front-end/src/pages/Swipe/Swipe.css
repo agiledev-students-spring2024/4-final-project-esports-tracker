@@ -1,0 +1,13 @@
+.cardContainer{
+    overflow: hidden;
+    position: relative;
+    height: 750px;
+    width: 100%;
+
+}
+
+.card{
+    position: absolute;
+    height: 750px;
+    width: 100%;
+  }

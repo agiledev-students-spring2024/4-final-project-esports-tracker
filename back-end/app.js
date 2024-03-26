@@ -1,7 +1,18 @@
-// import and instantiate express
-const express = require("express") // CommonJS import style!
+// import required modules
+const express = require("express") // framework for building web applications
+const cors = require("cors") // middleware for enabling Cross-Origin Resource Sharing (CORS)
+const morgan = require("morgan") // middleware for logging HTTP requests in a readable format
+
 const app = express() // instantiate an Express object
 
-// we will put some server logic here later...
+// import routes
+const feedRoute = require("./routes/feedRoute")
+
+// use middleware
+app.use(morgan("dev")) // morgan has a few logging default styles - dev is a nice concise color-coded style
+app.use(cors()) // allows cross-origin resource sharing
+
+// use routers
+app.use("/", feedRoute)
 
 module.exports = app

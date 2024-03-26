@@ -4,14 +4,23 @@
   "description": "The back-end of your project will live in this directory.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "c8 mocha tests/*.test.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "c8": "^9.1.0",
+    "chai": "4.4.1",
+    "chai-http": "^4.4.0",
+    "mocha": "^10.3.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.0",
+    "sinon": "^17.0.1"
   }
 }

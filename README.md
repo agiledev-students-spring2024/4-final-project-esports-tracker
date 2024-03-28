@@ -23,4 +23,33 @@ If you’d like to contribute to this project, please see the [CONTRIBUTING.md](
 
 ## Building and Testing
 
-Instructions for building and testing the project will be provided here. Stay tuned for updates!
+### Clone the Code
+
+Clone the repository to your local machine:
+
+```
+git clone https://github.com/agiledev-students-spring2024/4-final-project-esports-tracker.git
+```
+
+This will create a local copy of the codebase in your desired folder.
+
+### Build and Launch the Back End
+
+1. Navigate into the **back-end** directory using `cd back-end`.
+1. Run `npm install` to install the required dependencies.
+1. Run `npm start` to launch the backend server. 
+
+### Build and Launch the Front End
+
+1. Open a new terminal.
+1. Navigate into the **front-end** directory using `cd front-end`.
+1. Run `npm install` to install the required dependencies.
+1. Run `npm start` to launch the front-end app.
+
+By following these steps, you'll have both the backend and frontend of the application up and running locally on your machine.
+
+### Run Tests
+
+1. Navigate to the **back-end** directory using `cd back-end`.
+1. Run `npm test` to execute backend tests.
+

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react"
 import "./Discover.css"
 import TabSwitcher from "../Feed/TabSwitcher"
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
@@ -5,21 +6,24 @@ import { Icon } from 'leaflet'
 import "leaflet/dist/leaflet.css"
 
 const Discover = () => {
-  // sample markers set by user
-  const markers = [
-    {
-      geocode: [40.7309, -73.9965],
-      popUp: "childrens park",
-    },
-    {
-      geocode: [40.73075, -73.9985],
-      popUp: "dog park",
-    },
-    {
-      geocode: [40.7304, -73.9976],
-      popUp: "dog park",
-    },
-  ]
+  const [markers, setMarkers] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // TODO: retrieve data based on the user's id 
+        const response = await fetch("http://localhost:3001/discover/1")
+        if (!response.ok) {
+          throw new Error("Failed to fetch markers")
+        }
+        const data = await response.json()
+        setMarkers(data)
+      } catch (error) {
+        console.error("Error fetching markers:", error)
+      }
+    }
+    fetchData()
+  }, [])
 
   const customIcon = new Icon({
     iconUrl: require("./pin.png"),

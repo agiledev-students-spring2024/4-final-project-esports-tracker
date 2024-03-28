@@ -20,7 +20,7 @@ router.get('/profile', (req, res) => {
 
 // Route to update user profile
 router.post('/editProfile', (req, res) => {
-  const { username, bio, pfp, emial, preferences } = req.body;
+  const { username, bio, pfp, email, preferences } = req.body;
   try {
     console.log(req.body);
   // Send a success response
@@ -30,7 +30,7 @@ router.post('/editProfile', (req, res) => {
   res.status(500).json({ error: 'Internal server error' });
 }
   // Update the profile
-  userProfile.username = username || userProfile.username;
+  userProfile.username = username
   userProfile.bio = bio || userProfile.bio;
   userProfile.pfp = pfp || userProfile.pfp;
   userProfile.email = email || userProfile.email;

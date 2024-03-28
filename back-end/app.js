@@ -11,6 +11,7 @@ const sampleRouter = require("./routes/sampleRouter")
 const feedRouter = require("./routes/feedRouter")
 const postRouter = require("./routes/postRouter")
 const discoverRouter = require("./routes/discoverRouter")
+const profileRouter = require("./routes/profileRouter")
 
 // use middleware
 app.use(morgan("dev")) // use morgan with dev style for logging HTTP requests 
@@ -23,5 +24,6 @@ app.use("/", feedRouter)
 app.use("/swipe", swipeRouter)
 app.use("/post", postRouter)
 app.use("/", discoverRouter)
+app.use("/profile", profileRouter)
 
 module.exports = app

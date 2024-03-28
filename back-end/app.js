@@ -8,13 +8,16 @@ const app = express() // instantiate an Express object
 // import routes
 const feedRoute = require("./routes/feedRoute")
 const swipeRoute = require("./routes/swipeRoute")
+const sampleRouter = require("./routes/sampleRouter")
+const feedRouter = require("./routes/feedRouter")
 
 // use middleware
-app.use(morgan("dev")) // morgan has a few logging default styles - dev is a nice concise color-coded style
+app.use(morgan("dev")) // use morgan with dev style for logging HTTP requests 
 app.use(cors()) // allows cross-origin resource sharing
 
 // use routers
-app.use("/", feedRoute)
+app.use("/", sampleRouter)
+app.use("/", feedRouter)
 
 app.use("/swipe", require("./routes/swipeRoute"))
 

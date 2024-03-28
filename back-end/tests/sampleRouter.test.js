@@ -3,19 +3,18 @@ const chaiHttp = require("chai-http")
 const sinon = require("sinon")
 const axios = require("axios")
 const app = require("../app")
-
 const expect = chai.expect
 
 // configure chai to use chai-http plugin
 chai.use(chaiHttp)
 
-describe("Backend API - GET /feed", () => {
+describe("Backend API - GET /sample", () => {
   describe("Succesful GET Request", () => {
     // test case to check if the endpoint returns all posts
-    it("it should return all posts", (done) => {
+    it("it should return a set of photos", (done) => {
       chai
         .request(app)
-        .get("/feed")
+        .get("/sample")
         .end((err, res) => {
           expect(err).to.be.null // check that there is no error
           expect(res).to.have.status(200) // check that the status code is 200
@@ -35,15 +34,14 @@ describe("Backend API - GET /feed", () => {
       afterEach(() => {
         axiosGetStub.restore()
       })
-
       // test case to check error handling when fetching posts
-      it("it should handle errors when fetching posts", (done) => {
+      it("it should handle errors when fetching photos", (done) => {
         chai
           .request(app)
-          .get("/feed")
+          .get("/sample")
           .end((err, res) => {
             expect(res).to.have.status(500) // check that the status code is 500
-            expect(res.text).to.equal("An error occurred while fetching posts.") // check the error message
+            expect(res.text).to.equal("An error occurred while fetching photos.") // check the error message
             done()
           })
       })

@@ -17,6 +17,6 @@ app.use(cors()) // allows cross-origin resource sharing
 // use routers
 app.use("/", sampleRouter)
 app.use("/", feedRouter)
-app.use("/", swipeRouter)
+app.use("/swipe", swipeRouter)
 
 module.exports = app

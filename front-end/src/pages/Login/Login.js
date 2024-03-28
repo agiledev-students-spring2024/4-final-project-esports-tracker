@@ -16,16 +16,26 @@ const Login = ({ messages }) => {
         <div className='login'>
           <form action="/login" method="POST">
             <label>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
               <br /> Login <br /> <br />
-              <input type="email" name="email" id="email" required />
+              
+              <input type="email" name="email" id="email" placeholder="Email" required />
+              
               <br />
-              <input type="password" name="password" id="password" required />
+              <div class="spacer"></div>
+              
+              <input type="password" name="password" id="password" placeholder="Password" required />
             </label>
             <br /><br />
             <input type="submit" value="Login" id="loginBtn" />
+            
           </form>
+          <div class="spacer"></div>
+          <a href="/register" id="regLink">Register</a>
         </div>
-        <a href="/register">Register</a>
+        
       </div>
     </>
   )

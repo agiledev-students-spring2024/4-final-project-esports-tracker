@@ -9,6 +9,7 @@ const app = express() // instantiate an Express object
 const swipeRouter = require("./routes/swipeRouter")
 const sampleRouter = require("./routes/sampleRouter")
 const feedRouter = require("./routes/feedRouter")
+const registerRouter = require("./routes/registerRouter")
 
 // use middleware
 app.use(morgan("dev")) // use morgan with dev style for logging HTTP requests 
@@ -19,5 +20,6 @@ app.use(express.json());
 app.use("/", sampleRouter)
 app.use("/", feedRouter)
 app.use("/swipe", swipeRouter)
+app.use("/", registerRouter)
 
 module.exports = app

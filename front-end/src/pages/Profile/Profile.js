@@ -66,6 +66,9 @@ const Profile = () => {
       <div>
 
       </div>
+      <form action="/logout?_method=DELETE" method="POST">
+      <button type="submit"> Log Out </button>
+        </form>
     </>
   )
 }

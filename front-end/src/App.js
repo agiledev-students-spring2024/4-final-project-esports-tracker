@@ -9,6 +9,7 @@ import Discover from './pages/Discover/Discover';
 import Feed from "./pages/Feed/Feed";
 import EditProfile from './pages/Profile/EditProfile';
 import Login from './pages/Login/Login';
+import Register from './pages/Login/Register';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/profile" element={<Profile/>} />
           <Route path="/editProfile" element={<EditProfile/>} />
           <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register/>} />
           {/* add pages above */}
         </Routes>
         <Navbar />

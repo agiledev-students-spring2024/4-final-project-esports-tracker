@@ -17,7 +17,7 @@ const Swipe = () => {
 
   useEffect(() => {
     async function fetchData() {
-    const req = await axios.get('http://localhost:3001/swipe')
+    const req = await axios.get('http://localhost:3001/swipe/card')
     .then((response) => {
       setCards(response.data)
       setCurrentIndex(response.data.length - 1);
@@ -31,7 +31,6 @@ const Swipe = () => {
       console.error('Error fetching posts:', error)
     })}
     fetchData()
-    console.log(cards)
   },[])
 
   useEffect(() => {
@@ -56,8 +55,22 @@ const Swipe = () => {
   }
 
   const outOfFrame = (name, dir, idx) => {
-    console.log(`${name} (${idx}) left the screen! swiped ${dir}`, currentIndexRef.current)
+    console.log(`${name} (${idx}) left the screen! swiped ${dir}`, currentIndexRef.current, cards[idx])
     // insert logic for swipes here
+    //post to axios 
+    const ret = {
+      dir: dir,
+      cardData: cards[idx], 
+      idx: idx,
+    }
+    console.log(ret)
+    axios.post('http://localhost:3001/swipe/postSwipe', ret)
+    .then((response) => {
+      console.log(response.data)
+    })
+    .catch((error) => {
+      console.error('Error handling out of frame data:', error)
+    })
     // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard()
 

@@ -6,6 +6,7 @@ const morgan = require("morgan") // middleware for logging HTTP requests in a re
 const app = express() // instantiate an Express object
 
 // import routes
+const swipeRouter = require("./routes/swipeRouter")
 const sampleRouter = require("./routes/sampleRouter")
 const feedRouter = require("./routes/feedRouter")
 

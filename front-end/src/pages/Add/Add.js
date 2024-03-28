@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
 import './Add.css'
+import axios from 'axios';
 import { IoChevronBack, IoChevronDown, IoLocationOutline } from "react-icons/io5";
 import { FiTag } from "react-icons/fi";
 import { Link } from 'react-router-dom';
 
 
 const Add = () => {
-  const image= ['https://picsum.photos/id/237/200/300']
+  
+  const [selectedImage, setSelectedImage] = useState(null);
   const [caption, setCaption] = useState('');
   const handleChange = (event) => {
     const inputValue = event.target.value;
@@ -18,14 +20,42 @@ const Add = () => {
     }
   };
 
-  const handleSubmit = () => {
+
+  const handleSubmit = (event) => {
     //send the caption and image data to a server
-    console.log(caption);
+    const ret = {
+      caption: caption,
+      image: selectedImage
+    }
+ 
+    if (!selectedImage || !caption ) {
+      alert('Please select an image or write a caption before submitting.');
+      return;
+    }
+    console.log(ret)
+    axios.post('http://localhost:3001/post', ret)
+    .then((response) => {
+      console.log(response.data)
+    })
+    .catch((error) => {
+      console.error('Error handling out of frame data:', error)
+    })
     setCaption('');
-    //do later
-    //window.location.href = '/discover';
+    setSelectedImage(null);
+    alert('Post submitted');
+
   };
 
+  const handleImage = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   
 
@@ -39,19 +69,24 @@ const Add = () => {
         </div>
     <hr/>
       <div className='addImage'>
-        <img src={image} alt='post' />
+            {selectedImage && (
+            <div>
+              <img src={selectedImage} alt="Selected" style={{ maxWidth: '100%' }} />
+            </div>
+          )}
       </div>
     <hr/>
     <div className = 'chooseImage'>
-      Camera Roll
-      <IoChevronDown size={30} />
+      <input type='file' onChange={handleImage} accept='image/*' />
     </div>
     <hr/>
+
+
     <div className='addCaption'>
-    <textarea type='text' placeholder="Write a caption..." name="caption" 
-    value={caption}
-    onChange={handleChange}
-    />
+      <textarea type='text' placeholder="Write a caption..." name="caption" 
+      value={caption}
+      onChange={handleChange}
+      />
     </div>
 
 
@@ -63,7 +98,8 @@ const Add = () => {
     <hr/>
    <div className='addLocation'>
     <IoLocationOutline size={30} />
-      Add Location
+      Add Location 
+      {/* google api autocomplete */}
     </div>
     <hr/>
     <button className = 'postSubmit' onClick={handleSubmit}>Share</button>

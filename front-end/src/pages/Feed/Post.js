@@ -1,8 +1,22 @@
+import { useState } from "react"
 import "./Post.css"
-import { IoPeopleCircleOutline, IoHeartOutline, IoChatboxOutline, IoShareOutline } from "react-icons/io5"
+import {
+  IoPeopleCircleOutline,
+  IoHeartOutline,
+  IoChatboxOutline,
+  IoShareOutline,
+  IoHeartSharp,
+} from "react-icons/io5"
 
 const Post = (props) => {
+  const [liked, setLiked] = useState(false)
+
+  function handleLike() {
+    setLiked(!liked) // toggle the liked state
+    // TODO: send post requests
+  }
   // TODO: clicking on a username redirects to that user's profile
+
   return (
     <>
       <div className="post">
@@ -14,7 +28,11 @@ const Post = (props) => {
         <div className="post-details">
           <div className="post-icons">
             <div>
-              <IoHeartOutline className="post-icon" />
+              {liked ? (
+                <IoHeartSharp className="post-icon liked" onClick={handleLike} />
+              ) : (
+                <IoHeartOutline className="post-icon" onClick={handleLike} />
+              )}
               <IoChatboxOutline className="post-icon" />
             </div>
             <IoShareOutline className="post-icon" />

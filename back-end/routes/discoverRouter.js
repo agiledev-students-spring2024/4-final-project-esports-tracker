@@ -30,7 +30,7 @@ const markers = [
   },
 ]
 
-router.get("/discover/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   const { id } = req.params
   // filter markers based on the provided id
   const filteredMarkers = markers.filter((marker) => marker.id == parseInt(id))

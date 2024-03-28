@@ -17,7 +17,6 @@ app.use(express.json());
 // use routers
 app.use("/", sampleRouter)
 app.use("/", feedRouter)
-
-app.use("/swipe", require("./routes/swipeRoute"))
+app.use("/swipe", swipeRouter)
 
 module.exports = app

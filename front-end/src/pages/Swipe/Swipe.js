@@ -57,7 +57,6 @@ const Swipe = () => {
   const outOfFrame = (name, dir, idx) => {
     console.log(`${name} (${idx}) left the screen! swiped ${dir}`, currentIndexRef.current, cards[idx])
     // insert logic for swipes here
-    //post to axios 
     const ret = {
       dir: dir,
       cardData: cards[idx], 

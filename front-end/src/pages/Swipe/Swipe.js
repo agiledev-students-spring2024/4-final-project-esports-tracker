@@ -4,71 +4,49 @@ import Card from './Card';
 import './Swipe.css';
 import TinderCard from 'react-tinder-card';
 
-//sample db
-const db = [
-  {
-    name: 'Richard Hendricks',
-    breed:'dog',
-    age:'2',
-    location:'nearby',
-    description:'bio',
-    url: 'https://picsum.photos/200/301',
-  },
-  {
-    name: 'Erlich Bachman',
-    breed:'dog',
-    age:'2',
-    location:'nearby',
-    description:'bio',
-    url: 'https://picsum.photos/200/303',
-  },
-  {
-    name: 'Jared Dunn',
-    breed:'dog',
-    age:'2',
-    location:'nearby',
-    description:'bio',
-    url: 'https://picsum.photos/200/300',
-  },
-  {
-    name: 'Dinesh Chugtai',
-    breed:'dog',
-    age:'2',
-    location:'nearby',
-    description:'bio',
-    url: 'https://picsum.photos/200/302',
-  },
-  {
-    name: 'Bertram Gilfoyle',
-    breed:'dog',
-    age:'2',
-    location:'nearby',
-    description:'bio',
-    url: 'https://picsum.photos/200/304',
-  },
-];
-
 
 
 const Swipe = () => {
-  const [currentIndex, setCurrentIndex] = useState(db.length - 1)
+  const[cards, setCards] = useState([]); 
+  const [currentIndex, setCurrentIndex] = useState(cards.length - 1)
   const [lastDirection, setLastDirection] = useState()
   const currentIndexRef = useRef(currentIndex)
+  const [childRefs, setChildRefs] = useState([]);
 
-  const childRefs = useMemo(
-    () =>
-      Array(db.length)
-        .fill(0)
-        .map((i) => React.createRef()),
-    []
-  )
+
+
+  useEffect(() => {
+    async function fetchData() {
+    const req = await axios.get('http://localhost:3001/swipe')
+    .then((response) => {
+      setCards(response.data)
+      setCurrentIndex(response.data.length - 1);
+
+      const refs = Array(response.data.length).fill(0).map(() => React.createRef());
+      setChildRefs(refs);
+
+        //print out what is in the cards array
+    })
+    .catch((error) => {
+      console.error('Error fetching posts:', error)
+    })}
+    fetchData()
+    console.log(cards)
+  },[])
+
+  useEffect(() => {
+    currentIndexRef.current = currentIndex; // Update currentIndexRef
+  }, [currentIndex]);
+
+
+
 
   const updateCurrentIndex = (val) => {
     setCurrentIndex(val)
     currentIndexRef.current = val
   }
 
-  const canGoBack = currentIndex < db.length - 1
+  const canGoBack = currentIndex < cards.length - 1
 
   const canSwipe = currentIndex >= 0
 
@@ -80,15 +58,13 @@ const Swipe = () => {
   const outOfFrame = (name, dir, idx) => {
     console.log(`${name} (${idx}) left the screen! swiped ${dir}`, currentIndexRef.current)
     // insert logic for swipes here
-
-
     // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard()
 
   }
 
   const swipe = async (dir) => {
-    if (canSwipe && currentIndex < db.length) {
+    if (canSwipe && currentIndex < cards.length) {
       await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
     }
   }
@@ -106,7 +82,7 @@ const Swipe = () => {
       <button style={{ backgroundColor: !canGoBack && '#c3c4d3' }} onClick={() => goBack()}>Undo swipe!</button>
 
       <div className='cardContainer'>
-        {db.map(
+        {cards.map(
           (item, index) => (
           <TinderCard
             ref={childRefs[index]}

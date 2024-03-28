@@ -6,6 +6,7 @@ const morgan = require("morgan") // middleware for logging HTTP requests in a re
 const app = express() // instantiate an Express object
 
 // import routes
+const swipeRouter = require("./routes/swipeRouter")
 const sampleRouter = require("./routes/sampleRouter")
 const feedRouter = require("./routes/feedRouter")
 
@@ -16,5 +17,6 @@ app.use(cors()) // allows cross-origin resource sharing
 // use routers
 app.use("/", sampleRouter)
 app.use("/", feedRouter)
+app.use("/", swipeRouter)
 
 module.exports = app

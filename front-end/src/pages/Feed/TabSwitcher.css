@@ -1,3 +1,11 @@
+.tab-switcher-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+}
+
 .tab-switcher {
   display: flex;
   align-items: flex-end;

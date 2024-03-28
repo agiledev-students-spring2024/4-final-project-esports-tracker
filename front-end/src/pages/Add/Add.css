@@ -31,11 +31,19 @@
     margin-left: 25%;
 }
 
+.addImage {
+    width: 400px;
+    height: 400px;
+    border-radius: 10px;
+    margin: 5px;
+    
+}
 .addImage img{
     width: 400px;
     height: 400px;
     border-radius: 10px;
     margin: 5px;
+    object-fit: cover;
     
 }
 .chooseImage{

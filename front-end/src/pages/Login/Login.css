@@ -1,6 +1,6 @@
  
 h1 {
-    color: #80C6FF;
+    color: red;
 }
 
 
@@ -13,16 +13,18 @@ h1 {
 }
 
 .login {
-    height: 300px;
-    width: 60vw;
-    background-color: #FDCA40;
-    font-size: 30px;
+    height: 100vh;
+    width: 100vw;
+    background-color: lightblue;
+    font-size: 20px;
     text-align: center;
     color: white;
     top: 0;
 }
 
-
+.spacer {
+    height: 20px;
+}
 
 
 #email, #password {
@@ -30,12 +32,17 @@ h1 {
     width: 150px;
     height: 30px;
     text-align: center;
+    color: red;
 }   
 
 #loginBtn {
     height: 40px;
     width: 200px;
-    background-color: #DBD56E;
+    background-color: white;
     border-radius: 15px;
-    border: 1px solid #FC7753; 
+    border: 1px solid navy; 
+}
+
+#regLink {
+    color:white;
 }

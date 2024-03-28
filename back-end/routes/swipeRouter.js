@@ -3,6 +3,7 @@ const  { getCard, postSwipe } = require("../controllers/swipeController")
 
 const router = express.Router()
 
-router.get("/", getCard)
+router.get("/card", getCard)
+router.post("/postSwipe", postSwipe)
 
 module.exports = router

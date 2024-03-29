@@ -7,25 +7,23 @@ const app = express() // instantiate an Express object
 
 // import routes
 const swipeRouter = require("./routes/swipeRouter")
-const sampleRouter = require("./routes/sampleRouter")
 const feedRouter = require("./routes/feedRouter")
-const registerRouter = require("./routes/registerRouter")
+// const registerRouter = require("./routes/registerRouter")
 const postRouter = require("./routes/postRouter")
 const discoverRouter = require("./routes/discoverRouter")
 const profileRouter = require("./routes/profileRouter")
 
 // use middleware
-app.use(morgan("dev")) // use morgan with dev style for logging HTTP requests 
+app.use(morgan("dev")) // use morgan with dev style for logging HTTP requests
 app.use(cors()) // allows cross-origin resource sharing
-app.use(express.json());
+app.use(express.json())
 
 // use routers
-app.use("/", sampleRouter)
-app.use("/", feedRouter)
+app.use("/feed", feedRouter)
 app.use("/swipe", swipeRouter)
-app.use("/", registerRouter)
+// app.use("/", registerRouter)
 app.use("/post", postRouter)
-app.use("/", discoverRouter)
+app.use("/discover", discoverRouter)
 app.use("/profile", profileRouter)
 
 module.exports = app

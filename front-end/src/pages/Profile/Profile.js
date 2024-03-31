@@ -5,9 +5,11 @@ import './Profile.css'
 
 const Profile = () => {
 
-  const pfp= ['https://picsum.photos/id/237/200/300']
-  const yourName = 'Tony_Gunk'
-  const bio = 'This is a bio lorem ipsum blah blah I like to walk my dog and feed my dog. I also love cats but I lvoe dogs more. I live in NYC. '
+  const [profile, setProfile] = useState({
+    username: '',
+    bio: '',
+    pfp: ''
+  });
   const [images, setImages] = useState([])
   const [error, setError] = useState('')
 
@@ -28,6 +30,18 @@ const Profile = () => {
   }
 
   useEffect(() => {
+    axios
+      .get('http://localhost:3001/profile/profile')
+      .then(response => {
+        setProfile({
+          username: response.data.username,
+          bio: response.data.bio,
+          pfp: response.data.pfp
+        });
+      })
+      .catch(error => {
+        console.error("Error fetching profile:", error);
+      });
     fetchImages()
     const intervalHandle = setInterval(() => {
       fetchImages()
@@ -42,13 +56,13 @@ const Profile = () => {
     <>
       <div className='header'>
         <div className = 'profileHeader'>
-            <img src={pfp} alt='avatar' />
+            <img src={profile.pfp} alt='avatar' />
             <div className='userName'>
-              <h1>{yourName}</h1>
+              <h1>{profile.username}</h1>
             </div>
         </div>
         <div className = 'bio'>
-          <p>{bio}</p>
+          <p>{profile.bio}</p>
         </div>
       <Link to='/editProfile'>
       <button className='editProfileButton'> Edit Profile </button>

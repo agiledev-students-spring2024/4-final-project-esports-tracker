@@ -5,11 +5,9 @@ import './Profile.css'
 
 const Profile = () => {
 
-  const [profile, setProfile] = useState({
-    username: '',
-    bio: '',
-    pfp: ''
-  });
+  const pfp= ['https://picsum.photos/id/237/200/300']
+  const yourName = 'Tony_Gunk'
+  const bio = 'This is a bio lorem ipsum blah blah I like to walk my dog and feed my dog. I also love cats but I lvoe dogs more. I live in NYC. '
   const [images, setImages] = useState([])
   const [error, setError] = useState('')
 
@@ -30,15 +28,6 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    axios
-      .get('/profile')
-      .then(response => {
-        setProfile({
-          username: response.data.username,
-          bio: response.data.bio,
-          pfp: response.data.pfp
-        });
-      })
     fetchImages()
     const intervalHandle = setInterval(() => {
       fetchImages()
@@ -53,13 +42,13 @@ const Profile = () => {
     <>
       <div className='header'>
         <div className = 'profileHeader'>
-            <img src={profile.pfp} alt='avatar' />
+            <img src={pfp} alt='avatar' />
             <div className='userName'>
-              <h1>{profile.username}</h1>
+              <h1>{yourName}</h1>
             </div>
         </div>
         <div className = 'bio'>
-          <p>{profile.bio}</p>
+          <p>{bio}</p>
         </div>
       <Link to='/editProfile'>
       <button className='editProfileButton'> Edit Profile </button>

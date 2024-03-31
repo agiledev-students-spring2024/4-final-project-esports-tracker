@@ -20,7 +20,7 @@ router.get('/profile', (req, res) => {
 
 // Route to update user profile
 router.post('/editProfile', (req, res) => {
-  const { username, bio, pfp, emial, preferences } = req.body;
+  const { username, bio, pfp, email, preferences } = req.body;
   try {
     console.log(req.body);
   // Send a success response

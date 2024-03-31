@@ -31,7 +31,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get('/profile')
+      .get('http://localhost:3001/profile')
       .then(response => {
         setProfile({
           username: response.data.username,
@@ -39,6 +39,9 @@ const Profile = () => {
           pfp: response.data.pfp
         });
       })
+      .catch(error => {
+        console.error("Error fetching profile:", error);
+      });
     fetchImages()
     const intervalHandle = setInterval(() => {
       fetchImages()

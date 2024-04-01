@@ -1,3 +1,6 @@
+const assert = require('assert');
+
+
 const db = [
   {
     name: 'Richard Hendricks',
@@ -44,13 +47,14 @@ const db = [
   const postSwipe = (req, res) => {
     try {
         console.log(req.body);
+        assert(typeof req.body.dir === 'string', 'Invalid or missing "dir" value in the request body');
+
         if(req.body.dir === 'left'){
             console.log('swiped left')
         }
-        if(req.body.dir === 'right'){
+        else if(req.body.dir === 'right'){
             console.log('swiped right')
             //add logic for match
-
         }
       // Send a success response
       res.status(200).json({ message: 'Data received successfully' });

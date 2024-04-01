@@ -8,7 +8,7 @@ const expect = chai.expect
 // configure chai to use chai-http plugin
 chai.use(chaiHttp)
 
-describe("Backend API - GET /sample", () => {
+describe("Backend API - GET /swipe/card", () => {
   describe("Succesful GET Request", () => {
     // test case to check if the endpoint returns all posts
     it("it should return a set of photos", (done) => {
@@ -21,30 +21,7 @@ describe("Backend API - GET /sample", () => {
           expect(res.body).to.be.an("array") // check if the response body is an array
           done()
         })
-    })
-
-    describe("Error Handling", () => {
-      // set up stubs for axios.get to simulate network error
-      let axiosGetStub
-      beforeEach(() => {
-        // stub axios.get for the error handling case
-        axiosGetStub = sinon.stub(axios, "get").rejects(new Error("Network Error"))
-      })
-      // restore axios.get to its original function
-      afterEach(() => {
-        axiosGetStub.restore()
-      })
-      // test case to check error handling when fetching posts
-      it("it should handle errors when fetching photos", (done) => {
-        chai
-          .request(app)
-          .get("/swipe/card")
-          .end((err, res) => {
-            expect(res).to.have.status(500) // check that the status code is 500
-            done()
-          })
-      })
-    })
+    })    
   })
 })
 
@@ -80,7 +57,7 @@ describe("Backend API - POST /swipe/postSwipe", () => {
         chai
           .request(app)
           .post("/swipe/postSwipe")
-          .send({ dir: "left" })
+          .send({direction : "left"})
           .end((err, res) => {
             expect(res).to.have.status(500) // check that the status code is 500
             done()

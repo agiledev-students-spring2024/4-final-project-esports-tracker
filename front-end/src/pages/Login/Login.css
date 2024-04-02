@@ -24,7 +24,7 @@
 }
 
 
-#email, #password {
+.email, .password {
     background-color: white;
     width: 150px;
     height: 30px;
@@ -32,7 +32,7 @@
     color: black;
 }   
 
-#loginBtn {
+.loginBtn {
     height: 40px;
     width: 200px;
     background-color: white;
@@ -40,6 +40,6 @@
     border: 1px solid navy; 
 }
 
-#regLink {
+.regLink {
     color:white;
 }

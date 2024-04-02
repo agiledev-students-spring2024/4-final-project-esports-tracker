@@ -1,44 +1,75 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Login.css'
 
-const Login = ({ messages }) => {
+
+const handleLogin = async(e) => {
+  e.preventDefault();
+  const email = e.target.email.value; 
+  const password = e.target.password.value; 
+
+  try {
+    const response = await fetch ('/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json',
+      },
+      body: JSON.stringify({email, password}),
+    });
+
+       //response handling
+    if (response.ok){
+      console.log('You have succesfully logged in!');
+    }
+    else {
+      console.log('ERROR: Unable to login. Invalid credentials.');
+    }
+  }
+  catch (error) {
+    console.error('ERROR: Unable to login. Invalid credentials.', error); 
+  }
+}
+
+
+const Login = () => {
   return (
     <>
-      {messages?.error && (
-        <div className="error-message">
-          {messages.error}
-        </div>
-      )}
-
       <h1>Welcome to Pet Finder!</h1>
-
       <div className="parent">
         <div className='login'>
           <form action="/login" method="POST">
             <label>
-            <div class="spacer"></div>
-            <div class="spacer"></div>
-            <div class="spacer"></div>
+            <div className="spacer"></div>
+            <div className="spacer"></div>
+            <div className="spacer"></div>
               <br /> Login <br /> <br />
               
-              <input type="email" name="email" id="email" placeholder="Email" required />
+              <input type="email" name="email" className="email" placeholder="Email" required />
               
               <br />
-              <div class="spacer"></div>
+              <div className="spacer"></div>
               
-              <input type="password" name="password" id="password" placeholder="Password" required />
+              <input type="password" name="password" className="password" placeholder="Password" required />
             </label>
             <br /><br />
-            <input type="submit" value="Login" id="loginBtn" />
+            {/* when user submits login */}
+            <form onSubmit={handleLogin}>
+              <input type="submit" value="Login" className="loginBtn" />
+            </form>
             
           </form>
-          <div class="spacer"></div>
-          <a href="/register" id="regLink">Register</a>
+          <div className="spacer"></div>
+          
+          {/* if user wants to navigate to register page*/}
+          <form action="/register" method="POST">
+            <Link to='/register' className="regLink">Register</Link>
+          </form>
+
         </div>
         
       </div>
     </>
   )
-}
+};
 
 export default Login

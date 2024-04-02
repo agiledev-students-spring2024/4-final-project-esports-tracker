@@ -1,89 +1,67 @@
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config()
-}
+const express = require("express");
+const bcrypt = require('bcrypt');
+const router = express.Router();
 
-const express = require("express")
-const bcrypt = require('bcrypt')
-const router = express.Router()
-const users = []
-const passport = require('passport')
-const initializePassport = require('./passport/passport-config')
-initializePassport(
-    passport, 
-    email =>  users.find(user => user.email === email),
-    id => users.find(user => user.id === id)
-)
-const flash = require('express-session')
-const methodOvveride = require('method-override')
+// Mock data
+const user_profile = {
+    email: 'test@test',
+    password: 'test',
+};
 
 
-
-router.use(express.urlencoded({ extended:false }))
-router.use(flash()) 
-router.use(session({
-    secret:  process.env.SESSION_SECRET,
-    resave: false,
-    saveUnitialized: false
-
-})) 
-router.use(passport.initialize())
-router.use(session.initialize())
-router.use(methodOvveride('_method'))
-
-router.get('/profile', checkAutheticated, (req, res) => {
-    res.render('profile.js')
-})
-
-router.get('/login', checkNotAutheticated, (req, res) => {
-    res.render('login.js')
-})
-
-router.post('/login', checkNotAutheticated, passport.authenticate('local', {
-    successRedirect: '/profile.js',
-    failureRedirect: '/login',
-    failureFlash: true
-}))
-
-router.get('/register', checkNotAutheticated, (req, res) => {
-    res.render('register.js')
-})
-router.post('/register', checkNotAutheticated, async (req, res) => {
+// route for login after user enters existing credentials 
+router.post ('/login', async (req, res) => {
     try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        users.push ({
-            id: Date.now.toString(),
-            name: req.body.name,
-            email: req.body.email,
-            password: hashedPassword
-        })
-        res.redirect('/login')
-    } 
-    catch {
-        res.redirect('/register')
+        //if user doesn't exist 
+        const existing_user = user_profile[req.body.email];
+        if (!existing_user) {
+            return res.status(401).json({'messagge' : 'Invalid email or password'})
+        }
+
+        //if not user password 
+        const user_password = await bycrypt.compare(req.body.password, existing_user.password)
+        if (!user_password) {
+            return res.status(401).json({'messagge' : 'Invalid email or password'})
+        }
+
+
+        // if user is able to register successfuly
+        res.status(200).json({message : 'Login successful'})
+
     }
-    console.log(users);
-    
-})
-
-app.delete('/logout', (req, res) => {
-    req.logOut();
-    res.redirect('/login')
-}) 
-
-function checkAutheticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next()
+    catch (error) {
+        console.error('ERROR: Cannot login user:' , error);
+        res.status(500).json({message : 'ERROR: Cannot login user:'})
     }
+});
 
-    res.redirect('login')
-    
-}
+// route for registration after user enters credentials 
+router.post ('/register', async (req, res) => {
+    const {email, password} = req.body; 
 
-function checkNotAutheticated (req, res, next) {
-    if (req.isAuthenticated()) {
-        return res.redirect('/profile.js')
+    try {
+        // using bcrypt to hash password:
+        const hashed_password = await bycrypt.hash(password, 10);
+
+        // once received, create a new user 
+        const new_user = {
+            email,
+            password: hashed_password
+        };
+
+        //add functionality later to save user to database 
+
+
+        // if user is able to register successfuly
+        res.status(200).json({message : 'Registration successful'})
+
     }
-    next()
-}
+    catch (error) {
+        console.error('ERROR: Cannot register user:' , error);
+        res.status(500).json({message : 'ERROR: Cannot register user:'})
+    }
+});
 
-module.exports = router
+
+
+module.exports = router;

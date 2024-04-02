@@ -1,39 +1,36 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Login.css'
 
-const Login = ({ messages }) => {
+
+//const Login = ({ messages }) => {
+const Login = () => {
   return (
     <>
-      {messages?.error && (
-        <div className="error-message">
-          {messages.error}
-        </div>
-      )}
-
       <h1>Welcome to Pet Finder!</h1>
-
       <div className="parent">
         <div className='login'>
           <form action="/login" method="POST">
             <label>
-            <div class="spacer"></div>
-            <div class="spacer"></div>
-            <div class="spacer"></div>
+            <div className="spacer"></div>
+            <div className="spacer"></div>
+            <div className="spacer"></div>
               <br /> Login <br /> <br />
               
-              <input type="email" name="email" id="email" placeholder="Email" required />
+              <input type="email" name="email" className="email" placeholder="Email" required />
               
               <br />
-              <div class="spacer"></div>
+              <div className="spacer"></div>
               
-              <input type="password" name="password" id="password" placeholder="Password" required />
+              <input type="password" name="password" className="password" placeholder="Password" required />
             </label>
             <br /><br />
-            <input type="submit" value="Login" id="loginBtn" />
+            <input type="submit" value="Login" className="loginBtn" />
             
           </form>
-          <div class="spacer"></div>
-          <a href="/register" id="regLink">Register</a>
+          <div className="spacer"></div>
+          {/* <a href="/register" id="regLink">Register</a> */}
+          <Link to='/register' className="regLink">Register</Link>
         </div>
         
       </div>

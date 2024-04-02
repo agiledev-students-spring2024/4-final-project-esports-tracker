@@ -8,7 +8,7 @@ const app = express() // instantiate an Express object
 // import routes
 const swipeRouter = require("./routes/swipeRouter")
 const feedRouter = require("./routes/feedRouter")
-// const registerRouter = require("./routes/registerRouter")
+const registerRouter = require("./routes/registerRouter")
 const postRouter = require("./routes/postRouter")
 const discoverRouter = require("./routes/discoverRouter")
 const profileRouter = require("./routes/profileRouter")
@@ -21,7 +21,7 @@ app.use(express.json())
 // use routers
 app.use("/feed", feedRouter)
 app.use("/swipe", swipeRouter)
-// app.use("/", registerRouter)
+app.use("/login", registerRouter)
 app.use("/post", postRouter)
 app.use("/discover", discoverRouter)
 app.use("/profile", profileRouter)

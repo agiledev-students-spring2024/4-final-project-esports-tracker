@@ -21,7 +21,7 @@ app.use(express.json())
 // use routers
 app.use("/feed", feedRouter)
 app.use("/swipe", swipeRouter)
-app.use("/login", registerRouter)
+app.use("/auth", registerRouter)
 app.use("/post", postRouter)
 app.use("/discover", discoverRouter)
 app.use("/profile", profileRouter)

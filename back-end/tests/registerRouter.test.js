@@ -7,6 +7,7 @@ chai.use(chaiHttp)
 
 describe("Backend API - POST /register", () => {
 
+    //Login tests start
     describe("Successful Login", () => {
         it("it should successfully log in an existing user")
         const existing_user = {
@@ -45,6 +46,29 @@ describe("Backend API - POST /register", () => {
             });
     });
 
+    describe("Cannot Login Because User Has Invalid Password", () => {
+        it("it should not log in the user")
+        const invalid_user = {
+            email: "test@test",
+            password: "wrongpassword",
+        };
+
+        chai 
+            .request(app)
+            .get("/login")
+            .send(invalid_user)
+            .end((err, res) => {
+                expect(err).to.be.null;
+                expect(res).to.have.status(401);
+                expect(res.body).to.have.property("message", "ERROR: Cannot log in. Invalid password.");
+                done();
+            });
+    });
+    //Login tests end
+
+
+
+    //Registration tests start
     describe("Successful Registration", () => {
         it("it should successfully register a new user")
         const new_user = {
@@ -122,6 +146,6 @@ describe("Backend API - POST /register", () => {
                 });
         });
     });
-    
+    // Register tests end
 
 });

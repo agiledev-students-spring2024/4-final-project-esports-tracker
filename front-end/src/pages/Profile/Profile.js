@@ -70,8 +70,8 @@ const Profile = () => {
       <div className='profilePosts'>
       {
         images.map(image => (
-            <div className='imageContainer'>
-              <img key= {image.id} src={image.download_url} alt='image' />
+            <div key={image.id} className='imageContainer'>
+              <img src={image.download_url} alt='image' />
             </div>
         ))
       }
@@ -81,7 +81,7 @@ const Profile = () => {
 
       </div>
       <form action="/logout?_method=DELETE" method="POST" class = "button-container">
-      <button type="submit" class = "logOutButton"> Log Out </button>
+      <button type="submit" className = "logOutButton"> Log Out </button>
         </form>
     </>
   )

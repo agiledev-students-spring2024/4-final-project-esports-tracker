@@ -91,7 +91,8 @@ const Swipe = () => {
 
   return (
     <div>
-      <button style={{ backgroundColor: !canGoBack && '#c3c4d3' }} onClick={() => goBack()}>Undo swipe!</button>
+      <button className={`undoButton ${!canGoBack && 'disabled'}`}onClick={goBack}>
+    Undo swipe!</button>
 
       <div className='cardContainer'>
         {cards.map(
@@ -117,8 +118,8 @@ const Swipe = () => {
         ))}
       </div>
       <div className='buttons'>
-        <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('left')}>Pass</button>
-        <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}>Like</button>
+        <button className = "swipeButton" onClick={() => swipe('left')}>Pass</button>
+        <button className = "swipeButton" onClick={() => swipe('right')}>Like</button>
       </div>
 
     </div>

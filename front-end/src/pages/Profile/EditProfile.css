@@ -1,5 +1,6 @@
 .editHeader{
     text-align: center;
+    background-color: rgb(129, 198, 255);
     flex-direction: row;
     display: flex;
     padding: 10px;
@@ -21,7 +22,7 @@
     justify-content: space-between;
     margin-left: 50px;
     margin-right: 50px;
-    border: 1px solid red;
+    border: 1px solid transparent;
 
 }
 .inputImage img{
@@ -30,7 +31,9 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
+
 .editInputs{
     margin-bottom: 20px;
-    border: 1px solid red;
+    border: 1px solid transparent;
 }

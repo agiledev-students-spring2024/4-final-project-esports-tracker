@@ -11,6 +11,8 @@ const EditProfile = () => {
     const [username, setUsername] = useState('');
     const [bio, setBio] = useState('');
     const [email, setEmail] = useState('');
+    const [preference, setPreference] = useState('dog'); // State for selected preference
+
 
     useEffect(() => {
         async function fetchData() {
@@ -54,6 +56,9 @@ const EditProfile = () => {
           reader.readAsDataURL(file);
         }
       };
+      const handlePreferenceChange = (event) => {
+        setPreference(event.target.value);
+      };
 
 
       const handleSubmit = (event) => {
@@ -64,7 +69,7 @@ const EditProfile = () => {
           email: email,
           pfp: pfp,
           preferences: {// change this later
-            breed: 'dog'
+            breed: preference
           }
           
         }
@@ -117,11 +122,11 @@ const EditProfile = () => {
     {/* TODO: Add a dropdown menu for preferences integrated with backend */}
         <h2>Preferences: </h2>
         <select name="preferences" id="preferences">
-            <option value="1">Dog</option>
-            <option value="2">Cat</option>
-            <option value="3">Bird</option>
-            <option value="4">Other</option>
-            <option value="5">Any</option>
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+            <option value="Bird">Bird</option>
+            <option value="Other">Other</option>
+            <option value="Any">Any</option>
         </select>
     </div>
 

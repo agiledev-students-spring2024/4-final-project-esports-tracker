@@ -20,23 +20,23 @@ router.get('/profile', (req, res) => {
 
 // Route to update user profile
 router.post('/editProfile', (req, res) => {
-  const { username, bio, pfp, email, preferences } = req.body;
-  try {
-    console.log(req.body);
-  // Send a success response
-  res.status(200).json({ message: 'Data received successfully' });
-} catch (error) {
-  console.error('Error handling out of frame data:', error, req.body);
-  res.status(500).json({ error: 'Internal server error' });
-}
+  try{
+    const { username, bio, pfp, email, preferences } = req.body;
+
+
   // Update the profile
-  userProfile.username = username
-  userProfile.bio = bio || userProfile.bio;
-  userProfile.pfp = pfp || userProfile.pfp;
-  userProfile.email = email || userProfile.email;
-  userProfile.preferences = preferences || userProfile.preferences;
+    userProfile.username = username
+    userProfile.bio = bio || userProfile.bio;
+    userProfile.pfp = pfp || userProfile.pfp;
+    userProfile.email = email || userProfile.email;
+    userProfile.preferences = preferences || userProfile.preferences;
   
-  res.json({ message: 'Profile updated', profile: userProfile });
+    res.status(200).json({ message: 'Profile updated', profile: userProfile });
+} catch (error) {
+  console.error('error updating profile:', error);
+  res.status(500).json({error: 'internal serv error'});
+
+}
 });
 
 module.exports = router;

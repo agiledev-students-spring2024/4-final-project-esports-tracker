@@ -16,6 +16,7 @@ const handleRegistration = async(e) => {
       body: JSON.stringify({email, password}),
     });
 
+    //response handling
     if (response.ok){
       console.log('You have succesfully registered!');
     }

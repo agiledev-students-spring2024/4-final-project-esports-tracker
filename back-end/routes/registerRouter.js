@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Mock data
 const user_profile = {
-    email: 'temp@email',
+    email: 'test@test',
     password: 'test',
 };
 

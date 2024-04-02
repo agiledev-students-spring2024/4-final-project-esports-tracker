@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import './Login.css'
 
 
-//const Login = ({ messages }) => {
 const Login = () => {
   return (
     <>
@@ -29,7 +28,6 @@ const Login = () => {
             
           </form>
           <div className="spacer"></div>
-          {/* <a href="/register" id="regLink">Register</a> */}
           <Link to='/register' className="regLink">Register</Link>
         </div>
         

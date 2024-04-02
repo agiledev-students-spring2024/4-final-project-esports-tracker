@@ -17,6 +17,7 @@ const handleLogin = async(e) => {
       body: JSON.stringify({email, password}),
     });
 
+       //response handling
     if (response.ok){
       console.log('You have succesfully logged in!');
     }
@@ -51,7 +52,7 @@ const Login = () => {
               <input type="password" name="password" className="password" placeholder="Password" required />
             </label>
             <br /><br />
-            {/* when user submits to login */}
+            {/* when user submits login */}
             <form onSubmit={handleLogin}>
               <input type="submit" value="Login" className="loginBtn" />
             </form>

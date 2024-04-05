@@ -1,9 +1,11 @@
 // import required modules
+require('dotenv').config(); //load the .env file
 const express = require("express") // framework for building web applications
 const cors = require("cors") // middleware for enabling Cross-Origin Resource Sharing (CORS)
 const morgan = require("morgan") // middleware for logging HTTP requests in a readable format
 
 const app = express() // instantiate an Express object
+const mongoose = require('mongoose'); //use mongoose
 
 // import routes
 const swipeRouter = require("./routes/swipeRouter")
@@ -25,5 +27,11 @@ app.use("/auth", registerRouter)
 app.use("/post", postRouter)
 app.use("/discover", discoverRouter)
 app.use("/profile", profileRouter)
+
+//connect to the database
+mongoose
+    .connect(`${process.env.DB_CONNECTION_STRING}`)
+    .then(data => console.log(`Connected to MongoDB`))
+    .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
 
 module.exports = app

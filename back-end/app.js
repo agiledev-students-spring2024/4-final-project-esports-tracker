@@ -28,32 +28,10 @@ app.use("/post", postRouter)
 app.use("/discover", discoverRouter)
 app.use("/profile", profileRouter)
 
-module.exports = app
-
-
-```
 //connect to the database
-const url = process.env.MONGO_URI;  
-const dbName = 'yourDatabaseName';
+mongoose
+    .connect(`${process.env.DB_CONNECTION_STRING}`)
+    .then(data => console.log(`Connected to MongoDB`))
+    .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
 
-const client = new MongoClient(url);
-
-async function main() {
-    //connect to server
-  try {
-    await client.connect();
-    console.log("Connected successfully to server");
-    const db = client.db(dbName);
-    
-
-
-  } catch (err) {
-    console.error(err);
-  } finally {
-    //close client
-    await client.close();
-  }
-}
-
-main().catch(console.error);
-```
+module.exports = app

@@ -5,7 +5,7 @@ const cors = require("cors") // middleware for enabling Cross-Origin Resource Sh
 const morgan = require("morgan") // middleware for logging HTTP requests in a readable format
 
 const app = express() // instantiate an Express object
-const { MongoClient } = require('mongodb'); //for mongodb database connection
+const mongoose = require('mongoose'); //use mongoose
 
 // import routes
 const swipeRouter = require("./routes/swipeRouter")

@@ -1,9 +1,11 @@
 // import required modules
+require('dotenv').config(); //load the .env file
 const express = require("express") // framework for building web applications
 const cors = require("cors") // middleware for enabling Cross-Origin Resource Sharing (CORS)
 const morgan = require("morgan") // middleware for logging HTTP requests in a readable format
 
 const app = express() // instantiate an Express object
+const { MongoClient } = require('mongodb'); //for mongodb database connection
 
 // import routes
 const swipeRouter = require("./routes/swipeRouter")
@@ -27,3 +29,31 @@ app.use("/discover", discoverRouter)
 app.use("/profile", profileRouter)
 
 module.exports = app
+
+
+```
+//connect to the database
+const url = process.env.MONGO_URI;  
+const dbName = 'yourDatabaseName';
+
+const client = new MongoClient(url);
+
+async function main() {
+    //connect to server
+  try {
+    await client.connect();
+    console.log("Connected successfully to server");
+    const db = client.db(dbName);
+    
+
+
+  } catch (err) {
+    console.error(err);
+  } finally {
+    //close client
+    await client.close();
+  }
+}
+
+main().catch(console.error);
+```

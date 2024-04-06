@@ -3,6 +3,9 @@ import axios from 'axios';
 import Card from './Card';
 import './Swipe.css';
 import TinderCard from 'react-tinder-card';
+import { IoHeartOutline, IoEllipsisHorizontalOutline, IoReturnUpBack} from "react-icons/io5";
+import { FaR, FaRegThumbsDown } from "react-icons/fa6";
+
 
 
 
@@ -54,7 +57,7 @@ const Swipe = () => {
     updateCurrentIndex(index - 1)
   }
 
-  const outOfFrame = (name, dir, idx) => {
+  const outOfFrame = (name, dir, idx, ev) => {
     console.log(`${name} (${idx}) left the screen! swiped ${dir}`, currentIndexRef.current, cards[idx])
     // insert logic for swipes here
     const ret = {
@@ -77,8 +80,11 @@ const Swipe = () => {
 
   const swipe = async (dir) => {
     if (canSwipe && currentIndex < cards.length) {
-      await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
-    }
+      try {
+        await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
+      } catch (error) {
+        console.error('Error swiping card:', error);
+      }    }
   }
 
   // increase current index and show card
@@ -91,12 +97,13 @@ const Swipe = () => {
 
   return (
     <div>
-      <button className={`undoButton ${!canGoBack && 'disabled'}`}onClick={goBack}>
-    Undo swipe!</button>
+
 
       <div className='cardContainer'>
         {cards.map(
           (item, index) => (
+            <div>
+              <IoReturnUpBack className='undoButton' onClick={goBack} />
           <TinderCard
             ref={childRefs[index]}
             className='swipe'
@@ -113,14 +120,19 @@ const Swipe = () => {
               location={item.location}
               description={item.description}
               url={item.url}
+              swipe={swipe}
+            
             /> 
+
           </TinderCard>
+          <div className='buttons'>
+            <IoHeartOutline className='cardIcon' onClick={() => swipe('right')}/>
+            <FaRegThumbsDown className='cardIcon' onClick={() => swipe('left')}/>
+          </div>
+          </div>
         ))}
       </div>
-      <div className='buttons'>
-        <button className = "swipeButton" onClick={() => swipe('left')}>Pass</button>
-        <button className = "swipeButton" onClick={() => swipe('right')}>Like</button>
-      </div>
+
 
     </div>
   )

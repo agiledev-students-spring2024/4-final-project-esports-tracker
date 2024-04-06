@@ -1,45 +1,47 @@
 .cardContainer{
     overflow: hidden;
     position: relative;
-    height: 750px;
+    height: 853px;
     width: 100%;
 
 }
 
 .card{
     position: absolute;
-    height: 750px;
+    height: 853px;
     width: 100%;
   }
 
-  .swipeButton {
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #64c4ff;
-    color: white;
-    font-size: 1.2rem;
-    border: none;
-    cursor: pointer;
-    width: 150px;
+  .cardWrapper {
+    position: relative;
   }
-  
-  .swipeButton.disabled {
-    background-color: #c3c4d3;
-    cursor: not-allowed;
+
+  .buttons {
+    position: absolute;
+    bottom: 20px; /* Adjust bottom position as needed */
+    right: 10px; /* Adjust left position as needed */
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column; /* Stack buttons on top of each other */
+    align-items: center;
+  }
+
+  .cardIcon{
+    margin-bottom: 30px; /* Add space between buttons */
+    font-size: 50px; 
+    color: white;
   }
   
   .undoButton {
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #c3c4d3; /* Default background color */
+    position: absolute;
+    top: 20px; /* Adjust bottom position as needed */
+    right: 20px; 
+    font-size: 40px;
     color: white;
-    font-size: 1.2rem;
-    border: none;
-    cursor: pointer;
-    width: 150px;
+    z-index: 1;
   }
   
   .undoButton.disabled {
-    background-color: red; /* Background color when button is disabled */
+    background-color: lightblue; /* Background color when button is disabled */
   }
   

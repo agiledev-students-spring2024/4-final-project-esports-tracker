@@ -1,46 +1,92 @@
-
-
-
-.parent {
-    height: 100vh; 
-    width: 100vw;
+.success {
+    background-color: lightblue; /* Light Blue */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .errmsg {
+    color: red;
+  }
+  
+  .register {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 50%; 
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; 
+  }
+  
+  .instructions {
+    font-size: 14px;
+    color: #888;
+    margin-top: 5px;
+  }
+  
+  .offscreen {
+    position: absolute;
+    left: -9999px;
+  }
+  
+  /* Left align form elements */
+  .register form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
 
-
-.register {
-    height: 100vh;
-    width: 100vw;
-    background-color: lightblue;
-    font-size: 20px;
-    text-align: center;
+  }
+  
+  .register label {
+    margin-bottom: 5px;
+  }
+  
+  .register input,
+  .register button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .logLink {
+    color: #03a9f4; /* Light Blue */
+    text-decoration: none;
+    display: block; /* Make the login link a block-level element */
+  }
+  
+  .logLink:hover {
+    text-decoration: underline;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #03a9f4; /* Light Blue */
     color: white;
-    top: 0;
-
-}
-
-
-.spacer {
-    height: 20px;
-}
-
-.email, .password {
-    background-color: white;
-    width: 150px;
-    height: 30px;
-    text-align: center;
-}   
-
-.registerBtn {
-    height: 40px;
-    width: 200px;
-    background-color: white;
-    border-radius: 15px;
-    border: 1px solid navy; 
-}
-
-.logLink {
-    color:white;
-}
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block; /* Make the button a block-level element */
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pathToLogin {
+    margin-top: 10px;
+  }
+  
+  .pathToLogin .logLink {
+    margin-left: 5px;
+    display: block; /* Make the login link a block-level element */
+  }
+  

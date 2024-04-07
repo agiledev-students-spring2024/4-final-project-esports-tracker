@@ -37,11 +37,11 @@ router.post ('/login', async (req, res) => {
 
 // route for registration after user enters credentials 
 router.post ('/register', async (req, res) => {
-    const {email, password} = req.body; 
+    const {user, password} = req.body; 
 
     try {
         // TODO: replace this with client-side validation (use the required keyword in forms)
-        if (!email) {
+        if (!user) {
           return res.status(422).json({ message: 'Cannot register user. Missing email.' })
         }
         if (!password) {
@@ -52,7 +52,7 @@ router.post ('/register', async (req, res) => {
 
         // once received, create a new user 
         const new_user = {
-            email,
+            user,
             password: hashed_password
         };
 

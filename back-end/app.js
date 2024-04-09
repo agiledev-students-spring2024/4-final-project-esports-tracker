@@ -29,6 +29,7 @@ app.use("/discover", discoverRouter)
 app.use("/profile", profileRouter)
 
 //connect to the database
+console.log(`${process.env.DB_CONNECTION_STRING}`)
 mongoose
     .connect(`${process.env.DB_CONNECTION_STRING}`)
     .then(data => console.log(`Connected to MongoDB`))

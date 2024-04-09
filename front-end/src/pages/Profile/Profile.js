@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import './Profile.css'
+import { IoSettingsOutline } from "react-icons/io5";
 
 const Profile = () => {
 
@@ -12,6 +13,8 @@ const Profile = () => {
   });
   const [images, setImages] = useState([])
   const [error, setError] = useState('')
+  const [isOpen, setIsOpen] = useState(false);
+
 
 
 
@@ -52,37 +55,49 @@ const Profile = () => {
   }, []) 
 
 
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  }
+  const handleLogout = () => {
+    // Implement logout functionality here
+  };
+
+  const handleEditProfile = () => {
+    // Implement edit profile functionality here
+  };
+
   return (
     <>
-      <div className='header'>
+      <div className='profile'>
         <div className = 'profileHeader'>
             <img src={profile.pfp} alt='avatar' />
             <div className='userName'>
               <h1>{profile.username}</h1>
             </div>
+            <IoSettingsOutline className='profileIcon' onClick={handleToggle}/>
+            {isOpen && (
+                <div className="dropdown-content">
+                  <button onClick={handleLogout}>Logout</button>
+                  <Link to='/editProfile'>
+                    <button className='editProfileButton'> Edit Profile </button>
+                  </Link>
+                </div>
+              )}
         </div>
         <div className = 'bio'>
           <p>{profile.bio}</p>
         </div>
-      <Link to='/editProfile'>
-      <button className='editProfileButton'> Edit Profile </button>
-      </Link>
-      <div className='profilePosts'>
-      {
-        images.map(image => (
-            <div key={image.id} className='imageContainer'>
-              <img src={image.download_url} alt='image' />
-            </div>
-        ))
-      }
-      </div>
-      </div>
-      <div>
 
+        <div className='profilePosts'>
+        {
+          images.map(image => (
+              <div key={image.id} className='imageContainer'>
+                <img src={image.download_url} alt='image' />
+              </div>
+          ))
+        }
+        </div>
       </div>
-      <form action="/logout?_method=DELETE" method="POST" class = "button-container">
-      <button type="submit" className = "logOutButton"> Log Out </button>
-        </form>
     </>
   )
 }

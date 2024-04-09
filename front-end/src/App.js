@@ -10,26 +10,34 @@ import Feed from "./pages/Feed/Feed";
 import EditProfile from './pages/Profile/EditProfile';
 import Login from './pages/Login/Login';
 import Register from './pages/Login/Register';
+import RequireAuth from './pages/Login/requireAuth';
+
+const roles = {
+  "User": 1
+}
 
 function App() {
   return (
     <div className="App">
-      <Router>
         <Routes>
-          <Route path="/" element={<Navigate to="/feed" />} />
-          <Route path="/swipe" element={<Swipe/>} />
-          <Route path="/feed" element={<Feed />} />
-          <Route path="/discover" element={<Discover/>} />
-          <Route path="/add" element={<Add/>} />
-          <Route path="message" element={<Message/>} />
-          <Route path="/profile" element={<Profile/>} />
-          <Route path="/editProfile" element={<EditProfile/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
+          <Route path="unauthorized" element={<Navigate to="/login" />} />
+
+          <Route element = {<RequireAuth allowedRoles={[roles.User]}/>}>
+            <Route path="/" element={<Navigate to="/feed" />} />
+            <Route path="/swipe" element={<Swipe/>} />
+            <Route path="/feed" element={<Feed />} />
+            <Route path="/discover" element={<Discover/>} />
+            <Route path="/add" element={<Add/>} />
+            <Route path="message" element={<Message/>} />
+            <Route path="/profile" element={<Profile/>} />
+            <Route path="/editProfile" element={<EditProfile/>} />
+          </Route>
+
           {/* add pages above */}
         </Routes>
         <Navbar />
-      </Router>
     </div>
   )
 }

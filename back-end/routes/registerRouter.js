@@ -62,9 +62,8 @@ router.post ('/register', async (req, res) => {
             username: user,
             password: hashed_password
         });
-
+        console.log(new_user)
         //add functionality later to save user to database 
-        crossOriginIsolated.log(new_user)
 
         // if user is able to register successfuly
         res.status(200).json({message : 'Registration successful'})

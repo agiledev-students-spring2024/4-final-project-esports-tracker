@@ -1,11 +1,19 @@
 import React, {useState, useEffect} from 'react'
 import './Card.css'
 import axios from 'axios'
-import { IoHeartOutline, IoChatbubbleEllipsesOutline, IoEllipsisHorizontalOutline} from "react-icons/io5";
+import { IoHeartOutline, IoEllipsisHorizontalOutline} from "react-icons/io5";
+import { FaRegThumbsDown } from "react-icons/fa6";
+
 
 const Card = (props) => {
+  const handleSwipe = (dir) => {
+    try {
+      props.swipe(dir);
+    } catch (error) {
+      console.error('Error while swiping:', error);
+    }
+  };
 
-    
   return (
     <>
     <div className="card" style = {{backgroundImage: `url(${props.url})`}}>
@@ -18,8 +26,9 @@ const Card = (props) => {
                     <p>Description: {props.description}</p>
                 </div>
             {/* `   <div className="cardButtons">
-                        <IoHeartOutline/>
-                        <IoChatbubbleEllipsesOutline/>
+                    
+                        <IoHeartOutline onClick={() => handleSwipe('right')} onTouchEnd={() => handleSwipe('right')}/>
+                        <FaRegThumbsDown onClick={() => handleSwipe('left')} onTouchEnd={() => handleSwipe('left')}/>
                         <IoEllipsisHorizontalOutline/>
                 </div> */}
             </div>

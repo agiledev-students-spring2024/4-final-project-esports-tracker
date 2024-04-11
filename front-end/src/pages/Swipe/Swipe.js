@@ -75,7 +75,10 @@ const Swipe = () => {
       idx: idx,
     }
     console.log(ret)
-    axios.post('http://localhost:3001/swipe/postSwipe', ret)
+    axios.post('http://localhost:3001/swipe/postSwipe', ret, 
+    {headers:{
+      "Authorization": `Bearer ${user.data.token}`,
+    }})
     .then((response) => {
       console.log(response.data)
     })

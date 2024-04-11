@@ -1,6 +1,8 @@
 const express = require('express');
 const axios = require('axios');
 const router = express.Router();
+const requireAuth = require('../middleware/requireAuth')
+router.use(requireAuth)
 
 // Mock data
 const userProfile = {

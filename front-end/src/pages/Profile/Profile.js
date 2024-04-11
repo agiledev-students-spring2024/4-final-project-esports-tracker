@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import './Profile.css'
 import { IoSettingsOutline } from "react-icons/io5";
+import useAuth from '../../hooks/useAuth';
 
 const Profile = () => {
 
@@ -14,6 +15,8 @@ const Profile = () => {
   const [images, setImages] = useState([])
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false);
+  const {dispatch} = useAuth();
+  const {user} = useAuth();
 
 
 
@@ -59,12 +62,10 @@ const Profile = () => {
     setIsOpen(!isOpen);
   }
   const handleLogout = () => {
-    // Implement logout functionality here
+    localStorage.removeItem('user')
+    dispatch({type: 'LOGOUT'})
   };
 
-  const handleEditProfile = () => {
-    // Implement edit profile functionality here
-  };
 
   return (
     <>
@@ -72,7 +73,9 @@ const Profile = () => {
         <div className = 'profileHeader'>
             <img src={profile.pfp} alt='avatar' />
             <div className='userName'>
+              {user && (
               <h1>{profile.username}</h1>
+              )}
             </div>
             <IoSettingsOutline className='profileIcon' onClick={handleToggle}/>
             {isOpen && (

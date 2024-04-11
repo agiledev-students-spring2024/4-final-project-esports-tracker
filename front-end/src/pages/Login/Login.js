@@ -1,14 +1,15 @@
 import React, {useRef, useState, useEffect, useContext} from 'react'
-import AuthContext from '../../context/AuthProvider'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import './Login.css'
 import axios from 'axios'
 import useAuth from '../../hooks/useAuth'
+import AuthContext from '../../context/AuthProvider'
+
 
 
 
 const Login = () => {
-  const {setAuth} = useAuth()
+  const {dispatch} = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state?.from?.pathname || "/"
@@ -39,16 +40,18 @@ const Login = () => {
       const ret = {
         user: username, password: password
       }
-
       console.log(ret)
+
       try{
           const response = await axios.post('http://localhost:3001/auth/login', ret)
           console.log(response.data)
-          const accessToken = response?.data?.accessToken;
+
+          localStorage.setItem('user', JSON.stringify(response))
+          const accessToken = response?.data?.token;
           const roles = response?.data.roles;
-          setAuth({username, password, roles, accessToken})
+          dispatch({type: 'LOGIN', payload: response})
           navigate(from, {replace:true})
-          setPassword = ""
+          setPassword = ''
           setUsername = ''
         
       }

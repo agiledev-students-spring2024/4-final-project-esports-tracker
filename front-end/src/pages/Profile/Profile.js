@@ -74,7 +74,7 @@ const Profile = () => {
             <img src={profile.pfp} alt='avatar' />
             <div className='userName'>
               {user && (
-              <h1>{profile.username}</h1>
+              <h1>{user.data.user}</h1>
               )}
             </div>
             <IoSettingsOutline className='profileIcon' onClick={handleToggle}/>

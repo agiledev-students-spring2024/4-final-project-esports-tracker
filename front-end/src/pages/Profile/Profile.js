@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import './Profile.css'
 import { IoSettingsOutline } from "react-icons/io5";
+import useAuth from '../../hooks/useAuth';
 
 const Profile = () => {
 
@@ -14,11 +15,13 @@ const Profile = () => {
   const [images, setImages] = useState([])
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false);
+  const {dispatch} = useAuth();
+  const {user} = useAuth();  // 
 
 
 
 
-  const fetchImages = () => {
+  const fetchImages = () => { //TODO, MUST CHANGE THIS
     axios
       .get(`https://picsum.photos/v2/list`)
       .then(response => {
@@ -33,24 +36,24 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/profile/profile')
-      .then(response => {
-        setProfile({
-          username: response.data.username,
-          bio: response.data.bio,
-          pfp: response.data.pfp
+    if(user){
+      axios
+        .get('http://localhost:3001/profile/profile', 
+        {headers:{
+          "Authorization": `Bearer ${user.data.token}`,
+
+        }})
+        .then(response => {
+          setProfile({
+            username: response.data.username,
+            bio: response.data.bio,
+            pfp: response.data.pfp
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching profile:", error);
         });
-      })
-      .catch(error => {
-        console.error("Error fetching profile:", error);
-      });
-    fetchImages()
-    const intervalHandle = setInterval(() => {
       fetchImages()
-    }, 5000)
-    return e => {
-      clearInterval(intervalHandle)
     }
   }, []) 
 
@@ -59,12 +62,10 @@ const Profile = () => {
     setIsOpen(!isOpen);
   }
   const handleLogout = () => {
-    // Implement logout functionality here
+    localStorage.removeItem('user')
+    dispatch({type: 'LOGOUT'})
   };
 
-  const handleEditProfile = () => {
-    // Implement edit profile functionality here
-  };
 
   return (
     <>
@@ -72,7 +73,9 @@ const Profile = () => {
         <div className = 'profileHeader'>
             <img src={profile.pfp} alt='avatar' />
             <div className='userName'>
-              <h1>{profile.username}</h1>
+              {user && (
+              <h1>{user.data.user}</h1>
+              )}
             </div>
             <IoSettingsOutline className='profileIcon' onClick={handleToggle}/>
             {isOpen && (

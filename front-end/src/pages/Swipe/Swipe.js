@@ -5,6 +5,7 @@ import './Swipe.css';
 import TinderCard from 'react-tinder-card';
 import { IoHeartOutline, IoEllipsisHorizontalOutline, IoReturnUpBack} from "react-icons/io5";
 import { FaR, FaRegThumbsDown } from "react-icons/fa6";
+import useAuth from '../../hooks/useAuth';
 
 
 
@@ -15,12 +16,17 @@ const Swipe = () => {
   const [lastDirection, setLastDirection] = useState()
   const currentIndexRef = useRef(currentIndex)
   const [childRefs, setChildRefs] = useState([]);
+  const {user} = useAuth();  // 
 
 
 
   useEffect(() => {
     async function fetchData() {
-    const req = await axios.get('http://localhost:3001/swipe/card')
+    console.log(user)
+    const req = await axios.get('http://localhost:3001/swipe/card', 
+    {headers:{
+      "Authorization": `Bearer ${user.data.token}`,
+    }})
     .then((response) => {
       setCards(response.data)
       setCurrentIndex(response.data.length - 1);
@@ -33,7 +39,10 @@ const Swipe = () => {
     .catch((error) => {
       console.error('Error fetching posts:', error)
     })}
-    fetchData()
+    if(user){
+      fetchData()
+    }
+    
   },[])
 
   useEffect(() => {
@@ -66,7 +75,10 @@ const Swipe = () => {
       idx: idx,
     }
     console.log(ret)
-    axios.post('http://localhost:3001/swipe/postSwipe', ret)
+    axios.post('http://localhost:3001/swipe/postSwipe', ret, 
+    {headers:{
+      "Authorization": `Bearer ${user.data.token}`,
+    }})
     .then((response) => {
       console.log(response.data)
     })

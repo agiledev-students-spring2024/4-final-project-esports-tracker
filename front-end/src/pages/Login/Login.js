@@ -1,75 +1,106 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {useRef, useState, useEffect, useContext} from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import './Login.css'
+import axios from 'axios'
+import useAuth from '../../hooks/useAuth'
+import AuthContext from '../../context/AuthProvider'
 
 
-const handleLogin = async(e) => {
-  e.preventDefault();
-  const email = e.target.email.value; 
-  const password = e.target.password.value; 
-
-  try {
-    const response = await fetch ('/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type' : 'application/json',
-      },
-      body: JSON.stringify({email, password}),
-    });
-
-       //response handling
-    if (response.ok){
-      console.log('You have succesfully logged in!');
-    }
-    else {
-      console.log('ERROR: Unable to login. Invalid credentials.');
-    }
-  }
-  catch (error) {
-    console.error('ERROR: Unable to login. Invalid credentials.', error); 
-  }
-}
 
 
 const Login = () => {
+  const {dispatch} = useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/"
+
+
+  const userRef = useRef()
+  const errRef = useRef()
+  
+  const [username, setUsername] = useState('')
+  const [userFocus, setUserFocus] = useState(false)
+
+  const [password, setPassword] = useState('')
+  const [passwordFocus, setPasswordFocus] = useState(false)
+
+  const [errMessage, setErrorMessage] = useState('')
+
+  useEffect(() => {
+    userRef.current.focus()
+  }, [])
+
+
+  useEffect(()=>{
+      setErrorMessage("")
+  }, [username, password])
+
+  const handleSubmit = async (e) =>{
+      e.preventDefault();
+      const ret = {
+        user: username, password: password
+      }
+      console.log(ret)
+
+      try{
+          const response = await axios.post('http://localhost:3001/auth/login', ret)
+          console.log(response.data)
+
+          localStorage.setItem('user', JSON.stringify(response))
+          const accessToken = response?.data?.token;
+          const roles = response?.data.roles;
+          dispatch({type: 'LOGIN', payload: response})
+          navigate(from, {replace:true})
+          setPassword = ''
+          setUsername = ''
+        
+      }
+      catch(err){
+          setErrorMessage(err)
+          //error logic
+          errRef.current.focus()
+      }
+  }
+  
   return (
     <>
-      <h1>Welcome to Pet Finder!</h1>
-      <div className="parent">
-        <div className='login'>
-          <form action="/login" method="POST">
-            <label>
-            <div className="spacer"></div>
-            <div className="spacer"></div>
-            <div className="spacer"></div>
-              <br /> Login <br /> <br />
-              
-              <input type="email" name="email" className="email" placeholder="Email" required />
-              
-              <br />
-              <div className="spacer"></div>
-              
-              <input type="password" name="password" className="password" placeholder="Password" required />
-            </label>
-            <br /><br />
-            {/* when user submits login */}
-            <form onSubmit={handleLogin}>
-              <input type="submit" value="Login" className="loginBtn" />
-            </form>
-            
-          </form>
-          <div className="spacer"></div>
-          
-          {/* if user wants to navigate to register page*/}
-          <form action="/register" method="POST">
-            <Link to='/register' className="regLink">Register</Link>
-          </form>
 
-        </div>
-        
-      </div>
+          <div>
+        <div className='header'>Welcome to Pet Finder!</div>
+        <p ref= {errRef} className={errMessage ? "errmsg" : "offscreen"} aria-live = "assertive">
+          {errMessage.message}
+        </p>
+          <div className='register'>
+            Login
+            <form onSubmit={handleSubmit}>
+              <label htmlFor='username'>
+                Username:
+              </label>
+              <input type='text' id='username' ref={userRef} onChange={(e) => setUsername(e.target.value)}
+              required autoComplete='off' onFocus={() => setUserFocus(true)}
+              onBlur={() => setUserFocus(false)}
+              />
+              <label htmlFor='password'>
+                Password:
+              </label>
+              <input type='password' id='password' onChange={(e) => setPassword(e.target.value)}
+              required onFocus={() => setPasswordFocus(true)}
+              onBlur={() => setPasswordFocus(false)}
+              />
+              <button disabled={username && password ? false: true}>
+                Log in
+              </button>
+            </form>
+
+
+            <div className='pathToLogin'>
+              Create new account
+              <Link to='/register' className="logLink">Register</Link>
+            </div>
+          </div>
+          </div>
     </>
-  )
-};
+ )
+}
 
 export default Login

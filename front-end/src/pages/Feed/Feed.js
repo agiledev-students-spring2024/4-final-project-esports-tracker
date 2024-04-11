@@ -2,14 +2,22 @@ import { useState, useEffect } from "react"
 import "./Feed.css"
 import Post from "./Post"
 import TabSwitcher from "./TabSwitcher"
+import useAuth from '../../hooks/useAuth';
+
+
 
 const Feed = () => {
   const [posts, setPosts] = useState([])
+  const {user} = useAuth();  // 
+
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:3001/feed")
+        const response = await fetch("http://localhost:3001/feed",
+        {headers:{
+          "Authorization": `Bearer ${user.data.token}`,
+        }})
         if (!response.ok) {
           throw new Error("Failed to fetch posts")
         }
@@ -19,7 +27,9 @@ const Feed = () => {
         console.error("Error fetching posts:", error)
       }
     }
-    fetchData()
+    if(user){
+      fetchData()
+    }
   }, [])
 
   return (

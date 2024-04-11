@@ -4,12 +4,17 @@ import axios from 'axios';
 import { IoChevronBack, IoChevronDown, IoLocationOutline } from "react-icons/io5";
 import { FiTag } from "react-icons/fi";
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+
 
 
 const Add = () => {
   
   const [selectedImage, setSelectedImage] = useState(null);
   const [caption, setCaption] = useState('');
+  const {user} = useAuth();  // 
+
+
   const handleChange = (event) => {
     const inputValue = event.target.value;
     if (inputValue.length <= 140) {
@@ -33,13 +38,18 @@ const Add = () => {
       return;
     }
     console.log(ret)
-    axios.post('http://localhost:3001/post', ret)
-    .then((response) => {
-      console.log(response.data)
-    })
-    .catch((error) => {
-      console.error('Error handling out of frame data:', error)
-    })
+    if(user){
+      axios.post('http://localhost:3001/post', ret, 
+      {headers:{
+        "Authorization": `Bearer ${user.data.token}`,
+      }})
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.error('Error handling out of frame data:', error)
+      })
+  }
     setCaption('');
     setSelectedImage(null);
     alert('Post submitted');

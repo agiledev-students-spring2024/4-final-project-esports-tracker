@@ -16,12 +16,12 @@ const Profile = () => {
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false);
   const {dispatch} = useAuth();
-  const {user} = useAuth();
+  const {user} = useAuth();  // 
 
 
 
 
-  const fetchImages = () => {
+  const fetchImages = () => { //TODO, MUST CHANGE THIS
     axios
       .get(`https://picsum.photos/v2/list`)
       .then(response => {
@@ -36,24 +36,24 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/profile/profile')
-      .then(response => {
-        setProfile({
-          username: response.data.username,
-          bio: response.data.bio,
-          pfp: response.data.pfp
+    if(user){
+      axios
+        .get('http://localhost:3001/profile/profile', 
+        {headers:{
+          "Authorization": `Bearer ${user.data.token}`,
+
+        }})
+        .then(response => {
+          setProfile({
+            username: response.data.username,
+            bio: response.data.bio,
+            pfp: response.data.pfp
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching profile:", error);
         });
-      })
-      .catch(error => {
-        console.error("Error fetching profile:", error);
-      });
-    fetchImages()
-    const intervalHandle = setInterval(() => {
       fetchImages()
-    }, 5000)
-    return e => {
-      clearInterval(intervalHandle)
     }
   }, []) 
 

@@ -10,31 +10,27 @@ import Feed from "./pages/Feed/Feed";
 import EditProfile from './pages/Profile/EditProfile';
 import Login from './pages/Login/Login';
 import Register from './pages/Login/Register';
-import RequireAuth from './pages/Login/requireAuth';
+import useAuth from './hooks/useAuth';
 
 const roles = {
   "User": 1
 }
 
 function App() {
+  const {user} = useAuth()
   return (
     <div className="App">
         <Routes>
-          <Route path="/login" element={<Login/>} />
-          <Route path="/register" element={<Register/>} />
-          <Route path="unauthorized" element={<Navigate to="/login" />} />
-          <Route path="/profile" element={<Profile/>} />
-
-
-          <Route element = {<RequireAuth allowedRoles={[roles.User]}/>}>
-            <Route path="/" element={<Navigate to="/feed" />} />
-            <Route path="/swipe" element={<Swipe/>} />
-            <Route path="/feed" element={<Feed />} />
-            <Route path="/discover" element={<Discover/>} />
-            <Route path="/add" element={<Add/>} />
-            <Route path="message" element={<Message/>} />
-            <Route path="/editProfile" element={<EditProfile/>} />
-          </Route>
+          <Route path="/login" element={!user ? <Login/> : <Navigate to="/" />} />
+          <Route path="/register" element={!user ? <Register/> : <Navigate to="/" />} />
+          <Route path="/" element={<Navigate to="/feed" />} />
+          <Route path="/profile" element={user?<Profile/>:<Navigate to="/login" />} />
+          <Route path="/swipe" element={user? <Swipe/>:<Navigate to="/login" />} />
+          <Route path="/feed" element={user?<Feed />:<Navigate to="/login" />} />
+          <Route path="/discover" element={user?<Discover/>:<Navigate to="/login" />} />
+          <Route path="/add" element={user?<Add/>:<Navigate to="/login" />} />
+          <Route path="message" element={user?<Message/>:<Navigate to="/login" />} />
+          <Route path="/editProfile" element={user?<EditProfile/>:<Navigate to="/login" />} />
 
           {/* add pages above */}
         </Routes>

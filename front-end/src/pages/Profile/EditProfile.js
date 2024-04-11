@@ -3,6 +3,8 @@ import './EditProfile.css'
 import { IoChevronBack } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import useAuth from '../../hooks/useAuth';
+
 
 
 const EditProfile = () => {
@@ -12,11 +14,15 @@ const EditProfile = () => {
     const [bio, setBio] = useState('');
     const [email, setEmail] = useState('');
     const [preference, setPreference] = useState('dog'); // State for selected preference
+    const {user} = useAuth();  // 
 
 
     useEffect(() => {
         async function fetchData() {
-        const req = await axios.get('http://localhost:3001/profile/profile')
+        const req = await axios.get('http://localhost:3001/profile/profile', 
+        {headers:{
+          "Authorization": `Bearer ${user.data.token}`,
+        }})
         .then((response) => {
           setUsername(response.data.username);
           setBio(response.data.bio);
@@ -26,7 +32,9 @@ const EditProfile = () => {
         .catch((error) => {
           console.error('Error fetching posts:', error)
         })}
+        if(user){
         fetchData()
+        }
       },[])
     
     const handleUser = (event) => {

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import './Profile.css'
 import { IoSettingsOutline } from "react-icons/io5";
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth'; //IMPORTANT
 
 const Profile = () => {
 
@@ -16,7 +16,7 @@ const Profile = () => {
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false);
   const {dispatch} = useAuth();
-  const {user} = useAuth();  // 
+  const {user} = useAuth();  //IMPORTANT
 
 
 
@@ -36,10 +36,10 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    if(user){
+    if(user){ 
       axios
         .get('http://localhost:3001/profile/profile', 
-        {headers:{
+        {headers:{ //IMPORTANT
           "Authorization": `Bearer ${user.data.token}`,
 
         }})

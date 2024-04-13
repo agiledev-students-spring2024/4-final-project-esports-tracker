@@ -5,6 +5,9 @@ const cors = require("cors") // middleware for enabling Cross-Origin Resource Sh
 const morgan = require("morgan") // middleware for logging HTTP requests in a readable format
 
 const app = express() // instantiate an Express object
+require('./models/user')
+require('./models/post')
+
 const mongoose = require('mongoose'); //use mongoose
 
 // import routes
@@ -14,6 +17,7 @@ const registerRouter = require("./routes/registerRouter")
 const postRouter = require("./routes/postRouter")
 const discoverRouter = require("./routes/discoverRouter")
 const profileRouter = require("./routes/profileRouter")
+
 
 // use middleware
 app.use(morgan("dev")) // use morgan with dev style for logging HTTP requests

@@ -26,20 +26,20 @@ const Add = () => {
   };
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     //send the caption and image data to a server
     const ret = {
       caption: caption,
-      image: selectedImage
+      image: 'selectedImage'
     }
  
     if (!selectedImage || !caption ) {
       alert('Please select an image or write a caption before submitting.');
       return;
     }
-    console.log(ret)
     if(user){
-      axios.post('http://localhost:3001/post', ret, 
+      await axios.post('http://localhost:3001/post', ret, 
       {headers:{
         "Authorization": `Bearer ${user.data.token}`,
       }})
@@ -49,9 +49,9 @@ const Add = () => {
       .catch((error) => {
         console.error('Error handling out of frame data:', error)
       })
-  }
+    }
     setCaption('');
-    setSelectedImage(null);
+    setSelectedImage('');
     alert('Post submitted');
 
   };

@@ -18,10 +18,6 @@ const postSchema = new Schema({
         required: true,
         ref:'user'
     },
-    username: {
-        type: String,
-        required: true,
-    },
     likeCount: {
         type: Number,
         default: 0,

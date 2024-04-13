@@ -13,12 +13,14 @@ const postPost = async(req, res) => {
         res.status(422).json({error: "missing caption"})
       }
 
-
+      const postUser = {
+        _id: req.user._id,
+        username: req.user.username,
+      }
       const new_post = await Post.create({
         caption,
         image,
-        postedBy: req.user._id,
-        username: req.user.username,
+        postedBy: postUser
       })
 
       console.log(new_post)
@@ -31,4 +33,27 @@ const postPost = async(req, res) => {
     }
   };
 
-  module.exports = { postPost }
+const getAllPosts = (req, res) =>{
+  Post.find()
+  .populate('postedBy', '_id username')
+  .then((allPosts)=>{
+    res.json({allPosts})
+  })
+  .catch((error) =>{
+      console.log(error)
+  })
+}
+
+const getUserPosts = (req, res) => {
+  console.log(req.user._id)
+  Post.find({postedBy: req.user._id})
+  .populate('postedBy', '_id username')
+  .then((myPosts)=>{
+    res.json({myPosts})
+  })
+  .catch((error) =>{
+      console.log(error)
+  })
+}
+  
+  module.exports = { postPost, getAllPosts, getUserPosts }

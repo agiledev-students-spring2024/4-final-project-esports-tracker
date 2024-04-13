@@ -39,7 +39,7 @@ const Add = () => {
       return;
     }
     if(user){
-      await axios.post('http://localhost:3001/post', ret, 
+      await axios.post('http://localhost:3001/post/createPost', ret, 
       {headers:{
         "Authorization": `Bearer ${user.data.token}`,
       }})

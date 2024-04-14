@@ -1,5 +1,5 @@
 const express = require("express")
-const  { postPost, getAllPosts, getUserPosts, postLike } = require("../controllers/postController")
+const  { postPost, getAllPosts, getUserPosts, postLike, getPostById } = require("../controllers/postController")
 const multer = require('multer')
 
 const storage = multer.diskStorage({
@@ -23,6 +23,7 @@ router.use(requireAuth)
 router.post("/postPost", upload.single('image'), postPost)
 router.get('/allPosts',getAllPosts )
 router.get('/userPosts', getUserPosts)
+router.get('/singlePost', getPostById)
 // router.post('')
 
 module.exports = router

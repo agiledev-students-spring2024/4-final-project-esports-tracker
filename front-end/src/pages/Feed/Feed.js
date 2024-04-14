@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react"
+import { Link } from 'react-router-dom';
+
 import "./Feed.css"
 import Post from "./Post"
 import TabSwitcher from "./TabSwitcher"
 import useAuth from '../../hooks/useAuth';
+
 
 
 
@@ -39,9 +42,11 @@ const Feed = () => {
           firstTab={{ name: "Feed", path: "/feed" }}
           secondTab={{ name: "Discover", path: "/discover" }}
         />
-        <div className="posts">
+        <div className="posts"> 
           {posts.slice().reverse().map((post, i) => (
-            <Post username={post.postedBy.username} image={post.image} caption={post.caption} key={i} /> //add like count
+            <Link to={`/post/${post._id}`} key={post._id}>
+                <Post username={post.postedBy.username} image={post.image} caption={post.caption} key={i} />
+            </Link>
           ))}
         </div>
       </div>

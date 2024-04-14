@@ -40,7 +40,7 @@ const Feed = () => {
           secondTab={{ name: "Discover", path: "/discover" }}
         />
         <div className="posts">
-          {posts.map((post, i) => (
+          {posts.slice().reverse().map((post, i) => (
             <Post username={post.postedBy.username} image={post.image} caption={post.caption} key={i} /> //add like count
           ))}
         </div>

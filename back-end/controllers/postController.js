@@ -63,11 +63,22 @@ const getAllPosts = (req, res) =>{
 }
 
 const getUserPosts = (req, res) => {
-  console.log(req.user._id)
   Post.find({postedBy: req.user._id})
   .populate('postedBy', '_id username')
-  .then((myPosts)=>{
-    res.json({myPosts})
+  .then((allPosts)=>{
+    const modifiedPosts = allPosts.map(
+      post => {
+        return {
+          _id: post._id,
+          caption: post.caption,
+          image: `${req.protocol}://${req.get('host')}/${post.image}`,
+          likeCount: post.likeCount,
+          comments: post.comments,
+          postedBy: post.postedBy
+        }
+      }
+    )
+    res.json({allPosts: modifiedPosts})
   })
   .catch((error) =>{
       console.log(error)

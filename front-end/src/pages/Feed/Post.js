@@ -16,7 +16,7 @@ const Post = (props) => {
     // TODO: send post requests
   }
   // TODO: clicking on a username redirects to that user's profile
-
+  //ADD DATE CREATED AND LIKE COUNT THIS IS ALREADY IN THE DATABASE SCHEMA
   return (
     <>
       <div className="post">

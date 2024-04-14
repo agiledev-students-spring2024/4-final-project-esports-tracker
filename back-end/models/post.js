@@ -13,6 +13,10 @@ const postSchema = new Schema({
         default: "none"
         
     },
+    dateCreated:{
+        type: Date,
+        default: Date.now // Automatically set to the current date and time when a new post is created
+    },
     postedBy: {
         type: ObjectId,
         required: true,

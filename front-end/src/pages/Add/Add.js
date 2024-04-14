@@ -10,10 +10,10 @@ import useAuth from '../../hooks/useAuth';
 
 const Add = () => {
   
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [caption, setCaption] = useState('');
-  const {user} = useAuth();  // 
-
+  const [selectedImage, setSelectedImage] = useState(null)
+  const [imageFile, setImageFile] = useState('')
+  const [caption, setCaption] = useState('')
+  const {user} = useAuth()  // 
 
   const handleChange = (event) => {
     const inputValue = event.target.value;
@@ -29,17 +29,16 @@ const Add = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     //send the caption and image data to a server
-    const ret = {
-      caption: caption,
-      image: 'selectedImage'
-    }
- 
-    if (!selectedImage || !caption ) {
+    const formData = new FormData()
+    formData.append('image', imageFile)
+    formData.append('caption', caption)
+    
+    if (!imageFile || !caption ) {
       alert('Please select an image or write a caption before submitting.');
       return;
     }
     if(user){
-      await axios.post('http://localhost:3001/post/createPost', ret, 
+      await axios.post('http://localhost:3001/post/postPost', formData, 
       {headers:{
         "Authorization": `Bearer ${user.data.token}`,
       }})
@@ -51,7 +50,6 @@ const Add = () => {
       })
     }
     setCaption('');
-    setSelectedImage('');
     alert('Post submitted');
 
   };
@@ -62,6 +60,7 @@ const Add = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setSelectedImage(reader.result);
+        setImageFile(file)
       };
       reader.readAsDataURL(file);
     }

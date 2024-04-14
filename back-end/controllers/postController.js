@@ -27,7 +27,7 @@ const postPost = async(req, res) => {
         postedBy: postUser
       })
 
-      console.log(new_post)
+      // console.log(new_post)
 
       res.status(200).json({ message: 'Data received successfully' });
     } catch (error) {

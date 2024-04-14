@@ -14,7 +14,7 @@ const Feed = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:3001/feed",
+        const response = await fetch("http://localhost:3001/post/allPosts",
         {headers:{
           "Authorization": `Bearer ${user.data.token}`,
         }})
@@ -22,7 +22,7 @@ const Feed = () => {
           throw new Error("Failed to fetch posts")
         }
         const data = await response.json()
-        setPosts(data)
+        setPosts(data.allPosts)
       } catch (error) {
         console.error("Error fetching posts:", error)
       }

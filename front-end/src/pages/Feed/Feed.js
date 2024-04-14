@@ -41,7 +41,7 @@ const Feed = () => {
         />
         <div className="posts">
           {posts.map((post, i) => (
-            <Post username={post.username} image={post.image} caption={post.caption} key={i} />
+            <Post username={post.postedBy.username} image={post.image} caption={post.caption} key={i} /> //add like count
           ))}
         </div>
       </div>

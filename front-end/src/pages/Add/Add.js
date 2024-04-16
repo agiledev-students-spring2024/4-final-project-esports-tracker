@@ -77,7 +77,7 @@ const Add = () => {
           </Link>
           <h1>New Post</h1>
         </div>
-    <hr/>
+     
       <div className='addImage'>
             {selectedImage && (
             <div>
@@ -85,12 +85,25 @@ const Add = () => {
             </div>
           )}
       </div>
-    <hr/>
-    <div className = 'chooseImage'>
-      <input type='file' onChange={handleImage} accept='image/*' />
-    </div>
-    <hr/>
+     
+      <div className="chooseImage">
+  <label htmlFor="file-upload" className="custom-file-upload">
+    Choose Image
+  </label>
+  <input
+    id="file-upload"
+    type="file"
+    onChange={handleImage}
+    accept="image/*"
+    style={{ display: 'none' }}
+  />
+</div>
 
+     
+
+    <div className="spacers">
+
+</div>
 
     <div className='addCaption'>
       <textarea type='text' placeholder="Write a caption..." name="caption" 
@@ -100,20 +113,39 @@ const Add = () => {
     </div>
 
 
-    <hr/>
+
+<div className="spacers">
+
+</div>
+     
     <div className='addTags'>
       <FiTag size={30} />
       Tag People
     </div>
-    <hr/>
+     
+
+
+<div className="spacers">
+
+</div>
+
    <div className='addLocation'>
     <IoLocationOutline size={30} />
       Add Location 
       {/* google api autocomplete */}
     </div>
-    <hr/>
+    
+
+<div className="spacers">
+
+</div>
+
+
+    <div className="spacer"></div>
     <button className = 'postSubmit' onClick={handleSubmit}>Share</button>
     </>
+
+    
  )
 }
 

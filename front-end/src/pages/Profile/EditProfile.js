@@ -19,7 +19,7 @@ const EditProfile = () => {
 
     useEffect(() => {
         async function fetchData() {
-        const req = await axios.get('http://localhost:3001/profile', 
+        const req = await axios.get('http://localhost:3001/profile/profile', 
         {headers:{
           "Authorization": `Bearer ${user.data.token}`,
         }})

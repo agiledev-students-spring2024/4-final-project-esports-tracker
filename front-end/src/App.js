@@ -5,7 +5,6 @@ import Message from './pages/Message/Message';
 import Swipe from './pages/Swipe/Swipe';
 import Add from './pages/Add/Add';
 import Profile from './pages/Profile/Profile';
-import Post from './pages/Feed/Post';
 import Discover from './pages/Discover/Discover';
 import Feed from "./pages/Feed/Feed";
 import EditProfile from './pages/Profile/EditProfile';
@@ -24,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/login" element={!user ? <Login/> : <Navigate to="/" />} />
           <Route path="/register" element={!user ? <Register/> : <Navigate to="/" />} />
+          <Route path="/" element={<Navigate to="/feed" />} />
           <Route path="/profile" element={user?<Profile/>:<Navigate to="/login" />} />
           <Route path="/swipe" element={user? <Swipe/>:<Navigate to="/login" />} />
           <Route path="/feed" element={user?<Feed />:<Navigate to="/login" />} />
@@ -31,9 +31,6 @@ function App() {
           <Route path="/add" element={user?<Add/>:<Navigate to="/login" />} />
           <Route path="message" element={user?<Message/>:<Navigate to="/login" />} />
           <Route path="/editProfile" element={user?<EditProfile/>:<Navigate to="/login" />} />
-          <Route path="/post/:postId" element={user?<Post/>:<Navigate to="/login" />} />
-          <Route path="/" element={<Navigate to="/feed" />} />
-
 
           {/* add pages above */}
         </Routes>

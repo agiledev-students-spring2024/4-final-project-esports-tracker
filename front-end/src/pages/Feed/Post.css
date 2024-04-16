@@ -1,8 +1,7 @@
 .post {
-  height: 700px;
-  width: 430px;
+  height: 750px;
+  width: 100%;
   box-sizing: border-box;
-
 }
 
 .post-header {
@@ -21,14 +20,13 @@
 }
 
 .post-image {
-  width: 100%;
-  height: 500px;
+  min-width: 100%;
+  height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
-  object-fit: cover;
+  overflow: hidden;
 }
-
 
 .post-details {
   display: flex;

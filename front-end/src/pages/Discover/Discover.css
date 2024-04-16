@@ -1,16 +1,8 @@
 .discover {
   margin-top: 68px;
-  padding-bottom: 20px;
+  
 }
 
 .leaflet-container {
-  height: 450px;
-}
-
-/* body {
-  background-color: #CAF0F8;
-} */
-
-.discover_background {
-  background-color: #CAF0F8
+  height: 700px;
 }

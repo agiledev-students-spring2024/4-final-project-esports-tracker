@@ -1,7 +1,8 @@
-const assert = require('assert');
-const bcrypt = require('bcrypt');
-const User = require('../models/user')
-const jwt = require('jsonwebtoken')
+const assert = require('assert')
+const bcrypt = require('bcrypt')
+const { default: mongoose } = require('mongoose');
+const User = mongoose.model('user')
+const jwt = require('jsonwebtoken');
 require('dotenv').config()
 
 const createToken = (_id) => {

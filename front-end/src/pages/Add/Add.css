@@ -82,7 +82,7 @@
 }
 
 .postSubmit {
-    background-color: #0077B6; 
+    background-color: #00B4D8; 
     color: #CAF0F8;
     padding: 10px 20px; 
     font-size: 16px; 
@@ -103,8 +103,8 @@
     display: inline-block;
     padding: 10px 20px;
     cursor: pointer;
-    background-color: #0077B6; 
-    color: #fff;
+    background-color: #00B4D8; 
+    color: #CAF0F8;
     border-radius: 4px;
     font-size: 16px;
   }

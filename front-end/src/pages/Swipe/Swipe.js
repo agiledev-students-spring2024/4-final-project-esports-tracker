@@ -9,7 +9,6 @@ import useAuth from '../../hooks/useAuth';
 
 
 
-
 const Swipe = () => {
   const[cards, setCards] = useState([]); 
   const [currentIndex, setCurrentIndex] = useState(cards.length - 1)

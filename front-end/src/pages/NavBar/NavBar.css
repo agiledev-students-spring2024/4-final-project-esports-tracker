@@ -14,7 +14,7 @@
   .navItem{
     min-width: 60px;
     padding: 0px;
-    color: white;
+    color: #CAF0F8;
     border: 1px solid transparent;
     display: flex;
     flex-direction: column;
@@ -25,3 +25,18 @@
     font-size: 30px;
 }
 
+
+.top_header {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: rgb(0,180,216);
+  background: linear-gradient(0deg, rgba(0,180,216,1) 47%, rgba(144,224,239,1) 100%); 
+  position: fixed;
+  justify-content: center;
+  top : 0;
+  gap: 40px;
+  
+}

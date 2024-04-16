@@ -44,4 +44,15 @@
   .undoButton.disabled {
     background-color: lightblue; /* Background color when button is disabled */
   }
+
+  .swipeBlock {
+    /* background-color: #03045E; */
+    width: 100vw;
+    height: 300px;
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 80px;
+    opacity: 40%;
+  }
   

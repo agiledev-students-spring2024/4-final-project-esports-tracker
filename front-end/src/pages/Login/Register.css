@@ -26,15 +26,22 @@
     height: 50vh;
   }
   .register {
-    border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 20px;
     width: 50%; 
     margin: 0 auto;
     display: flex;
+    background-color: #CAF0F8;
+    opacity: 80%;
+    font-weight: 200;
+    color: #0077B6;
     flex-direction: column; 
+    font-family: Tahoma, sans-serif;
+    height: 550px;
+    letter-spacing: 3px;
   }
+
   
   .instructions {
     font-size: 14px;
@@ -54,6 +61,10 @@
 
   }
   
+  .spacer {
+    height: 10px;
+  }
+
   .register label {
     margin-bottom: 5px;
   }
@@ -62,6 +73,10 @@
   .register button {
     width: 100%;
     margin-bottom: 10px;
+    height: 40px;
+    border-radius: 8px;
+    box-shadow: none;
+    color: #03045E;
   }
   
   .logLink {

@@ -68,17 +68,19 @@ const Login = () => {
         
           <div>
         {/* <div className='header'>Welcome to Pet Finder!</div> */}
+        
         <div className='header'>
           <img src={welcomeImage} alt="Welcome" style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%' }} />
         </div>
-       
         <p ref= {errRef} className={errMessage ? "errmsg" : "offscreen"} aria-live = "assertive">
           {errMessage.message}
         </p>
 
+        <div className='large_spacer'></div>
+        
         <div className="register_parent">
 
-        <div className='register' style={{ width: '275px' }}> {/*register div start*/}
+            <div className='register' style={{ width: '275px' }}> {/*register div start*/}
                     <h1>Login</h1>
                     {/* <div className='spacer'></div> */}
                     <form onSubmit={handleSubmit} className='registerForm'>

@@ -91,11 +91,12 @@ const Register = () => {
 
          
 
-          <div className='register'>
-            Register
+          <div className='register' style={{ width: '275px' }}>
+            <h1>Register</h1>
             <form onSubmit={handleSubmit}>
               <label htmlFor='username'>
                 Username:
+                <div className="spacer"></div>
               </label>
               <input type='text' id='username' ref={userRef} onChange={(e) => setUsername(e.target.value)}
               required autoComplete='off' aria-invalid={validName ? 'false' : 'true'} aria-describedby='uidnote'
@@ -106,7 +107,9 @@ const Register = () => {
                 4 to 24 letters, can only contain a-zA-Z, -, _, 0-9, must start with letter
               </p>
               <label htmlFor='password'>
+              <div className="spacer"></div>
                 Password:
+                <div className="spacer"></div>
               </label>
               <input type='password' id='password' onChange={(e) => setPassword(e.target.value)}
               required aria-invalid={validPassword ? 'false' : 'true'} aria-describedby='pwdnote'
@@ -127,7 +130,7 @@ const Register = () => {
               <p id='matchNote' className={matchFocus && matchPassword && !validMatch ? 'instructions' : 'offscreen'}>
                 2 passwords must match!
               </p>
-
+              <div className="spacer"></div>
               <button disabled={validMatch && validName && validPassword ? false: true}>
                 Sign up
               </button>
@@ -136,7 +139,9 @@ const Register = () => {
 
             {/* if user wants to navigate to login page*/}
             <div className='pathToLogin'>
+            <div className="spacer"></div>
               Already registered?
+              <div className="spacer"></div>
               <Link to='/login' className="logLink">Login</Link>
             </div>
           </div> 

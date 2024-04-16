@@ -4,7 +4,7 @@
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
-    
+
   }
   
   .header {
@@ -19,29 +19,6 @@
   .errmsg {
     color: orange;
   }
-
-  /* .register_parent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-  }
-  
-  .register {
-    border: 1px solid #CAF0F8;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-    margin: 0 auto;
-    display: flex;
-    background-color: #CAF0F8;
-    opacity: 80%;
-    font-weight: 200;
-    color: #0077B6;
-    font-family: Tahoma, sans-serif;
-    height: 400px;
-    letter-spacing: 3px;
-  } */
 
   .register_parent {
     display: flex;
@@ -90,6 +67,9 @@
   color: red;
 } */
 
+.large_spacer {
+  height: 70px;
+}
 
 .top_header {
   width: 100%;

@@ -32,6 +32,9 @@ const Discover = () => {
 
   return (
     <>
+    
+    
+   
       <div className="discover">
         <TabSwitcher
           firstTab={{ name: "Feed", path: "/feed" }}
@@ -49,6 +52,9 @@ const Discover = () => {
           ))}
         </MapContainer>
       </div>
+
+ 
+
     </>
   )
 }

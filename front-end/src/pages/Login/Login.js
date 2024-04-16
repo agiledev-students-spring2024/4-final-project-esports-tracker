@@ -114,7 +114,7 @@ const Login = () => {
                       <Link to='/register' className="logLink">Register</Link>
                     </div>
                   </div> {/* register div end*/}
-                  <div class="background">
+                  <div className="background">
                       <span></span>
                       <span></span>
                       <span></span>

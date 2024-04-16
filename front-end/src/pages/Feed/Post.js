@@ -1,4 +1,5 @@
 import { useState } from "react"
+import {useParams} from 'react-router-dom'
 import "./Post.css"
 import {
   IoPeopleCircleOutline,
@@ -7,16 +8,21 @@ import {
   IoShareOutline,
   IoHeartSharp,
 } from "react-icons/io5"
+import useAuth from '../../hooks/useAuth';
 
 const Post = (props) => {
   const [liked, setLiked] = useState(false)
+  const {user} = useAuth();  // 
+  const { postId } = useParams(); // Use useParams to get the postId from the URL
 
   function handleLike() {
     setLiked(!liked) // toggle the liked state
     // TODO: send post requests
   }
-  // TODO: clicking on a username redirects to that user's profile
 
+  
+  // TODO: clicking on a username redirects to that user's profile
+  //ADD DATE CREATED AND LIKE COUNT THIS IS ALREADY IN THE DATABASE SCHEMA
   return (
     <>
       <div className="post">

@@ -48,7 +48,7 @@
 }
 
 .profilePosts{
-    align-items: center;
+    align-items: top;
     justify-content: left;
     display: grid;
     grid-template-columns: repeat(3, 1fr);

@@ -14,7 +14,7 @@ const mongoose = require('mongoose'); //use mongoose
 
 // import routes
 const swipeRouter = require("./routes/swipeRouter")
-const feedRouter = require("./routes/feedRouter")
+// const feedRouter = require("./routes/feedRouter")
 const registerRouter = require("./routes/registerRouter")
 const postRouter = require("./routes/postRouter")
 const discoverRouter = require("./routes/discoverRouter")
@@ -29,7 +29,7 @@ app.use('/Images', express.static(path.join(__dirname, 'Images'))); // configure
 
 
 // use routers
-app.use("/feed", feedRouter)
+// app.use("/feed", feedRouter)
 app.use("/swipe", swipeRouter)
 app.use("/auth", registerRouter)
 app.use("/post", postRouter)

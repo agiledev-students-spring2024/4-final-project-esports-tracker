@@ -123,20 +123,20 @@ const EditProfile = () => {
 
     <div className = 'inputItem'>
         <h2>Username: </h2>
-        <input type='text' placeholder="Username" name="username" value={username} onChange={handleUser}/>
+        <input type='text' placeholder="Username" name="username" value={username} className="textBoxStyling" onChange={handleUser}/>
     </div>
     <div className = 'inputItem'>
         <h2>Bio: </h2>
-        <textarea type='text' placeholder="Bio" value={bio} name="bio" onChange={handleBio}/>
+        <textarea type='text' placeholder="Bio" value={bio} name="bio" className="textBoxStyling" onChange={handleBio}/>
     </div>
     <div className = 'inputItem'>
         <h2>Email: </h2>
-        <input type='text' placeholder="Email" value={email} name="email" onChange={handleEmail} />
+        <input type='text' placeholder="Email" value={email} name="email" className="textBoxStyling" onChange={handleEmail} />
     </div>
     <div className = 'inputItem'> 
     {/* TODO: Add a dropdown menu for preferences integrated with backend */}
         <h2>Preferences: </h2>
-        <select name="preferences" id="preferences">
+        <select name="preferences" className="pet_pref" id="preferences">
             <option value="Dog">Dog</option>
             <option value="Cat">Cat</option>
             <option value="Bird">Bird</option>

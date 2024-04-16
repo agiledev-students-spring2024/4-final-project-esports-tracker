@@ -87,6 +87,10 @@ const Register = () => {
         <p ref= {errRef} className={errMessage ? "errmsg" : "offscreen"} aria-live = "assertive">
           {errMessage.message}
         </p>
+
+
+         
+
           <div className='register'>
             Register
             <form onSubmit={handleSubmit}>
@@ -135,7 +139,9 @@ const Register = () => {
               Already registered?
               <Link to='/login' className="logLink">Login</Link>
             </div>
-          </div>
+          </div> 
+
+          
           </div>
         )}
                           <div className="background">

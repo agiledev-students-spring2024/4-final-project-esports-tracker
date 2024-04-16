@@ -20,7 +20,7 @@
     color: orange;
   }
 
-  .register_parent {
+  /* .register_parent {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,6 +38,29 @@
     opacity: 80%;
     font-weight: 200;
     color: #0077B6;
+    font-family: Tahoma, sans-serif;
+    height: 400px;
+    letter-spacing: 3px;
+  } */
+
+  .register_parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+  }
+  .register {
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 50%; 
+    margin: 0 auto;
+    display: flex;
+    background-color: #CAF0F8;
+    opacity: 80%;
+    font-weight: 200;
+    color: #0077B6;
+    flex-direction: column; 
     font-family: Tahoma, sans-serif;
     height: 400px;
     letter-spacing: 3px;
@@ -154,15 +177,14 @@
     display: block; /* Make the login link a block-level element */
   }
   
-  @keyframes move {
-    100% {
-        transform: translate3d(0, 0, 1px) rotate(360deg);
-    }
+
+
+@keyframes move {
+  100% {
+      transform: translate3d(0, 0, 1px) rotate(360deg);
+  }
 }
 
-
-
-/* start of animated background from website wweb.dev */
 .background {
     position: fixed;
     width: 100vw;

@@ -4,14 +4,18 @@
     display: flex;
     padding: 10px;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 80px;
+    background-color: #CAF0F8;
+    color: #00B4D8;
+    font-family: Tahoma, sans-serif;
+    letter-spacing: 3px;
     }
 
 .editHeader h1{
     margin: 0px;
     padding: 0px;
     text-align: center;
-    margin-left: 25%;
+    margin-left: 20%;
 }
 
 .inputItem{
@@ -19,20 +23,26 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-left: 50px;
+    margin-left: 25px;
     margin-right: 50px;
     border: 1px solid transparent;
-
+    font-family: Tahoma, sans-serif;
+    color: #0077B6;
 }
 .inputImage img{
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     object-fit: cover;
+    
 }
 
 
 .editInputs{
     margin-bottom: 20px;
     border: 1px solid transparent;
+}
+
+.spacer {
+    height: 20px;
 }

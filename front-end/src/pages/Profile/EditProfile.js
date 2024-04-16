@@ -102,7 +102,7 @@ const EditProfile = () => {
         </Link>
         <h1>Edit Profile</h1>
       </div>
-  <hr/>
+
 
 <div className = "editInputs">
     <div className = 'inputImage'>

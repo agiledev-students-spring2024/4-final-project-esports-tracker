@@ -54,6 +54,8 @@ const Discover = () => {
         </MapContainer>
       </div>
 
+      <h2 className="discoverPets">Discover other pets nearby!</h2>
+
  
 
     </>

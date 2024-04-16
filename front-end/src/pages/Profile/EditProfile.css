@@ -16,6 +16,7 @@
     padding: 0px;
     text-align: center;
     margin-left: 20%;
+    
 }
 
 .inputItem{
@@ -28,21 +29,53 @@
     border: 1px solid transparent;
     font-family: Tahoma, sans-serif;
     color: #0077B6;
+
+    
 }
+
 .inputImage img{
     width: 250px;
     height: 250px;
     border-radius: 50%;
     object-fit: cover;
-    
 }
 
 
 .editInputs{
     margin-bottom: 20px;
     border: 1px solid transparent;
+    
 }
 
 .spacer {
     height: 20px;
 }
+
+.inputImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .inputImage input[type="file"] {
+    display: none;
+  }
+  
+  .inputImage label {
+    background-color: #00B4D8;
+    color: #CAF0F8;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .inputImage label:hover {
+    background-color: #0056b3;
+  }
+  
+  .inputImage img {
+    max-width: 200px;
+    margin-bottom: 10px;
+  }
+  

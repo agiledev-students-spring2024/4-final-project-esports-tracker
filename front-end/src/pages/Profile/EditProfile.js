@@ -105,14 +105,21 @@ const EditProfile = () => {
 
 
 <div className = "editInputs">
-    <div className = 'inputImage'>
-        {pfp && (
-            <div>
-              <img src={pfp} alt="Selected" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
-        <input type='file' onChange={handleImage} accept='image/*' />
+    <div className="inputImage">
+      {pfp && (
+        <div>
+          <img src={pfp} alt="Selected" style={{ maxWidth: '100%' }} />
+        </div>
+      )}
+      <label htmlFor="file-input">Choose File</label>
+      <input
+        id="file-input"
+        type="file"
+        onChange={handleImage}
+        accept="image/*"
+      />
     </div>
+
 
     <div className = 'inputItem'>
         <h2>Username: </h2>

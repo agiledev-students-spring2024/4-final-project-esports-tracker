@@ -2,7 +2,7 @@ import React, {useRef, useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import './Register.css'
 import axios from 'axios'
-
+import welcomeImage from './welcome.png';
 
 
 const Register = () => {
@@ -81,7 +81,9 @@ const Register = () => {
           </div>
         ) : (
           <div>
-        <div className='header'>Welcome to Pet Finder!</div>
+        <div className='header'>
+          <img src={welcomeImage} alt="Welcome" style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%' }} />
+        </div>
         <p ref= {errRef} className={errMessage ? "errmsg" : "offscreen"} aria-live = "assertive">
           {errMessage.message}
         </p>
@@ -136,6 +138,28 @@ const Register = () => {
           </div>
           </div>
         )}
+                          <div className="background">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
     </>
  )
 }

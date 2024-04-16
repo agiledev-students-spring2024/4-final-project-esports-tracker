@@ -4,6 +4,7 @@ import './Login.css'
 import axios from 'axios'
 import useAuth from '../../hooks/useAuth'
 import AuthContext from '../../context/AuthProvider'
+import welcomeImage from './welcome.png';
 
 
 
@@ -64,40 +65,84 @@ const Login = () => {
   
   return (
     <>
-
+        
           <div>
-        <div className='header'>Welcome to Pet Finder!</div>
+        {/* <div className='header'>Welcome to Pet Finder!</div> */}
+        
+        <div className='header'>
+          <img src={welcomeImage} alt="Welcome" style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%' }} />
+        </div>
         <p ref= {errRef} className={errMessage ? "errmsg" : "offscreen"} aria-live = "assertive">
           {errMessage.message}
         </p>
-          <div className='register'>
-            Login
-            <form onSubmit={handleSubmit}>
-              <label htmlFor='username'>
-                Username:
-              </label>
-              <input type='text' id='username' ref={userRef} onChange={(e) => setUsername(e.target.value)}
-              required autoComplete='off' onFocus={() => setUserFocus(true)}
-              onBlur={() => setUserFocus(false)}
-              />
-              <label htmlFor='password'>
-                Password:
-              </label>
-              <input type='password' id='password' onChange={(e) => setPassword(e.target.value)}
-              required onFocus={() => setPasswordFocus(true)}
-              onBlur={() => setPasswordFocus(false)}
-              />
-              <button disabled={username && password ? false: true}>
-                Log in
-              </button>
-            </form>
+
+        <div className='large_spacer'></div>
+        
+        <div className="register_parent">
+
+            <div className='register' style={{ width: '275px' }}> {/*register div start*/}
+                    <h1>Login</h1>
+                    {/* <div className='spacer'></div> */}
+                    <form onSubmit={handleSubmit} className='registerForm'>
+                      <label htmlFor='username'>
+                        Username:
+                        <div className='spacer'></div>
+                      </label>
+                      <input type='text' id='username' ref={userRef} onChange={(e) => setUsername(e.target.value)}
+                      required autoComplete='off' onFocus={() => setUserFocus(true)}
+                      onBlur={() => setUserFocus(false)}
+                      />
+                      <label htmlFor='password'>
+                      <div className='spacer'></div>
+                        Password:
+                        <div className='spacer'></div>
+                      </label>
+                      <input type='password' id='password' onChange={(e) => setPassword(e.target.value)}
+                      required onFocus={() => setPasswordFocus(true)}
+                      onBlur={() => setPasswordFocus(false)}
+                      />
+                       <div className='spacer'></div>
+                      <button disabled={username && password ? false: true}>
+                        Log in
+                      </button>
+                    </form>
+                   
 
 
-            <div className='pathToLogin'>
-              Create new account
-              <Link to='/register' className="logLink">Register</Link>
-            </div>
-          </div>
+                   
+                    <div className='pathToLogin'>
+                      Create new account
+                      <div className='spacer'></div>
+                      <Link to='/register' className="logLink">Register</Link>
+                    </div>
+                  </div> {/* register div end*/}
+                  <div class="background">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+
+        </div>
+
+
+
           </div>
     </>
  )

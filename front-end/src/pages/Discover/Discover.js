@@ -32,16 +32,20 @@ const Discover = () => {
 
   return (
     <>
+   
       <div className="discover">
         <TabSwitcher
           firstTab={{ name: "Feed", path: "/feed" }}
           secondTab={{ name: "Discover", path: "/discover" }}
         />
+       
         <MapContainer center={[40.7308, -73.9975]} zoom={16.5}>
+          
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+
           {markers.map((marker, i) => (
             <Marker position={marker.geocode} icon={customIcon} key={i}>
               <Popup>{marker.popUp}</Popup>
@@ -49,6 +53,11 @@ const Discover = () => {
           ))}
         </MapContainer>
       </div>
+
+      <h2 className="discoverPets">Discover other pets nearby!</h2>
+
+ 
+
     </>
   )
 }

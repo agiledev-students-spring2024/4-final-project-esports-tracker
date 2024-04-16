@@ -10,10 +10,10 @@ import useAuth from '../../hooks/useAuth';
 
 const Add = () => {
   
-  const [selectedImage, setSelectedImage] = useState(null)
-  const [imageFile, setImageFile] = useState('')
-  const [caption, setCaption] = useState('')
-  const {user} = useAuth()  // 
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [caption, setCaption] = useState('');
+  const {user} = useAuth();  // 
+
 
   const handleChange = (event) => {
     const inputValue = event.target.value;
@@ -26,19 +26,20 @@ const Add = () => {
   };
 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
     //send the caption and image data to a server
-    const formData = new FormData()
-    formData.append('image', imageFile)
-    formData.append('caption', caption)
-    
-    if (!imageFile || !caption ) {
+    const ret = {
+      caption: caption,
+      image: selectedImage
+    }
+ 
+    if (!selectedImage || !caption ) {
       alert('Please select an image or write a caption before submitting.');
       return;
     }
+    console.log(ret)
     if(user){
-      await axios.post('http://localhost:3001/post/postPost', formData, 
+      axios.post('http://localhost:3001/post', ret, 
       {headers:{
         "Authorization": `Bearer ${user.data.token}`,
       }})
@@ -48,8 +49,9 @@ const Add = () => {
       .catch((error) => {
         console.error('Error handling out of frame data:', error)
       })
-    }
+  }
     setCaption('');
+    setSelectedImage(null);
     alert('Post submitted');
 
   };
@@ -60,7 +62,6 @@ const Add = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setSelectedImage(reader.result);
-        setImageFile(file)
       };
       reader.readAsDataURL(file);
     }
@@ -76,7 +77,7 @@ const Add = () => {
           </Link>
           <h1>New Post</h1>
         </div>
-    <hr/>
+     
       <div className='addImage'>
             {selectedImage && (
             <div>
@@ -84,12 +85,25 @@ const Add = () => {
             </div>
           )}
       </div>
-    <hr/>
-    <div className = 'chooseImage'>
-      <input type='file' onChange={handleImage} accept='image/*' />
-    </div>
-    <hr/>
+     
+      <div className="chooseImage">
+  <label htmlFor="file-upload" className="custom-file-upload">
+    Choose Image
+  </label>
+  <input
+    id="file-upload"
+    type="file"
+    onChange={handleImage}
+    accept="image/*"
+    style={{ display: 'none' }}
+  />
+</div>
 
+     
+
+    <div className="spacers">
+
+</div>
 
     <div className='addCaption'>
       <textarea type='text' placeholder="Write a caption..." name="caption" 
@@ -99,20 +113,39 @@ const Add = () => {
     </div>
 
 
-    <hr/>
+
+<div className="spacers">
+
+</div>
+     
     <div className='addTags'>
       <FiTag size={30} />
       Tag People
     </div>
-    <hr/>
+     
+
+
+<div className="spacers">
+
+</div>
+
    <div className='addLocation'>
     <IoLocationOutline size={30} />
       Add Location 
       {/* google api autocomplete */}
     </div>
-    <hr/>
+    
+
+<div className="spacers">
+
+</div>
+
+
+    <div className="spacer"></div>
     <button className = 'postSubmit' onClick={handleSubmit}>Share</button>
     </>
+
+    
  )
 }
 

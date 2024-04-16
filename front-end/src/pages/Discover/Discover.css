@@ -1,7 +1,17 @@
 .discover {
   margin-top: 68px;
+ 
+  
 }
 
 .leaflet-container {
-  height: 450px;
+  height: 700px;
 }
+
+
+.discoverPets {
+  color: #0077B6;
+  letter-spacing: 3px;
+  font-family: Tahoma, sans-serif;
+}
+

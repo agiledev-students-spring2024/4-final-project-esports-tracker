@@ -5,6 +5,9 @@
     padding: 10px;
     align-items: center;
     margin-top: 10px;
+    font-family: Tahoma, sans-serif;
+    color: #00B4D8;
+    letter-spacing: 3px;
     }
 .addTags{
     text-align: center;
@@ -13,6 +16,8 @@
     padding: 5px;
     padding-left: 10px;
     align-items: center;
+    font-family: Tahoma, sans-serif;
+    color: #0077B6;
 }
 .addLocation{
     text-align: center;
@@ -21,6 +26,8 @@
     padding: 5px;
     padding-left: 10px;
     align-items: center;
+    font-family: Tahoma, sans-serif;
+    color: #0077B6;
 
 }
 
@@ -31,20 +38,25 @@
     margin-left: 25%;
 }
 
+
 .addImage {
     width: 400px;
-    height: 400px;
+    height: 275px;
     border-radius: 10px;
-    margin: 5px;
-    
-}
+    margin: 8px;
+    margin-top: 30px;
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: center;
+
+  }
+  
 .addImage img{
     width: 400px;
-    height: 400px;
+    height: 300px;
     border-radius: 10px;
     margin: 5px;
     object-fit: cover;
-    
 }
 .chooseImage{
     text-align: center;
@@ -53,6 +65,9 @@
     padding: 5px;
     padding-left: 10px;
     align-items: center;
+    
+    
+
 }
 
 .addCaption textarea{
@@ -66,14 +81,39 @@
     resize: none;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
+    border: 2px dashed #90E0EF;
+    color: #0077B6;
 }
 
 .postSubmit {
-    background-color: #3f9cf9; 
-    color: white;
+    background-color: #00B4D8; 
+    color: #CAF0F8;
     padding: 10px 20px; 
     font-size: 16px; 
     border: none; 
     border-radius: 5px; 
     width: 50%;
+    height: 40px;
+    width: 50%;
+    font-family: Tahoma, sans-serif;
   }
+
+
+  .spacers {
+    height: 20px;
+  }
+
+  .custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #00B4D8; 
+    color: #CAF0F8;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .custom-file-upload:hover {
+    background-color: #0056b3;
+  }
+  

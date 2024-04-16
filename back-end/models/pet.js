@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 
 
@@ -5,13 +6,21 @@ const mongoose = require('mongoose');
 //example schema for a user profile for other pets
 const Schema = mongoose.Schema;
 
+//pet extends users
+const User = require('./user');
+
 const petSchema = new Schema({
   name: { type: String, required: true },
   breed: { type: String, required: true },
   age: { type: Number, required: true },
   location: { type: String, required: true },
   description: { type: String, required: true },
-  url: { type: String, required: true }
+  url: { type: String, required: true },
+  liked: [{ type: Schema.Types.ObjectId, ref: 'User'}], 
+  disliked : [{ type: Schema.Types.ObjectId, ref: 'User'}],
+  liked_by : [{ type: Schema.Types.ObjectId, ref: 'User'}],
+  
+
 });
 
 const pet = mongoose.model('pet', petSchema);

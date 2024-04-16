@@ -28,7 +28,7 @@ const pet = mongoose.model('pet', petSchema);
 module.exports = pet;
 
 
-``` 
+/*
 to create new pet:
 
 const Pet = require('./models/pet'); 
@@ -66,4 +66,4 @@ app.post('/pets', async (req, res) => {
     res.status(400).send(error);
   }
 });
-```
+*/

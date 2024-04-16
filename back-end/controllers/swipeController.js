@@ -1,5 +1,5 @@
 const assert = require('assert');
-const Pet = require('./back-end/models/pet'); 
+const Pet = require('../models/pet'); 
 
 
   const postSwipe = async (req, res) => {

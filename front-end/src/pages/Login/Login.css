@@ -4,7 +4,7 @@
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
-    
+
   }
   
   .header {
@@ -26,23 +26,28 @@
     align-items: center;
     height: 50vh;
   }
-  
   .register {
-    border: 1px solid #CAF0F8;
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 20px;
+    width: 50%; 
     margin: 0 auto;
     display: flex;
     background-color: #CAF0F8;
     opacity: 80%;
     font-weight: 200;
     color: #0077B6;
+    flex-direction: column; 
     font-family: Tahoma, sans-serif;
     height: 400px;
     letter-spacing: 3px;
   }
 
+  .textBoxStyling {
+    width: 175px;
+    margin-left: 10px;
+    color: #0077B6;
+  }
     /* Hide nav on login/register ????????????  */
   /* .navbar{
     width: 100%;
@@ -61,6 +66,25 @@
   /* .registerForm {
   color: red;
 } */
+
+.large_spacer {
+  height: 70px;
+}
+
+.top_header {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: rgb(0,180,216);
+  background: linear-gradient(0deg, rgba(0,180,216,1) 47%, rgba(144,224,239,1) 100%); 
+  position: fixed;
+  justify-content: center;
+  top : 0;
+  gap: 40px;
+  display: none;
+}
 
   .spacer {
     height: 10px;
@@ -133,15 +157,14 @@
     display: block; /* Make the login link a block-level element */
   }
   
-  @keyframes move {
-    100% {
-        transform: translate3d(0, 0, 1px) rotate(360deg);
-    }
+
+
+@keyframes move {
+  100% {
+      transform: translate3d(0, 0, 1px) rotate(360deg);
+  }
 }
 
-
-
-/* start of animated background from website wweb.dev */
 .background {
     position: fixed;
     width: 100vw;

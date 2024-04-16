@@ -35,6 +35,8 @@ const Card = (props) => {
             </div>
         </div>
 
+        
+
 {/* 
         <div className="swipe_background">
       </div> */}

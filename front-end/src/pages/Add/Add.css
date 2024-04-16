@@ -5,7 +5,9 @@
     padding: 10px;
     align-items: center;
     margin-top: 10px;
-    
+    font-family: Tahoma, sans-serif;
+    color: #00B4D8;
+    letter-spacing: 3px;
     }
 .addTags{
     text-align: center;
@@ -34,8 +36,8 @@
     padding: 0px;
     text-align: center;
     margin-left: 25%;
-    
 }
+
 
 .addImage {
     width: 400px;
@@ -46,6 +48,7 @@
     margin-bottom: 80px;
     display: flex;
     justify-content: center;
+
   }
   
 .addImage img{
@@ -62,6 +65,7 @@
     padding: 5px;
     padding-left: 10px;
     align-items: center;
+    
     
 
 }

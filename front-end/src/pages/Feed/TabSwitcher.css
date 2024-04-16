@@ -11,7 +11,11 @@
   align-items: flex-end;
   justify-content: space-evenly;
   padding: 2rem 0 1rem 0;
-  border-bottom: 1px solid black;
+  background: rgb(0,180,216);
+  background: linear-gradient(0deg, rgba(0,180,216,1) 47%, rgba(144,224,239,1) 100%); 
+  color:  #CAF0F8;
+  font-family: Tahoma, sans-serif;
+  letter-spacing: 2px;
 }
 
 .tab-switcher a {
@@ -22,3 +26,4 @@
 .tab-active {
   font-weight: bold;
 }
+

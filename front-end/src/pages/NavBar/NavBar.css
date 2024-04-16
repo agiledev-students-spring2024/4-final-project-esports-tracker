@@ -36,7 +36,6 @@
   background: linear-gradient(0deg, rgba(0,180,216,1) 47%, rgba(144,224,239,1) 100%); 
   position: fixed;
   justify-content: center;
-  top : 0;
+  top: 0;
   gap: 40px;
-  
 }

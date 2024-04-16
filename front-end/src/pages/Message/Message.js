@@ -80,8 +80,11 @@ const Message = () => {
         onKeyDown={handleKeyPress}
         />
     </div>
+    <div className="spacer"></div>
     <h4>Recent Matches</h4>
-      <hr/>
+    <div className="spacer"></div>
+
+     
     <div className = 'recentMatches'>
       {matches.map(match => (
         <Link to={profileID} className='matchItem'>
@@ -92,9 +95,10 @@ const Message = () => {
         </Link>
       ))}
     </div>
+    <div className="spacer"></div>
 
     <h4>Chats</h4>
-    <hr/>
+    
     <div className='chats'>
 
     {chats.map(chat => (

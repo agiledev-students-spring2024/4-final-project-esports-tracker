@@ -4,7 +4,6 @@ import axios from 'axios'
 import { IoHeartOutline, IoEllipsisHorizontalOutline} from "react-icons/io5";
 import { FaRegThumbsDown } from "react-icons/fa6";
 
-
 const Card = (props) => {
   const handleSwipe = (dir) => {
     try {
@@ -16,23 +15,34 @@ const Card = (props) => {
 
   return (
     <>
+
+
     <div className="card" style = {{backgroundImage: `url(${props.url})`}}>
             <div className = 'cardOverlay'>
                 <div className="cardInfo">
                     <h2>{props.name}</h2>
-                    <p>Breed: {props.breed}</p>
-                    <p>Age: {props.age}</p>
-                    <p>Location: {props.location}</p>
-                    <p>Description: {props.description}</p>
+                    <p><b>Breed: </b>{props.breed}</p>
+                    <p><b>Age: </b>{props.age}</p>
+                    <p><b>Location: </b>{props.location}</p>
+                    <p><b>Description: </b>{props.description}</p>
                 </div>
-            {/* `   <div className="cardButtons">
+            `   <div className="cardButtons">
                     
                         <IoHeartOutline onClick={() => handleSwipe('right')} onTouchEnd={() => handleSwipe('right')}/>
                         <FaRegThumbsDown onClick={() => handleSwipe('left')} onTouchEnd={() => handleSwipe('left')}/>
                         <IoEllipsisHorizontalOutline/>
-                </div> */}
+                </div>
             </div>
         </div>
+
+        
+
+{/* 
+        <div className="swipe_background">
+      </div> */}
+       
+      
+      
     </>
   )
 }

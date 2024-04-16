@@ -76,6 +76,7 @@ const Profile = () => {
 
   return (
     <>
+    
       <div className='profile'>
         <div className = 'profileHeader'>
             <img src={profile.pfp} alt='avatar' />
@@ -94,10 +95,13 @@ const Profile = () => {
                 </div>
               )}
         </div>
+        <div className="spacer"></div>
+        
         <div className = 'bio'>
           <p>{profile.bio}</p>
         </div>
-
+        <div className="spacer"></div><div className="spacer"></div>
+        
         <div className='profilePosts'>
         {
           posts.map(post => (

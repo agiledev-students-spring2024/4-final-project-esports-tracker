@@ -45,7 +45,9 @@ const Post = (props) => {
           </div>
           <p>{props.caption}</p>
         </div>
+        
       </div>
+      <div className="postFooter"></div>
     </>
   )
 }

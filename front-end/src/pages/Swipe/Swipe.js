@@ -9,7 +9,6 @@ import useAuth from '../../hooks/useAuth';
 
 
 
-
 const Swipe = () => {
   const[cards, setCards] = useState([]); 
   const [currentIndex, setCurrentIndex] = useState(cards.length - 1)
@@ -138,11 +137,15 @@ const Swipe = () => {
 
           </TinderCard>
           <div className='buttons'>
-            <IoHeartOutline className='cardIcon' onClick={() => swipe('right')}/>
-            <FaRegThumbsDown className='cardIcon' onClick={() => swipe('left')}/>
+            {/* <IoHeartOutline className='cardIcon' onClick={() => swipe('right')}/> */}
+            {/* <FaRegThumbsDown className='cardIcon' onClick={() => swipe('left')}/> */}
           </div>
           </div>
         ))}
+      </div>
+
+      <div className="swipeBlock">
+        
       </div>
 
 

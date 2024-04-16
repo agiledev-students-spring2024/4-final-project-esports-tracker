@@ -4,14 +4,20 @@
     display: flex;
     padding: 10px;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 80px;
+    background-color: #CAF0F8;
+    color: #00B4D8;
+    font-family: Tahoma, sans-serif;
+    letter-spacing: 3px;
     }
 
 .editHeader h1{
     margin: 0px;
     padding: 0px;
     text-align: center;
-    margin-left: 25%;
+    margin-left: 20%;
+    
+    
 }
 
 .inputItem{
@@ -19,14 +25,17 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 25px;
+    margin-right: 25px;
     border: 1px solid transparent;
-
+    font-family: Tahoma, sans-serif;
+    color: #0077B6;
+    
 }
+
 .inputImage img{
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -35,4 +44,66 @@
 .editInputs{
     margin-bottom: 20px;
     border: 1px solid transparent;
+    
 }
+
+.spacer {
+    height: 20px;
+}
+
+.inputImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .inputImage input[type="file"] {
+    display: none;
+  }
+  
+  .inputImage label {
+    background-color: #00B4D8;
+    color: #CAF0F8;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .inputImage label:hover {
+    background-color: #0056b3;
+  }
+  
+  .inputImage img {
+    max-width: 200px;
+    margin-bottom: 10px;
+    
+  }
+  
+  .pet_pref {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #00B4D8;
+    border: none;
+    border-radius: 8px;
+    color: #CAF0F8;
+    font-size: 16px;
+    padding: 10px 30px 10px 15px;
+    width: 100px;
+    cursor: pointer;
+    text-align: center;
+    background-position: right 10px center;
+    background-size: 20px;
+  }
+  
+  .pet_pref:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .pet_pref option {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  

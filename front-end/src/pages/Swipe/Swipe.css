@@ -36,8 +36,9 @@
     position: absolute;
     top: 20px; /* Adjust bottom position as needed */
     right: 20px; 
-    font-size: 40px;
-    color: white;
+    font-size: 60px;
+    height: 70px;
+    color: #CAF0F8;
     z-index: 1;
   }
   

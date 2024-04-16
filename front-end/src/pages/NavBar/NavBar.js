@@ -45,9 +45,9 @@ const NavBar = () => {
 
         <div className="top_header">
             <div className='header'>
-            <img src={welcomeImage} alt="Welcome" style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%', textAlign: 'center' }} />
+            <img src={welcomeImage} alt="Welcome" style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '35%', textAlign: 'center' }} />
             </div>
-            <Link to="/swipe">
+            {/* <Link to="/swipe">
 
             </Link>
             <Link to="/feed">
@@ -61,7 +61,7 @@ const NavBar = () => {
             </Link>
             <Link to="/profile">
 
-            </Link>
+            </Link> */}
 
         </div>
     </>

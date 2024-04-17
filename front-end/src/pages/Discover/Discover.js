@@ -4,6 +4,7 @@ import TabSwitcher from "../Feed/TabSwitcher"
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 import { Icon } from 'leaflet'
 import "leaflet/dist/leaflet.css"
+import welcomeImage from './welcome.png';
 
 const Discover = () => {
   const [markers, setMarkers] = useState([])
@@ -32,7 +33,11 @@ const Discover = () => {
 
   return (
     <>
-   
+       <div className="top_header">
+      <div className='header'>
+      <img src={welcomeImage} alt="Welcome" style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%', margin: 'auto 0', position: 'absolute', position: 'absolute',  top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+      </div>
+    </div>
       <div className="discover">
         <TabSwitcher
           firstTab={{ name: "Feed", path: "/feed" }}

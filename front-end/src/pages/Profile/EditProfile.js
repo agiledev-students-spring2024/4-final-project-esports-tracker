@@ -4,6 +4,7 @@ import { IoChevronBack } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
+import welcomeImage from './welcome.png';
 
 
 
@@ -96,6 +97,11 @@ const EditProfile = () => {
 
   return (
     <>
+    <div className="top_header">
+      <div className='header'>
+        <img src={welcomeImage} alt="Welcome" style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%', margin: 'auto 0', position: 'absolute', position: 'absolute',  top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+      </div>
+    </div>
     <div className='editHeader'>
         <Link to='/Profile'>
         <IoChevronBack size={30} />

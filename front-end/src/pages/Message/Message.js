@@ -2,7 +2,7 @@ import React,  {useState, useEffect} from 'react'
 import axios from 'axios'
 import './Message.css'
 import { Link } from 'react-router-dom';
-
+import welcomeImage from './welcome.png';
 
 const Message = () => {
   const [search, setSearch] = React.useState('')
@@ -68,6 +68,11 @@ const Message = () => {
 
   return (
     <>
+    <div className="top_header">
+      <div className='header'>
+      <img src={welcomeImage} alt="Welcome" style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%', margin: 'auto 0', position: 'absolute', position: 'absolute',  top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+      </div>
+    </div>
     <div className='header'>
       <h1>Messages</h1>
     </div>
@@ -117,6 +122,10 @@ const Message = () => {
      
 
     </div>
+
+
+
+
     </>
   )
 }

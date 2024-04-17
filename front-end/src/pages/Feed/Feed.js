@@ -5,6 +5,7 @@ import "./Feed.css"
 import Post from "./Post"
 import TabSwitcher from "./TabSwitcher"
 import useAuth from '../../hooks/useAuth';
+import welcomeImage from './welcome.png';
 
 
 
@@ -37,6 +38,11 @@ const Feed = () => {
 
   return (
     <>
+    <div className="top_header">
+      <div className='header'>
+      <img src={welcomeImage} alt="Welcome" style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%', margin: 'auto 0', position: 'absolute', position: 'absolute',  top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+      </div>
+    </div>
       <div className="feed">
         <TabSwitcher
           firstTab={{ name: "Feed", path: "/feed" }}

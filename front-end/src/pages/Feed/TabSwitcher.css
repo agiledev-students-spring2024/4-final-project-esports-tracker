@@ -4,9 +4,11 @@
   left: 0;
   width: 100%;
   background-color: white;
+  
 }
 
 .tab-switcher {
+  margin-top: 5px;
   display: flex;
   align-items: flex-end;
   justify-content: space-evenly;
@@ -16,6 +18,7 @@
   color:  #CAF0F8;
   font-family: Tahoma, sans-serif;
   letter-spacing: 2px;
+  height: 100px;
 }
 
 .tab-switcher a {

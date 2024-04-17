@@ -3,6 +3,8 @@ import './Card.css'
 import axios from 'axios'
 import { IoHeartOutline, IoEllipsisHorizontalOutline} from "react-icons/io5";
 import { FaRegThumbsDown } from "react-icons/fa6";
+import welcomeImage from './welcome.png';
+
 
 const Card = (props) => {
   const handleSwipe = (dir) => {
@@ -16,7 +18,11 @@ const Card = (props) => {
   return (
     <>
 
-
+    <div className="top_header">
+        <div className='header'>
+        <img src={welcomeImage} alt="Welcome" style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%', margin: 'auto 0', position: 'absolute', position: 'absolute',  top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+        </div>
+    </div>
     <div className="card" style = {{backgroundImage: `url(${props.url})`}}>
             <div className = 'cardOverlay'>
                 <div className="cardInfo">

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import './Profile.css'
 import { IoSettingsOutline } from "react-icons/io5";
 import useAuth from '../../hooks/useAuth'; //IMPORTANT
+import welcomeImage from './welcome.png';
+
 
 const Profile = () => {
 
@@ -77,6 +79,13 @@ const Profile = () => {
   return (
     <>
     
+    <div className="top_header">
+      <div className='header'>
+      <img src={welcomeImage} alt="Welcome" style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%', margin: 'auto 0', position: 'absolute', position: 'absolute',  top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+      </div>
+    </div>
+
+
       <div className='profile'>
         <div className = 'profileHeader'>
             <img src={profile.pfp} alt='avatar' />

@@ -8,7 +8,6 @@ import { FaR, FaRegThumbsDown } from "react-icons/fa6";
 import useAuth from '../../hooks/useAuth';
 
 
-
 const Swipe = () => {
   const[cards, setCards] = useState([]); 
   const [currentIndex, setCurrentIndex] = useState(cards.length - 1)
@@ -150,6 +149,8 @@ const Swipe = () => {
 
 
     </div>
+
+    
   )
 }
 

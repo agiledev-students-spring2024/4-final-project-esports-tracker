@@ -102,6 +102,11 @@ const EditProfile = () => {
         <img src={welcomeImage} alt="Welcome" style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%', margin: 'auto 0', position: 'absolute', position: 'absolute',  top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
       </div>
     </div>
+    <div className='spacer'></div>
+    <div className='spacer'></div>
+    <div className='spacer'></div>
+    
+
     <div className='editHeader'>
         <Link to='/Profile'>
         <IoChevronBack size={30} />
@@ -156,7 +161,9 @@ const EditProfile = () => {
   <div className='addCaption'>
   </div>
   <button className = 'postSubmit' onClick={handleSubmit}>Save Changes</button>
+
   </>
+  
   )
 }
 

@@ -34,22 +34,23 @@
 }
 
 .inputImage img{
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     object-fit: cover;
 }
 
 
-.editInputs{
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    
-}
+  .editInputs{
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      
+  }
 
-.spacer {
-    height: 20px;
-}
+  .spacer {
+      height: 20px;
+  }
+
 
 .inputImage {
     display: flex;
@@ -107,4 +108,11 @@
     color: #333;
   }
   
+  .pet_pref:hover {
+    background-color: #0056b3;
+  }
   
+  .postSubmit:hover {
+    background-color: #0056b3;
+  }
+

@@ -6,6 +6,8 @@ const TabSwitcher = ({ firstTab, secondTab }) => {
 
   return (
     <>
+    <div class="colorBanner"></div>
+    
       <div className="tab-switcher-container">
         <div className="tab-switcher">
           <Link to={firstTab.path}>

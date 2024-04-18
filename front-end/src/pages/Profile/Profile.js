@@ -12,7 +12,7 @@ const Profile = () => {
     bio: '',
     pfp: ''
   });
-  const [images, setImages] = useState([])
+  const [posts, setPosts] = useState([])
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false);
   const {dispatch} = useAuth();
@@ -21,24 +21,29 @@ const Profile = () => {
 
 
 
-  const fetchImages = () => { //TODO, MUST CHANGE THIS
-    axios
-      .get(`https://picsum.photos/v2/list`)
-      .then(response => {
-        const images = response.data
-        setImages(images)
-        console.log(images)
-      })
-      .catch(err => {
-        const errMsg = JSON.stringify(err, null, 2) // convert error object to a string so we can simply dump it to the screen
-        setError(errMsg)
-      })
+  const fetchImages = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/post/userPosts",
+      {headers:{
+        "Authorization": `Bearer ${user.data.token}`,
+      }})
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts")
+      }
+      const data = await response.json()
+      setPosts(data.allPosts)
+    } catch (error) {
+      console.error("Error fetching posts:", error)
+    }
   }
+  
+
+
 
   useEffect(() => {
     if(user){ 
       axios
-        .get('http://localhost:3001/profile/profile', 
+        .get('http://localhost:3001/profile', 
         {headers:{ //IMPORTANT
           "Authorization": `Bearer ${user.data.token}`,
 
@@ -53,7 +58,9 @@ const Profile = () => {
         .catch(error => {
           console.error("Error fetching profile:", error);
         });
+      if(user){
       fetchImages()
+      }
     }
   }, []) 
 
@@ -97,9 +104,9 @@ const Profile = () => {
         
         <div className='profilePosts'>
         {
-          images.map(image => (
-              <div key={image.id} className='imageContainer'>
-                <img src={image.download_url} alt='image' />
+          posts.map(post => (
+              <div key={post._id} className='imageContainer'>
+                <img src={post.image} alt='image' />
               </div>
           ))
         }

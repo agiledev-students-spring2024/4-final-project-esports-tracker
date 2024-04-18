@@ -1,7 +1,7 @@
 import React from 'react'
 import './NavBar.css'
 import { Link } from 'react-router-dom';
-import { IoChatbubble, IoSearchSharp, IoAddCircleSharp, IoPersonCircleOutline, IoArrowRedoOutline, IoPawOutline, IoGridOutline } from "react-icons/io5";
+import { IoChatbubble, IoAddCircleSharp, IoPersonCircleOutline, IoPawOutline, IoGridOutline } from "react-icons/io5";
 import welcomeImage from './welcome.png';
 
 const NavBar = () => {
@@ -43,11 +43,11 @@ const NavBar = () => {
         </div>
 
 
-        <div className="top_header">
+        {/* <div className="top_header">
             <div className='header'>
             <img src={welcomeImage} alt="Welcome" style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '35%', textAlign: 'center' }} />
             </div>
-            {/* <Link to="/swipe">
+            <Link to="/swipe">
 
             </Link>
             <Link to="/feed">
@@ -61,9 +61,9 @@ const NavBar = () => {
             </Link>
             <Link to="/profile">
 
-            </Link> */}
+            </Link>
 
-        </div>
+    </div> */}
     </>
     )
   };

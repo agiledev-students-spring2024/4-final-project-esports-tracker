@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom"
 import Navbar from './pages/NavBar/NavBar';
 import Message from './pages/Message/Message';
+import Chat from './pages/Message/Chat';
 import Swipe from './pages/Swipe/Swipe';
 import Add from './pages/Add/Add';
 import Profile from './pages/Profile/Profile';
@@ -29,13 +30,11 @@ function App() {
           <Route path="/feed" element={user?<Feed />:<Navigate to="/login" />} />
           <Route path="/discover" element={user?<Discover/>:<Navigate to="/login" />} />
           <Route path="/add" element={user?<Add/>:<Navigate to="/login" />} />
-          <Route path="message" element={user?<Message/>:<Navigate to="/login" />} />
+          <Route path="/message" element={user?<Message/>:<Navigate to="/login" />} />
           <Route path="/editProfile" element={user?<EditProfile/>:<Navigate to="/login" />} />
           <Route path="/post/:postId" element={user?<Post/>:<Navigate to="/login" />} />
+          <Route path="/chat/:chatId" element={user?<Chat/>:<Navigate to="/login" />} />
           <Route path="/" element={<Navigate to="/feed" />} />
-
-
-          {/* add pages above */}
         </Routes>
         <Navbar />
     </div>

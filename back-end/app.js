@@ -19,6 +19,7 @@ const registerRouter = require("./routes/registerRouter")
 const postRouter = require("./routes/postRouter")
 const discoverRouter = require("./routes/discoverRouter")
 const profileRouter = require("./routes/profileRouter")
+const messageRouter = require("./routes/messageRouter")
 
 
 // use middleware
@@ -35,6 +36,7 @@ app.use("/auth", registerRouter)
 app.use("/post", postRouter)
 app.use("/discover", discoverRouter)
 app.use("/profile", profileRouter)
+app.use("/message", messageRouter)
 
 //connect to the database
 console.log(`${process.env.DB_CONNECTION_STRING}`)

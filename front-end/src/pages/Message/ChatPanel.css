@@ -1,0 +1,25 @@
+.chatBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 16px;
+  font-size: large;
+  color: #0077B6;
+  font-family: Tahoma, sans-serif;
+  background-color: #90E0EF;
+  border: 1px solid #CAF0F8;
+}
+
+.messageItemContent {
+  margin-left: 10px;
+  text-align: left;
+  width: 80%;
+}
+
+.messageItemMessage {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

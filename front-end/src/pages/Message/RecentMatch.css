@@ -1,0 +1,14 @@
+.matchItem {
+  margin-right: 16px;
+  width: 96px;
+  color: #00B4D8;
+}
+
+.matchItemName {
+  font-size: medium;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+  white-space: nowrap;
+}

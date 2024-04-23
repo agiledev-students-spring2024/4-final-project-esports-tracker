@@ -43,7 +43,7 @@ const Profile = () => {
   useEffect(() => {
     if(user){ 
       axios
-        .get('http://localhost:3001/profile', 
+        .get('http://localhost:3001/profile/', 
         {headers:{ //IMPORTANT
           "Authorization": `Bearer ${user.data.token}`,
 
@@ -72,7 +72,6 @@ const Profile = () => {
     localStorage.removeItem('user')
     dispatch({type: 'LOGOUT'})
   };
-
 
   return (
     <>

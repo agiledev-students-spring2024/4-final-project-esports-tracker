@@ -41,6 +41,7 @@ const Swipe = () => {
     if(user){
       fetchData()
     }
+    console.log(cards)
     
   },[])
 

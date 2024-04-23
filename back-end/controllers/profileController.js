@@ -1,43 +1,81 @@
-const assert = require('assert');
+
+const assert = require('assert')
+const bcrypt = require('bcrypt')
 const { default: mongoose } = require('mongoose');
 const User = mongoose.model('user')
+const jwt = require('jsonwebtoken');
+require('dotenv').config()
 
-const userProfile = {
-    username: 'Tony_Gunk',
-    bio: 'This is a bio lorem ipsum blah blah I like to walk my dog and feed my dog. I also love cats but I love dogs more. I live in NYC.',
-    pfp: 'https://picsum.photos/id/237/200/300',
-    email: 'temp@email',
-    preferences: {
-      breed: 'dog'
-    },
-  };
+
 
 const getProfile = async (req, res) => {
-    res.json(userProfile);
+  try {
+      const userId = req.user._id; // Assuming the user ID is available in req.user._id
+      
+      const user = await User.findById(userId);
+      
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+
+      res.status(200).json({
+        username: user.username,
+        bio: user.bio,
+        email: user.email,
+        pfp: `${req.protocol}://${req.get('host')}/${user.pfp}`,
+      });
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
   };
 
-const getEditProfile = (req, res) => {
-    res.json(userProfile);
-}
-const postEditProfile = (req, res) => {
-    try{
-        const { username, bio, pfp, email, preferences } = req.body;
+const getEditProfile = async (req, res) => {
+  try {
+    const userId = req.user._id; // Assuming the user ID is available in req.user._id
     
+    const user = await User.findById(userId);
     
-      // Update the profile
-        userProfile.username = username
-        userProfile.bio = bio || userProfile.bio;
-        userProfile.pfp = pfp || userProfile.pfp;
-        userProfile.email = email || userProfile.email;
-        userProfile.preferences = preferences || userProfile.preferences;
-      
-        res.status(200).json({ message: 'Profile updated', profile: userProfile });
-    } 
-    catch (error) {
-      console.error('error updating profile:', error);
-      res.status(500).json({error: 'internal serv error'});
-    
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
     }
+
+    res.status(200).json({
+      username: user.username,
+      bio: user.bio,
+      email: user.email,
+      pfp: `${req.protocol}://${req.get('host')}/${user.pfp}`,
+      preferences: user.preferences.pet
+    });
+  } catch (error) {
+    console.error('Error fetching user edit profile:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+
+
+const postEditProfile = async(req, res) => {
+  try {
+    const { username, bio, email, preferences } = req.body;
+    const image = req.file.path; 
+    
+    const userId = req.user._id;
+    
+    // Update the user information
+    await User.findByIdAndUpdate(userId, {
+      username,
+      bio,
+      email,
+      pfp: image,
+      preferences: preferences,
+    });
+
+    res.status(200).json({ message: 'Profile updated successfully' });
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 }
 
   

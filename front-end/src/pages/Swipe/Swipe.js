@@ -41,12 +41,11 @@ const Swipe = () => {
     if(user){
       fetchData()
     }
-    
   },[])
 
   useEffect(() => {
     currentIndexRef.current = currentIndex; // Update currentIndexRef
-  }, [currentIndex]);
+  }, []);
 
 
 
@@ -95,7 +94,7 @@ const Swipe = () => {
         await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
       } catch (error) {
         console.error('Error swiping card:', error);
-      }    }
+      }}
   }
 
   // increase current index and show card
@@ -111,42 +110,48 @@ const Swipe = () => {
 
 
       <div className='cardContainer'>
+
+
+
         {cards.map(
           (item, index) => (
+            
             <div>
-              <IoReturnUpBack className='undoButton' onClick={goBack} />
+              {console.log(item)}
+
+
           <TinderCard
             ref={childRefs[index]}
             className='swipe'
             key={item.name}
             preventSwipe={['up', 'down']}
-            onSwipe={(dir) => swiped(dir, item.name, index)}
-            onCardLeftScreen={(dir) => outOfFrame(item.name, dir ,index)}
+            onSwipe={(dir) => swiped(dir, item.username, index)}
+            onCardLeftScreen={(dir) => outOfFrame(item.username, dir ,index)}
           >
             <Card
               key={index}
-              name= {item.name}
+              name= {item.username}
               breed={item.breed}
               age={item.age}
               location={item.location}
-              description={item.description}
-              url={item.url}
+              description={item.bio}
+              url={item.pfp}
               swipe={swipe}
             
             /> 
 
           </TinderCard>
-          <div className='buttons'>
-            {/* <IoHeartOutline className='cardIcon' onClick={() => swipe('right')}/> */}
-            {/* <FaRegThumbsDown className='cardIcon' onClick={() => swipe('left')}/> */}
-          </div>
+
           </div>
         ))}
+              <IoReturnUpBack className='undoButton' onClick={goBack} />
+
+              <div className='buttons'>
+              <IoHeartOutline className='cardIcon' onClick={() => swipe('right')}/>
+              <FaRegThumbsDown className='cardIcon' onClick={() => swipe('left')}/>
+              </div>
       </div>
 
-      <div className="swipeBlock">
-        
-      </div>
 
 
     </div>

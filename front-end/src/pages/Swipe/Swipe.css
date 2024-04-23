@@ -24,6 +24,8 @@
     display: flex;
     flex-direction: column; /* Stack buttons on top of each other */
     align-items: center;
+    z-index: 1;
+    border: red solid 1px
   }
 
   .cardIcon{

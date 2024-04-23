@@ -1,5 +1,9 @@
-const assert = require('assert');
-const Pet = require('../models/pet'); 
+const assert = require('assert')
+const { default: mongoose } = require('mongoose');
+const User = mongoose.model('user')
+const jwt = require('jsonwebtoken');
+require('dotenv').config()
+
 
 
   const postSwipe = async (req, res) => {
@@ -51,14 +55,24 @@ const Pet = require('../models/pet');
 
 const getCard = async (req, res) => {
   try {
-    const count = await Pet.countDocuments();
-    const random = Math.floor(Math.random() * count);
-    const pet = await Pet.findOne().skip(random); // Get a random document
 
-    if (!pet) {
+    const users = await User.find()
+
+    if (!users) {
       return res.status(404).json({ error: 'No pets found' });
     }
-    res.json(pet);
+    const modifiedUsers = users
+    .filter(users => !users.pfp.includes('picsum'))
+    .map(user => ({
+      _id: user._id,
+      username: user.username,
+      email: user.email,
+      pfp: `${req.protocol}://${req.get('host')}/${user.pfp}`, // Full URL for the profile picture
+      bio: user.bio,
+      matchedUsers: user.matchedUsers,
+    }));
+
+    res.json(modifiedUsers);
   } catch (error) {
     console.error('Error fetching a random pet:', error);
     res.status(500).json({ error: 'Internal server error' });

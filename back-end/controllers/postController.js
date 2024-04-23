@@ -84,5 +84,30 @@ const getUserPosts = (req, res) => {
       console.log(error)
   })
 }
+
+const getSinglePost = (req, res) => {
+  const postId = req.query.postId;
+  Post.findById(postId)
+    .populate('postedBy', '_id username')
+    .then((post) => {
+      if (!post) {
+        return res.status(401).json({ error: 'Post not found' });
+      }
+      const modifiedPost = {
+        _id: post._id,
+        caption: post.caption,
+        image: `${req.protocol}://${req.get('host')}/${post.image}`,
+        likeCount: post.likeCount,
+        comments: post.comments,
+        postedBy: post.postedBy
+      };
+
+      res.json({ post: modifiedPost });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ error: 'Internal server error' });
+    });
+}
   
-  module.exports = { postPost, getAllPosts, getUserPosts }
+  module.exports = { postPost, getAllPosts, getUserPosts, getSinglePost }

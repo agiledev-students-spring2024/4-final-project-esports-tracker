@@ -32,7 +32,13 @@ const userSchema = new Schema({
     },
     matchedUsers: [{
         type: Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'user',
+        unique: true
+    }],
+    bothMatched: [{
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        unique: true
     }],
     preferences: {
         pet: {

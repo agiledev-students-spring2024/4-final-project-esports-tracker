@@ -80,6 +80,22 @@ const Swipe = () => {
     }})
     .then((response) => {
       console.log(response.data)
+      if (response.data.message === "It's a match!") {
+        alert("It's a match!")
+        // Send another request to handle the match
+        axios.post('http://localhost:3001/swipe/handleMatch', { matchedUser: ret.cardData }, 
+        {
+          headers: {
+            "Authorization": `Bearer ${user.data.token}`,
+          }
+        })
+        .then((matchResponse) => {
+          console.log(matchResponse.data)
+        })
+        .catch((error) => {
+          console.error('Error handling match:', error)
+        })
+      }
     })
     .catch((error) => {
       console.error('Error handling out of frame data:', error)
@@ -118,7 +134,6 @@ const Swipe = () => {
           (item, index) => (
             
             <div>
-              {console.log(item)}
 
 
           <TinderCard

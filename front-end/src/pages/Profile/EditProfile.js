@@ -8,8 +8,8 @@ import useAuth from '../../hooks/useAuth';
 
 
 const EditProfile = () => {
-
-    const[pfp, setPfp] = useState('https://picsum.photos/id/237/200/300'); //default image
+    const [selectedImage, setSelectedImage] = useState(null)
+    const [imageFile, setImageFile] = useState('https://picsum.photos/id/237/200/300')
     const [username, setUsername] = useState('');
     const [bio, setBio] = useState('');
     const [email, setEmail] = useState('');
@@ -19,7 +19,7 @@ const EditProfile = () => {
 
     useEffect(() => {
         async function fetchData() {
-        const req = await axios.get('http://localhost:3001/profile', 
+        const req = await axios.get('http://localhost:3001/profile/getEditProfile', 
         {headers:{
           "Authorization": `Bearer ${user.data.token}`,
         }})
@@ -27,7 +27,8 @@ const EditProfile = () => {
           setUsername(response.data.username);
           setBio(response.data.bio);
           setEmail(response.data.email);
-          setPfp(response.data.pfp);
+          setSelectedImage(response.data.pfp)
+          setPreference(response.data.preferences)
         })
         .catch((error) => {
           console.error('Error fetching posts:', error)
@@ -36,7 +37,6 @@ const EditProfile = () => {
         fetchData()
         }
       },[])
-    
     const handleUser = (event) => {
         const inputValue = event.target.value;
         setUsername(inputValue);
@@ -54,45 +54,51 @@ const EditProfile = () => {
           alert('Bio is too long');
         }
       };
-      const handleImage = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            setPfp(reader.result);
-          };
-          reader.readAsDataURL(file);
-        }
-      };
+
       const handlePreferenceChange = (event) => {
         setPreference(event.target.value);
       };
 
 
-      const handleSubmit = (event) => {
+      const handleSubmit = async (e) => {
         //send the caption and image data to a server
-        const ret = {
-          username: username,
-          bio: bio,
-          email: email,
-          pfp: pfp,
-          preferences: {// change this later
-            breed: preference
-          }
-          
+        const formData = new FormData()
+        formData.append('image', imageFile)
+        formData.append('username', username)
+        formData.append('bio', bio)
+        formData.append('email', email)
+        formData.append('preferences', preference)
+
+        
+        if(user){
+          await axios.post('http://localhost:3001/profile/postEditProfile', formData, 
+          {headers:{
+            "Authorization": `Bearer ${user.data.token}`,
+          }})
+          .then((response) => {
+            console.log(response.data)
+          })
+          .catch((error) => {
+            console.error('Error handling out of frame data:', error)
+          })
         }
-        console.log(ret)
-        axios.post('http://localhost:3001/profile/editProfile', ret)
-        .then((response) => {
-          console.log(response.data)
-        })
-        .catch((error) => {
-          console.error('Error handling out of frame data:', error)
-        })
-        alert('Changes saved');
+        alert('Changes Saved');
+
         // window.location.href = '/Profile';
       };
 
+
+      const handleImage = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            setSelectedImage(reader.result);
+            setImageFile(file)
+          };
+          reader.readAsDataURL(file);
+        }
+      };
 
   return (
     <>
@@ -106,9 +112,9 @@ const EditProfile = () => {
 
 <div className = "editInputs">
     <div className="inputImage">
-      {pfp && (
+      {selectedImage && (
         <div>
-          <img src={pfp} alt="Selected" style={{ maxWidth: '100%' }} />
+          <img src={selectedImage} alt="Selected" style={{ maxWidth: '100%' }} />
         </div>
       )}
       <label htmlFor="file-input">Choose File</label>
@@ -136,7 +142,7 @@ const EditProfile = () => {
     <div className = 'inputItem'> 
     {/* TODO: Add a dropdown menu for preferences integrated with backend */}
         <h2>Preferences: </h2>
-        <select name="preferences" className="pet_pref" id="preferences">
+        <select name="preferences" className="pet_pref" id="preferences" defaultValue={preference}>
             <option value="Dog">Dog</option>
             <option value="Cat">Cat</option>
             <option value="Bird">Bird</option>

@@ -12,7 +12,7 @@ const Card = (props) => {
       console.error('Error while swiping:', error);
     }
   };
-
+  console.log(props)
   return (
     <>
 
@@ -27,10 +27,7 @@ const Card = (props) => {
                     <p><b>Description: </b>{props.description}</p>
                 </div>
             `   <div className="cardButtons">
-                    
-                        <IoHeartOutline onClick={() => handleSwipe('right')} onTouchEnd={() => handleSwipe('right')}/>
-                        <FaRegThumbsDown onClick={() => handleSwipe('left')} onTouchEnd={() => handleSwipe('left')}/>
-                        <IoEllipsisHorizontalOutline/>
+
                 </div>
             </div>
         </div>

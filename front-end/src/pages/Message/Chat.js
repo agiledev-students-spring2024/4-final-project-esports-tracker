@@ -10,22 +10,20 @@ const Chat = () => {
   const [socket, setSocket] = useState(null)
 
   useEffect(() => {
-    if (!socket) {
-      const newSocket = io("http://localhost:3001")
-      
-      newSocket.on("chat message", (msg) => {
-        setMessages((prevMessages) => [...prevMessages, msg])
-      })
+    const newSocket = io("http://localhost:3001")
 
-      setSocket(newSocket)
-    }
+    // add an event listener for incoming messages
+    newSocket.on("chat message", (msg) => {
+      setMessages((prevMessages) => [...prevMessages, msg])
+    })
 
+    setSocket(newSocket)
+
+    // cleanup function for when the component unmounts
     return () => {
-      if (socket) {
-        socket.disconnect()
-      }
+      newSocket.disconnect()
     }
-  }, [socket])
+  }, [setSocket])
 
   const sendMessage = (e) => {
     e.preventDefault()

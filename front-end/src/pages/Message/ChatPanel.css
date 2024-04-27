@@ -18,7 +18,12 @@
   width: 80%;
 }
 
-.messageItemMessage {
+.messageRecipient {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.messageMostRecent {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

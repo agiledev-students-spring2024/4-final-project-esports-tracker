@@ -1,62 +1,47 @@
-import React, { useState, useEffect } from "react"
-import axios from "axios"
-import "./Message.css"
-import RecentMatch from "./RecentMatch"
-import ChatPanel from "./ChatPanel"
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import './Message.css'
+import RecentMatch from './RecentMatch'
+import ChatPanel from './ChatPanel'
 
 const Message = () => {
-  const [search, setSearch] = React.useState("")
+  const [search, setSearch] = React.useState('')
+  const [conversations, setConversations] = useState([])
 
-  
+  useEffect(() => {
+    const fetchConversations = async () => {
+      try {
+        const userData = JSON.parse(localStorage.getItem('user'))['data']
+        if (userData) {
+          const { data } = await axios.get(
+            `http://localhost:3001/message/conversations/${userData.user}`
+          )
+          setConversations(data.results)
+        }
+      } catch (error) {
+        console.error('Error fetching conversations:', error)
+      }
+    }
+    fetchConversations()
+  }, [])
+
+  const matches = conversations.filter(
+    (conversation) => conversation.messages.length === 0
+  )
+  const chats = conversations.filter(
+    (conversation) => conversation.messages.length === 0
+  )
+
   const handleSubmit = (event) => {
     setSearch(event.target.value)
   }
+
   const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       // Handle pressing Enter key here
       handleSubmit(event)
     }
   }
-
-  // placeholders
-  const [matches, setMatches] = useState([])
-  const [chats, setChats] = useState([])
-  const [error, setError] = useState("")
-
-  function fetchMatches() {
-    axios
-      .get("http://localhost:3001/message/matches")
-      .then((response) => {
-        setMatches(response.data)
-        console.log("matches", response.data)
-      })
-      .catch((error) => {
-        console.log(error)
-        const errorMsg = JSON.stringify(error, null, 2)
-        setError(errorMsg)
-      })
-  }
-
-  function fetchChats() {
-    axios
-      .get("http://localhost:3001/message/chats")
-      .then((response) => {
-        setChats(response.data)
-        console.log("chats", response.data)
-      })
-      .catch((error) => {
-        console.log(error)
-        const errorMsg = JSON.stringify(error, null, 2)
-        setError(errorMsg)
-      })
-  }
-
-  useEffect(() => {
-    fetchMatches()
-    fetchChats()
-  }, [])
-
-  const profileID = "/profile"
 
   return (
     <>
@@ -77,14 +62,14 @@ const Message = () => {
       <div className="messageSection">Recent Matches</div>
       <div className="recentMatches">
         {matches.map((match, i) => (
-          <RecentMatch id={profileID} author={match.author} url={match.download_url} key={i} />
+          <RecentMatch match={match} key={i} />
         ))}
       </div>
 
       <div className="messageSection">Chats</div>
       <div className="chats">
         {chats.map((chat, i) => (
-          <ChatPanel id={chat.id} author={chat.author} url={chat.download_url} key={i} />
+          <ChatPanel chat={chat} key={i} />
         ))}
       </div>
     </>

@@ -1,11 +1,13 @@
 .matchItem {
-  margin-right: 16px;
   width: 96px;
   color: #00B4D8;
+  box-sizing: border-box;
+  padding: 0px 8px;
 }
 
 .matchItemName {
   font-size: medium;
+  font-weight: bold;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom"
-import "./RecentMatch.css"
+import { Link } from 'react-router-dom'
+import './RecentMatch.css'
 
-const RecentMatch = ({ profileID, url, author }) => {
+const RecentMatch = ({ match }) => {
   return (
     <>
-      <Link to={profileID} className="matchItem">
-        <img className="avatarImage" src={url} alt="avatar" />
-        <div className="matchItemName">{author}</div>
+      <Link to={`/chat/${match.id}`} className="matchItem">
+        <img className="avatarImage" src={match.recipient.pfp} alt="avatar" />
+        <div className="matchItemName">{match.recipient.username}</div>
       </Link>
     </>
   )

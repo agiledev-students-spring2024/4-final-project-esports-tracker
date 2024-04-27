@@ -1,18 +1,14 @@
-import { Link } from "react-router-dom"
-import "./ChatPanel.css"
+import { Link } from 'react-router-dom'
+import './ChatPanel.css'
 
-const ChatPanel = ({ chatID, url, author }) => {
+const ChatPanel = ({ chat }) => {
   return (
     <>
-      <Link to={`/chat/${chatID}`} className="chatBox">
-        <img className="avatarImage" src={url} alt="avatar" />
+      <Link to={`/chat/${chat.id}`} className="chatBox">
+        <img className="avatarImage" src={chat.recipient.pfp} alt="avatar" />
         <div className="messageItemContent">
-          <div className="MessageItem_content_name">
-            <span style={{ fontWeight: "bold" }}>{author}</span>
-          </div>
-          <div className="messageItemMessage">
-            <span>this is a chat. Hello {url}</span>
-          </div>
+          <div className="messageRecipient">{chat.recipient.username}</div>
+          <div className="messageMostRecent">this is a chat. Hello</div>
         </div>
       </Link>
     </>

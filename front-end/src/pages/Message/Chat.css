@@ -9,10 +9,16 @@
 }
 
 .chatHeader > a {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
+}
+
+.chatHeader img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
 }
 
 .chatHeader > a:visited {
@@ -37,7 +43,7 @@
 .chatMessages {
   height: 704px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   overflow-y: scroll;
   gap: 16px;
   margin: 0px 8px;
@@ -56,6 +62,7 @@
 .chatReceived {
   display: flex;
   justify-content: flex-start;
+  color: white;
 }
 
 .chatReceived > .chatBubble {
@@ -63,18 +70,19 @@
 }
 
 .chatBubble {
-  inline-size: 240px;
+  max-width: 240px;
+  box-sizing: border-box;
   min-height: 32px;
-  border-radius: 16px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
-  font-size: large;
-  padding: 8px;
+  font-size: larger;
+  padding: 8px 16px;
   border: 1px solid #00B4D8;
 }
 
 .chatMessage {
-  inline-size: 240px;
+  text-align: left;
   word-break: break-all;
 }
 
@@ -104,4 +112,9 @@
   color: #CAF0F8;
   border: none;
   border-radius: 8px;
+}
+
+.chatWelcome {
+  font-size: large;
+  margin: 32px 16px;
 }

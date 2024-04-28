@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react"
 import {useParams} from 'react-router-dom'
 import "./Post.css"
-import { Link } from 'react-router-dom';
-import { IoChevronBack, IoChevronDown, IoLocationOutline } from "react-icons/io5";
 import {
   IoPeopleCircleOutline,
   IoHeartOutline,
@@ -11,6 +9,10 @@ import {
   IoHeartSharp,
 } from "react-icons/io5"
 import useAuth from '../../hooks/useAuth';
+import axios from 'axios';
+import { IoChevronBack, IoChevronDown, IoLocationOutline } from "react-icons/io5";
+import { Link } from 'react-router-dom';
+
 
 
 const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption }) => {
@@ -59,8 +61,7 @@ const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption }
           <IoChevronBack size={30} />
           </Link>
           <h1>New Post</h1>
-      </div>
-
+        </div>
       <div className="post">
         <div className="post-header">
           <IoPeopleCircleOutline className="post-icon" />

@@ -1,23 +1,50 @@
-import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import { IoChevronBack, IoPersonCircleOutline, IoSend } from "react-icons/io5"
-import "./Chat.css"
-import io from "socket.io-client"
+import React, { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import axios from 'axios'
+import { IoChevronBack, IoSend } from 'react-icons/io5'
+import './Chat.css'
+import io from 'socket.io-client'
 
 const Chat = () => {
   const [messages, setMessages] = useState([])
-  const [messageInput, setMessageInput] = useState("")
+  const [messageInput, setMessageInput] = useState('')
   const [socket, setSocket] = useState(null)
+  const [sender, setSender] = useState(null)
+  const [receiver, setReceiver] = useState(null)
+  const { chatId } = useParams()
 
   useEffect(() => {
-    const newSocket = io("http://localhost:3001")
+    const fetchChat = async () => {
+      try {
+        const userData = JSON.parse(localStorage.getItem('user'))['data']
+        if (userData) {
+          const { data } = await axios.get(
+            `http://localhost:3001/message/chat/${chatId}/${userData.user}`
+          )
+          setMessages(data.messages)
+          setSender(data.sender)
+          setReceiver(data.receiver)
+        }
+      } catch (error) {
+        console.error('Error fetching conversations:', error)
+      }
+    }
+    fetchChat()
+
+    // set up socket connection
+    const newSocket = io('http://localhost:3001')
+    setSocket(newSocket)
 
     // add an event listener for incoming messages
-    newSocket.on("chat message", (msg) => {
-      setMessages((prevMessages) => [...prevMessages, msg])
+    newSocket.on('chat message', (data) => {
+      console.log(data)
+      if (data.chatId == chatId) {
+        setMessages((prevMessages) => [ data.message, ...prevMessages])
+      }
     })
 
-    setSocket(newSocket)
+    // join the room associated with the current chat
+    newSocket.emit('join room', chatId)
 
     // cleanup function for when the component unmounts
     return () => {
@@ -25,13 +52,38 @@ const Chat = () => {
     }
   }, [setSocket])
 
-  const sendMessage = (e) => {
+  const sendMessage = async (e) => {
     e.preventDefault()
 
-    if (!socket || !messageInput.trim()) return
+    if (!messageInput.trim()) return
 
-    socket.emit("chat message", messageInput)
-    setMessageInput("")
+    try {
+      if (socket) {
+        // emit message to other user
+        socket.emit('chat message', {
+          chatId: chatId,
+          sender: sender._id,
+          message: messageInput,
+        })
+
+        // save the message to the database
+        await axios.post('http://localhost:3001/message/chat/create', {
+          conversationId: chatId,
+          senderId: sender._id,
+          receiverId: receiver._id,
+          messageContent: messageInput,
+        })
+
+        // clear the message input
+        setMessageInput('')
+      }
+    } catch (error) {
+      console.error('Error sending message:', error)
+    }
+  }
+
+  if (!receiver) {
+    return <div>Loading...</div>
   }
 
   return (
@@ -40,18 +92,22 @@ const Chat = () => {
         <Link to="/message">
           <IoChevronBack size={32} />
         </Link>
-        <div className="petOwnersName">Pet Owner's Name</div>
+        <div className="petOwnersName">{receiver.username}</div>
         <Link to="/profile">
-          <IoPersonCircleOutline size={40} />
+          <img src={receiver.pfp} alt="avatar" />
         </Link>
       </div>
-
       <div className="chatContent">
         <div className="chatMessages">
           {messages.map((msg, i) => (
-            <div className="chatSent" key={i}>
+            <div
+              className={
+                msg.sender === sender._id ? 'chatSent' : 'chatReceived'
+              }
+              key={i}
+            >
               <div className="chatBubble">
-                <div className="chatMessage">{msg}</div>
+                <div className="chatMessage">{msg.message}</div>
               </div>
             </div>
           ))}

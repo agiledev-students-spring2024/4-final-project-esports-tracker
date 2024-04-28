@@ -113,3 +113,8 @@
   border: none;
   border-radius: 8px;
 }
+
+.chatWelcome {
+  font-size: large;
+  margin: 32px 16px;
+}

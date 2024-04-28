@@ -33,6 +33,12 @@ router.get('/conversations/:username', async (req, res) => {
         const participant = await User.findById(participantId)
           .select('_id username pfp')
           .lean()
+
+        // quick fix for missing profile pictures
+        if (participant.pfp !== 'https://picsum.photos/id/237/200/300') {
+          participant.pfp = `${req.protocol}://${req.get('host')}/${participant.pfp}`
+        }
+
         participants.set(participantId.toString(), participant)
       })
     )
@@ -81,7 +87,7 @@ router.get('/chat/:chatId/:username', async (req, res) => {
     // fetch and return all messages in the conversation
     const messages = await Message.find({ conversation: chatId }).sort({
       createdAt: -1,
-    })
+    }).select('sender receiver message')
 
     let receiverId = null
 
@@ -106,6 +112,11 @@ router.get('/chat/:chatId/:username', async (req, res) => {
       }
     }
     const receiver = await User.findById(receiverId).select('_id username pfp')
+
+    // quick fix for missing profile pictures
+    if (receiver.pfp !== 'https://picsum.photos/id/237/200/300') {
+      receiver.pfp = `${req.protocol}://${req.get('host')}/${receiver.pfp}`
+    }
 
     res.json({ sender: user, receiver: receiver, messages: messages })
   } catch (error) {

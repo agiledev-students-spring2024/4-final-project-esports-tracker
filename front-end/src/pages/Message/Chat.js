@@ -37,7 +37,6 @@ const Chat = () => {
 
     // add an event listener for incoming messages
     newSocket.on('chat message', (data) => {
-      console.log(data)
       if (data.chatId == chatId) {
         setMessages((prevMessages) => [data.message, ...prevMessages])
       }
@@ -111,6 +110,10 @@ const Chat = () => {
               </div>
             </div>
           ))}
+          <div className='chatWelcome'>
+            It's a match! You and {receiver.username} are ready to plan a
+            playdate for your furry friends.
+          </div>
         </div>
         <div className="chatOptions">
           <input

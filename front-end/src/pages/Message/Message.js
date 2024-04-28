@@ -27,11 +27,11 @@ const Message = () => {
 
   const matches = conversations.filter(
     (conversation) => conversation.mostRecent == null
-  );
+  )
 
   const chats = conversations.filter(
     (conversation) => conversation.mostRecent != null
-  );
+  )
 
   const handleSubmit = (event) => {
     setSearch(event.target.value)

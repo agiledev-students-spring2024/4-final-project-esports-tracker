@@ -9,10 +9,8 @@ import {
   IoHeartSharp,
 } from "react-icons/io5"
 import useAuth from '../../hooks/useAuth';
-import axios from 'axios';
 import { IoChevronBack, IoChevronDown, IoLocationOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
-
 
 
 const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption }) => {
@@ -56,12 +54,7 @@ const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption }
   if (feedUsername && feedImage && feedCaption) {
   return (
     <>
-      <div className='addHeader'>
-          <Link to='/discover'>
-          <IoChevronBack size={30} />
-          </Link>
-          <h1>New Post</h1>
-        </div>
+
       <div className="post">
         <div className="post-header">
           <IoPeopleCircleOutline className="post-icon" />
@@ -92,6 +85,11 @@ else if (post) {
   // Rendering as a single page
   return (
     <>
+          <div className='postBackButton'>
+          <Link to='/feed'>
+          <IoChevronBack size={30} />
+          </Link>
+        </div>
       <div className="post">
         <div className="post-header">
           <IoPeopleCircleOutline className="post-icon" />

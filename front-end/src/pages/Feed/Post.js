@@ -13,7 +13,7 @@ import { IoChevronBack, IoChevronDown, IoLocationOutline } from "react-icons/io5
 import { Link } from 'react-router-dom';
 
 
-const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption }) => {
+const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption, likeCount: feedLikes }) => {
   const [post, setPost] = useState(null);
   const [liked, setLiked] = useState(false);
   const { user } = useAuth();
@@ -51,7 +51,7 @@ const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption }
   
   // TODO: clicking on a username redirects to that user's profile
   //ADD DATE CREATED AND LIKE COUNT THIS IS ALREADY IN THE DATABASE SCHEMA
-  if (feedUsername && feedImage && feedCaption) {
+  if (feedUsername && feedImage && feedCaption && feedLikes) {
   return (
     <>
 
@@ -74,6 +74,7 @@ const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption }
             <IoShareOutline className="post-icon" />
           </div>
           <p>{feedCaption}</p>
+          <p>{feedLikes}</p>
         </div>
         
       </div>
@@ -108,7 +109,9 @@ else if (post) {
             </div>
             <IoShareOutline className="post-icon" />
           </div>
+          <p>{post.likeCount} Likes </p>
           <p>{post.caption}</p>
+          
         </div>
       </div>
       <div className="postFooter"></div>

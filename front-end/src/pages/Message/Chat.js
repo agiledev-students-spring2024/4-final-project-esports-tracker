@@ -39,7 +39,7 @@ const Chat = () => {
     newSocket.on('chat message', (data) => {
       console.log(data)
       if (data.chatId == chatId) {
-        setMessages((prevMessages) => [ data.message, ...prevMessages])
+        setMessages((prevMessages) => [data.message, ...prevMessages])
       }
     })
 

@@ -16,35 +16,51 @@ router.get('/conversations/:username', async (req, res) => {
 
     // find all conversations where the user is a participant
     const conversations = await Conversation.find({ participants: user._id })
-      .select('_id participants messages')
+      .select('_id participants mostRecent')
       .lean()
 
-    // extract participant object IDs from conversations
-    const participantIds = conversations.map((conversation) =>
-      conversation.participants.find(
+    // extract other participants' object ID from the conversations
+    const participantIds = conversations.flatMap((conversation) =>
+      conversation.participants.filter(
         (id) => id.toString() !== user._id.toString()
       )
     )
 
     // find participant details
-    const participants = await User.find({ _id: { $in: participantIds } })
-      .select('_id username pfp')
-      .lean()
+    const participants = new Map()
+    await Promise.all(
+      participantIds.map(async (participantId) => {
+        const participant = await User.findById(participantId)
+          .select('_id username pfp')
+          .lean()
+        participants.set(participantId.toString(), participant)
+      })
+    )
 
-    // map recipient information to conversations
-    const results = conversations.map((conversation) => {
-      const recipientId = conversation.participants.find(
-        (id) => id.toString() !== user._id.toString()
-      )
-      const recipient = participants.find(
-        (participant) => participant._id.toString() === recipientId.toString()
-      )
-      return {
-        id: conversation._id,
-        recipient,
-        messages: conversation.messages,
-      }
-    })
+    // map participant details to conversations
+    const results = await Promise.all(
+      conversations.map(async (conversation) => {
+        const participantId = conversation.participants.find(
+          (id) => id.toString() !== user._id.toString()
+        )
+        const participant = participants.get(participantId.toString())
+
+        // find the most recent message in the conversation
+        let mostRecent = null
+        if (conversation.mostRecent !== null) {
+          mostRecent = await Message.findById(conversation.mostRecent)
+            .select('message')
+            .lean()
+          mostRecent = mostRecent ? mostRecent.message : null
+        }
+
+        return {
+          id: conversation._id,
+          participant,
+          mostRecent: mostRecent,
+        }
+      })
+    )
 
     res.json({ results })
   } catch (error) {
@@ -63,17 +79,35 @@ router.get('/chat/:chatId/:username', async (req, res) => {
     }
 
     // fetch and return all messages in the conversation
-    const messages = await Message.find({ conversation: chatId }).sort({ createdAt: -1 })
+    const messages = await Message.find({ conversation: chatId }).sort({
+      createdAt: -1,
+    })
 
-    // find the other user
-    const otherUserId =
-      messages[0].sender.toString() === user._id.toString()
-        ? messages[0].receiver
-        : messages[0].sender
+    let receiverId = null
 
-    const otherUser = await User.findById(otherUserId).select('_id username pfp')
+    if (messages[0]) {
+      receiverId =
+        messages[0].sender.toString() === user._id.toString()
+          ? messages[0].receiver
+          : messages[0].sender
+    } else {
+      // find the conversation based on the chatId
+      const conversation = await Conversation.findById(chatId)
+      if (!conversation) {
+        return res.status(404).json({ error: 'Conversation not found.' })
+      }
 
-    res.json({ sender: user, receiver: otherUser, messages: messages })
+      // find the recipient
+      receiverId = conversation.participants.find(
+        (participant) => participant.toString() !== user._id.toString()
+      )
+      if (!receiverId) {
+        return res.status(404).json({ error: 'Recipient not found.' })
+      }
+    }
+    const receiver = await User.findById(receiverId).select('_id username pfp')
+
+    res.json({ sender: user, receiver: receiver, messages: messages })
   } catch (error) {
     console.error('Error fetching chat:', error)
     res.status(500).send('An error occurred while fetching chat.')
@@ -94,6 +128,11 @@ router.post('/chat/create', async (req, res) => {
 
     // save the new message to the database
     await newMessage.save()
+
+    // update the conversation's most recent message
+    await Conversation.findByIdAndUpdate(conversationId, {
+      mostRecent: newMessage._id,
+    })
 
     res.status(201).json({ message: 'Message created successfully' })
   } catch (error) {

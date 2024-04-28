@@ -5,8 +5,8 @@ const RecentMatch = ({ match }) => {
   return (
     <>
       <Link to={`/chat/${match.id}`} className="matchItem">
-        <img className="avatarImage" src={match.recipient.pfp} alt="avatar" />
-        <div className="matchItemName">{match.recipient.username}</div>
+        <img className="avatarImage" src={match.participant.pfp} alt="avatar" />
+        <div className="matchItemName">{match.participant.username}</div>
       </Link>
     </>
   )

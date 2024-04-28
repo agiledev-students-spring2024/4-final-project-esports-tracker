@@ -26,11 +26,12 @@ const Message = () => {
   }, [])
 
   const matches = conversations.filter(
-    (conversation) => conversation.messages.length === 0
-  )
+    (conversation) => conversation.mostRecent == null
+  );
+
   const chats = conversations.filter(
-    (conversation) => conversation.messages.length === 0
-  )
+    (conversation) => conversation.mostRecent != null
+  );
 
   const handleSubmit = (event) => {
     setSearch(event.target.value)

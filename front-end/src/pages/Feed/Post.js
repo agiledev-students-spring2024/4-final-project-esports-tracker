@@ -51,7 +51,7 @@ const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption, 
   
   // TODO: clicking on a username redirects to that user's profile
   //ADD DATE CREATED AND LIKE COUNT THIS IS ALREADY IN THE DATABASE SCHEMA
-  if (feedUsername && feedImage && feedCaption && feedLikes) {
+  if (feedUsername && feedImage && feedCaption) {
   return (
     <>
 
@@ -73,11 +73,16 @@ const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption, 
             </div>
             <IoShareOutline className="post-icon" />
           </div>
+          <p>{feedLikes} Likes</p>
           <p>{feedCaption}</p>
-          <p>{feedLikes}</p>
+
+          
         </div>
         
       </div>
+      <div className="spacer"></div>
+      <div className="spacer"></div>
+      <div className="spacer"></div>
       <div className="postFooter"></div>
     </>
   )

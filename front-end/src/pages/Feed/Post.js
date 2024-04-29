@@ -90,10 +90,11 @@ const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption, 
 else if (post) {
   // Rendering as a single page
   return (
+    
     <>
           <div className='postBackButton'>
           <Link to='/feed'>
-          <IoChevronBack size={30} />
+          <IoChevronBack size={30} color={"#0077B6"}/>
           </Link>
         </div>
       <div className="post">

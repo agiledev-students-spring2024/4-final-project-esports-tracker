@@ -1,3 +1,4 @@
+[![CI / CD](https://github.com/agiledev-students-spring2024/4-final-project-pet-tinder/workflows/build.yaml/badge.svg)](https://github.com/agiledev-students-spring2024/4-final-project-pet-tinder/actions/workflows/build.yaml)
 # Play Dates for Pets
 
 ##  Project Description

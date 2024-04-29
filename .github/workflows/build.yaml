@@ -16,9 +16,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install dependencies
+      - name: Install front-end dependencies
         run: |
-          npm install
+            cd front-end
+            npm install
+        
+      - name: Install back-end dependencies
+        run: |
+            cd back-end
+            npm install
+        
       - name: Run tests with Mocha and Chai
         run: |
           npm test

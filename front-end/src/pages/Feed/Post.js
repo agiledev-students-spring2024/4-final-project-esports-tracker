@@ -13,11 +13,12 @@ import { IoChevronBack, IoChevronDown, IoLocationOutline } from "react-icons/io5
 import { Link } from 'react-router-dom';
 
 
-const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption, likeCount: feedLikes }) => {
+const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption, likeCount: feedLikes = 0 }) => {
   const [post, setPost] = useState(null);
   const [liked, setLiked] = useState(false);
   const { user } = useAuth();
   const { postId } = useParams();
+  
 
   function handleLike() {
     setLiked(!liked) // toggle the liked state
@@ -90,9 +91,8 @@ const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption, 
 else if (post) {
   // Rendering as a single page
   return (
-    
     <>
-          <div className='postBackButton'>
+        <div className='postBackButton'>
           <Link to='/feed'>
           <IoChevronBack size={30} color={"#0077B6"}/>
           </Link>
@@ -117,7 +117,6 @@ else if (post) {
           </div>
           <p>{post.likeCount} Likes </p>
           <p>{post.caption}</p>
-          
         </div>
       </div>
       <div className="postFooter"></div>

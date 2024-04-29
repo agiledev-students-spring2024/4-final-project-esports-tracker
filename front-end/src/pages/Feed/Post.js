@@ -13,11 +13,12 @@ import { IoChevronBack, IoChevronDown, IoLocationOutline } from "react-icons/io5
 import { Link } from 'react-router-dom';
 
 
-const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption }) => {
+const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption, likeCount: feedLikes = 0 }) => {
   const [post, setPost] = useState(null);
   const [liked, setLiked] = useState(false);
   const { user } = useAuth();
   const { postId } = useParams();
+  
 
   function handleLike() {
     setLiked(!liked) // toggle the liked state
@@ -73,10 +74,16 @@ const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption }
             </div>
             <IoShareOutline className="post-icon" />
           </div>
+          <p>{feedLikes} Likes</p>
           <p>{feedCaption}</p>
+
+          
         </div>
         
       </div>
+      <div className="spacer"></div>
+      <div className="spacer"></div>
+      <div className="spacer"></div>
       <div className="postFooter"></div>
     </>
   )
@@ -85,9 +92,9 @@ else if (post) {
   // Rendering as a single page
   return (
     <>
-          <div className='postBackButton'>
+        <div className='postBackButton'>
           <Link to='/feed'>
-          <IoChevronBack size={30} />
+          <IoChevronBack size={30} color={"#0077B6"}/>
           </Link>
         </div>
       <div className="post">
@@ -108,6 +115,7 @@ else if (post) {
             </div>
             <IoShareOutline className="post-icon" />
           </div>
+          <p>{post.likeCount} Likes </p>
           <p>{post.caption}</p>
         </div>
       </div>

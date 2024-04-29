@@ -1,4 +1,4 @@
-[![log github events](https://github.com/agiledev-students-spring2024/4-final-project-pet-tinder/actions/workflows/event-logger.yml/badge.svg)](https://github.com/agiledev-students-spring2024/4-final-project-pet-tinder/actions/workflows/event-logger.yml)[![log github events](https://github.com/agiledev-students-spring2024/4-final-project-pet-tinder/actions/workflows/event-logger.yml/badge.svg)](https://github.com/agiledev-students-spring2024/4-final-project-pet-tinder/actions/workflows/event-logger.yml)
+[![log github events](https://github.com/agiledev-students-spring2024/4-final-project-pet-tinder/actions/workflows/event-logger.yml/badge.svg)](https://github.com/agiledev-students-spring2024/4-final-project-pet-tinder/actions/workflows/event-logger.yml)
 # Play Dates for Pets
 
 ##  Project Description

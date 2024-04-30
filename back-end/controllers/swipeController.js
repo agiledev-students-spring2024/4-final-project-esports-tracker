@@ -92,7 +92,7 @@ const getCard = async (req, res) => {
         _id: user._id,
         username: user.username,
         email: user.email,
-        pfp: `${req.protocol}://${req.get('host')}/${user.pfp}`, // Full URL for the profile picture
+        pfp: `https://urchin-app-n5bks.ondigitalocean.app/final-project-pet-tinder-back-en/${user.pfp}`, // Full URL for the profile picture
         bio: user.bio,
         matchedUsers: user.matchedUsers,
       }))

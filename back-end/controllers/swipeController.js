@@ -113,7 +113,9 @@ const postMatch = async (req, res) => {
     if (!currentUser) {
       return res.status(404).json({ error: 'Current user not found' })
     }
-
+    // await User.findByIdAndUpdate(matchedUser, {
+    //   $push: { currentUser: userId },
+    // })
     // create a new conversation
     const conversation = new Conversation({
       participants: [currentUser._id, matchedUser._id],

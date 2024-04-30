@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import './Profile.css'
 import { IoSettingsOutline } from "react-icons/io5";
 import useAuth from '../../hooks/useAuth'; //IMPORTANT
+const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 const Profile = () => {
 
@@ -23,7 +24,7 @@ const Profile = () => {
 
   const fetchImages = async () => {
     try {
-      const response = await fetch("http://localhost:3001/post/userPosts",
+      const response = await fetch(`${BASE_URL}/post/userPosts`,
       {headers:{
         "Authorization": `Bearer ${user.data.token}`,
       }})
@@ -43,7 +44,7 @@ const Profile = () => {
   useEffect(() => {
     if(user){ 
       axios
-        .get('http://localhost:3001/profile/', 
+        .get(`${BASE_URL}/profile/`, 
         {headers:{ //IMPORTANT
           "Authorization": `Bearer ${user.data.token}`,
 

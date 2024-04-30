@@ -5,7 +5,7 @@ import axios from 'axios'
 import useAuth from '../../hooks/useAuth'
 import AuthContext from '../../context/AuthProvider'
 import welcomeImage from './welcome.png';
-
+const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 
 
@@ -44,7 +44,7 @@ const Login = () => {
       console.log(ret)
 
       try{
-          const response = await axios.post('http://localhost:3001/auth/login', ret)
+          const response = await axios.post(`${BASE_URL}auth/login`, ret)
           console.log(response.data)
 
           localStorage.setItem('user', JSON.stringify(response))

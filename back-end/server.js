@@ -11,7 +11,7 @@ const server = http.createServer(app)
 // integrate socket.io with the server
 const io = socketIo(server, {
   cors: {
-    origin: 'http://localhost:3000', // TODO: update when deployed
+    origin: '*', // listen to connections from any site
     methods: ['GET', 'POST'],
   },
 })

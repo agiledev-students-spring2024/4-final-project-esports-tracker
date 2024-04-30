@@ -4,7 +4,7 @@ import axios from 'axios'
 import { IoChevronBack, IoSend } from 'react-icons/io5'
 import './Chat.css'
 import io from 'socket.io-client'
-const BASE_URL = process.env.API_BASE_URL
+const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 const Chat = () => {
   const [messages, setMessages] = useState([])

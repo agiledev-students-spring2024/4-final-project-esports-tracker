@@ -11,7 +11,7 @@ import {
 import useAuth from '../../hooks/useAuth';
 import { IoChevronBack, IoChevronDown, IoLocationOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
-
+const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption, likeCount: feedLikes = 0 }) => {
   const [post, setPost] = useState(null);
@@ -28,7 +28,7 @@ const Post = ({ username: feedUsername, image: feedImage, caption: feedCaption, 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/post/singlePost?postId=${postId}`, {
+        const response = await fetch(`${BASE_URL}/post/singlePost?postId=${postId}`, {
           headers: {
             Authorization: `Bearer ${user.data.token}`,
           },

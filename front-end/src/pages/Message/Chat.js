@@ -4,6 +4,7 @@ import axios from 'axios'
 import { IoChevronBack, IoSend } from 'react-icons/io5'
 import './Chat.css'
 import io from 'socket.io-client'
+const BASE_URL = process.env.API_BASE_URL
 
 const Chat = () => {
   const [messages, setMessages] = useState([])
@@ -19,7 +20,7 @@ const Chat = () => {
         const userData = JSON.parse(localStorage.getItem('user'))['data']
         if (userData) {
           const { data } = await axios.get(
-            `http://localhost:3001/message/chat/${chatId}/${userData.user}`
+            `${BASE_URL}/message/chat/${chatId}/${userData.user}`
           )
           setMessages(data.messages)
           setSender(data.sender)
@@ -32,7 +33,7 @@ const Chat = () => {
     fetchChat()
 
     // set up socket connection
-    const newSocket = io('http://localhost:3001')
+    const newSocket = io(`${BASE_URL}`)
     setSocket(newSocket)
 
     // add an event listener for incoming messages
@@ -66,7 +67,7 @@ const Chat = () => {
         })
 
         // save the message to the database
-        await axios.post('http://localhost:3001/message/chat/create', {
+        await axios.post(`${BASE_URL}/message/chat/create`, {
           conversationId: chatId,
           senderId: sender._id,
           receiverId: receiver._id,

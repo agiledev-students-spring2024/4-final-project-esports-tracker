@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 
+const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 
 const EditProfile = () => {
@@ -15,11 +16,11 @@ const EditProfile = () => {
     const [email, setEmail] = useState('');
     const [preference, setPreference] = useState('dog'); // State for selected preference
     const {user} = useAuth();  // 
-
+    const BASE_URL = process.env.API_BASE_URL
 
     useEffect(() => {
         async function fetchData() {
-        const req = await axios.get('http://localhost:3001/profile/getEditProfile', 
+        const req = await axios.get(`${BASE_URL}/profile/getEditProfile`, 
         {headers:{
           "Authorization": `Bearer ${user.data.token}`,
         }})
@@ -71,7 +72,7 @@ const EditProfile = () => {
 
         
         if(user){
-          await axios.post('http://localhost:3001/profile/postEditProfile', formData, 
+          await axios.post(`${BASE_URL}/profile/postEditProfile`, formData, 
           {headers:{
             "Authorization": `Bearer ${user.data.token}`,
           }})

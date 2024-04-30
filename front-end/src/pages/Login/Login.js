@@ -44,7 +44,7 @@ const Login = () => {
       console.log(ret)
 
       try{
-          const response = await axios.post(`${BASE_URL}auth/login`, ret)
+          const response = await axios.post(`${BASE_URL}/auth/login`, ret)
           console.log(response.data)
 
           localStorage.setItem('user', JSON.stringify(response))

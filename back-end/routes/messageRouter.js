@@ -36,7 +36,7 @@ router.get('/conversations/:username', async (req, res) => {
 
         // quick fix for missing profile pictures
         if (participant.pfp !== 'https://picsum.photos/id/237/200/300') {
-          participant.pfp = `${req.protocol}://${req.get('host')}/${participant.pfp}`
+          participant.pfp = `https://urchin-app-n5bks.ondigitalocean.app/final-project-pet-tinder-back-en/${participant.pfp}`
         }
 
         participants.set(participantId.toString(), participant)
@@ -115,7 +115,7 @@ router.get('/chat/:chatId/:username', async (req, res) => {
 
     // quick fix for missing profile pictures
     if (receiver.pfp !== 'https://picsum.photos/id/237/200/300') {
-      receiver.pfp = `${req.protocol}://${req.get('host')}/${receiver.pfp}`
+      receiver.pfp = `https://urchin-app-n5bks.ondigitalocean.app/final-project-pet-tinder-back-en/${receiver.pfp}`
     }
 
     res.json({ sender: user, receiver: receiver, messages: messages })

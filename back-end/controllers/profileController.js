@@ -44,7 +44,7 @@ const getEditProfile = async (req, res) => {
       username: user.username,
       bio: user.bio,
       email: user.email,
-      pfp: `${req.protocol}://${req.get('host')}/${user.pfp}`,
+      pfp: `https://urchin-app-n5bks.ondigitalocean.app/final-project-pet-tinder-back-en/${user.pfp}`,
       preferences: user.preferences.pet
     });
   } catch (error) {

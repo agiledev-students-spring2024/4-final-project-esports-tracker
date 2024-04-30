@@ -48,7 +48,7 @@ const getAllPosts = (req, res) =>{
         return {
           _id: post._id,
           caption: post.caption,
-          image: `${req.protocol}://${req.get('host')}/${post.image}`,
+          image: `https://urchin-app-n5bks.ondigitalocean.app/final-project-pet-tinder-back-en/${post.image}`,
           likeCount: post.likeCount,
           comments: post.comments,
           postedBy: post.postedBy
@@ -71,7 +71,7 @@ const getUserPosts = (req, res) => {
         return {
           _id: post._id,
           caption: post.caption,
-          image: `${req.protocol}://${req.get('host')}/${post.image}`,
+          image: `https://urchin-app-n5bks.ondigitalocean.app/final-project-pet-tinder-back-en/${post.image}`,
           likeCount: post.likeCount,
           comments: post.comments,
           postedBy: post.postedBy
@@ -96,7 +96,7 @@ const getSinglePost = (req, res) => {
       const modifiedPost = {
         _id: post._id,
         caption: post.caption,
-        image: `${req.protocol}://${req.get('host')}/${post.image}`,
+        image: `https://urchin-app-n5bks.ondigitalocean.app/final-project-pet-tinder-back-en/${post.image}`,
         likeCount: post.likeCount,
         comments: post.comments,
         postedBy: post.postedBy

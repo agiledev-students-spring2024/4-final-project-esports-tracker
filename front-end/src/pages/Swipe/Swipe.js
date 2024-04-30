@@ -6,6 +6,7 @@ import TinderCard from 'react-tinder-card';
 import { IoHeartOutline, IoEllipsisHorizontalOutline, IoReturnUpBack} from "react-icons/io5";
 import { FaR, FaRegThumbsDown } from "react-icons/fa6";
 import useAuth from '../../hooks/useAuth';
+const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 
 
@@ -22,7 +23,7 @@ const Swipe = () => {
   useEffect(() => {
     async function fetchData() {
     console.log(user)
-    const req = await axios.get('http://localhost:3001/swipe/card', 
+    const req = await axios.get(`${BASE_URL}/swipe/card`, 
     {headers:{
       "Authorization": `Bearer ${user.data.token}`,
     }})
@@ -74,7 +75,7 @@ const Swipe = () => {
       idx: idx,
     }
     console.log(ret)
-    axios.post('http://localhost:3001/swipe/postSwipe', ret, 
+    axios.post(`${BASE_URL}/swipe/postSwipe`, ret, 
     {headers:{
       "Authorization": `Bearer ${user.data.token}`,
     }})
@@ -83,7 +84,7 @@ const Swipe = () => {
       if (response.data.message === "It's a match!") {
         alert("It's a match!")
         // Send another request to handle the match
-        axios.post('http://localhost:3001/swipe/handleMatch', { matchedUser: ret.cardData }, 
+        axios.post(`${BASE_URL}/swipe/handleMatch`, { matchedUser: ret.cardData }, 
         {
           headers: {
             "Authorization": `Bearer ${user.data.token}`,

@@ -80,11 +80,12 @@ const postSwipe = async (req, res) => {
 
 const getCard = async (req, res) => {
   try {
-    const users = await User.find()
-
+    // find all users except the current user
+    const users = await User.find({ _id: {$ne: req.user._id}})
     if (!users) {
       return res.status(404).json({ error: 'No pets found' })
     }
+
     const modifiedUsers = users
       .filter((users) => !users.pfp.includes('picsum'))
       .map((user) => ({
@@ -113,7 +114,9 @@ const postMatch = async (req, res) => {
     if (!currentUser) {
       return res.status(404).json({ error: 'Current user not found' })
     }
-
+    // await User.findByIdAndUpdate(matchedUser, {
+    //   $push: { currentUser: userId },
+    // })
     // create a new conversation
     const conversation = new Conversation({
       participants: [currentUser._id, matchedUser._id],

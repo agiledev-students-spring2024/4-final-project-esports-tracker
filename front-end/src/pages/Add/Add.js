@@ -5,7 +5,7 @@ import { IoChevronBack, IoChevronDown, IoLocationOutline } from "react-icons/io5
 import { FiTag } from "react-icons/fi";
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-
+const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 
 const Add = () => {
@@ -38,7 +38,7 @@ const Add = () => {
       return;
     }
     if(user){
-      await axios.post('http://localhost:3001/post/postPost', formData, 
+      await axios.post(`${BASE_URL}/post/postPost`, formData, 
       {headers:{
         "Authorization": `Bearer ${user.data.token}`,
       }})
@@ -74,7 +74,7 @@ const Add = () => {
           <Link to='/discover'>
           <IoChevronBack size={30} />
           </Link>
-          <h1>New Post</h1>
+          <div className='addTitle'>New Post</div>
         </div>
      
       <div className='addImage'>

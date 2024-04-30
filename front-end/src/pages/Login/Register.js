@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './Register.css'
 import axios from 'axios'
 import welcomeImage from './welcome.png';
-
+const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 const Register = () => {
   const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
@@ -56,7 +56,7 @@ const Register = () => {
       }
       console.log(ret)
       try{
-          const response = await axios.post('http://localhost:3001/auth/register', ret)
+          const response = await axios.post(`${BASE_URL}/auth/register`, ret)
 
           console.log(response.data)
           setSuccess(true)

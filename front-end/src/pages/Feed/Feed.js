@@ -5,7 +5,7 @@ import "./Feed.css"
 import Post from "./Post"
 import TabSwitcher from "./TabSwitcher"
 import useAuth from '../../hooks/useAuth';
-
+const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 
 
@@ -17,7 +17,7 @@ const Feed = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:3001/post/allPosts",
+        const response = await fetch(`${BASE_URL}/post/allPosts`,
         {headers:{
           "Authorization": `Bearer ${user.data.token}`,
         }})

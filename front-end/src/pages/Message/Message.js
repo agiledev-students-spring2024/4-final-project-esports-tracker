@@ -3,6 +3,7 @@ import axios from 'axios'
 import './Message.css'
 import RecentMatch from './RecentMatch'
 import ChatPanel from './ChatPanel'
+const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 const Message = () => {
   const [search, setSearch] = React.useState('')
@@ -14,7 +15,7 @@ const Message = () => {
         const userData = JSON.parse(localStorage.getItem('user'))['data']
         if (userData) {
           const { data } = await axios.get(
-            `http://localhost:3001/message/conversations/${userData.user}`
+            `${BASE_URL}/message/conversations/${userData.user}`
           )
           setConversations(data.results)
         }

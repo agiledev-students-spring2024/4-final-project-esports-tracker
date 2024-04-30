@@ -4,6 +4,7 @@ import TabSwitcher from "../Feed/TabSwitcher"
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 import { Icon } from 'leaflet'
 import "leaflet/dist/leaflet.css"
+const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 const Discover = () => {
   const [markers, setMarkers] = useState([])
@@ -12,7 +13,7 @@ const Discover = () => {
     async function fetchData() {
       try {
         // TODO: retrieve data based on the user's id 
-        const response = await fetch("http://localhost:3001/discover/1")
+        const response = await fetch(`${BASE_URL}/discover/1`)
         if (!response.ok) {
           throw new Error("Failed to fetch markers")
         }

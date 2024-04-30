@@ -74,7 +74,7 @@ const Add = () => {
           <Link to='/discover'>
           <IoChevronBack size={30} />
           </Link>
-          <h1>New Post</h1>
+          <div className='addTitle'>New Post</div>
         </div>
      
       <div className='addImage'>
